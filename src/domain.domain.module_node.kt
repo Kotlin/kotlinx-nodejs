@@ -22,20 +22,14 @@ import NodeJS.Timer
 
 external open class Domain : EventEmitter, NodeJS.Domain {
     override fun <T> run(fn: (args: Array<Any>) -> T, vararg args: Any): T
-    open fun add(emitter: EventEmitter)
-    override fun add(emitter: EventEmitter)
     override fun add(emitter: Timer)
-    open fun remove(emitter: EventEmitter)
-    override fun remove(emitter: EventEmitter)
     override fun remove(emitter: Timer)
     override fun <T : Function<*>> bind(cb: T): T
     override fun <T : Function<*>> intercept(cb: T): T
     open var members: Array<dynamic /* events.EventEmitter | NodeJS.Timer */>
     open fun enter()
     open fun exit()
-    override fun add(emitter: EventEmitter)
     override fun add(emitter: Timer)
-    override fun remove(emitter: EventEmitter)
     override fun remove(emitter: Timer)
 }
 

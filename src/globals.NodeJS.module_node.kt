@@ -159,17 +159,15 @@ external interface ReadWriteStream : ReadableStream, WritableStream
 
 external interface Domain : EventEmitter {
     fun <T> run(fn: (args: Array<Any>) -> T, vararg args: Any): T
-    fun add(emitter: EventEmitter)
     fun add(emitter: Timer)
-    fun remove(emitter: EventEmitter)
     fun remove(emitter: Timer)
     fun <T : Function<*>> bind(cb: T): T
     fun <T : Function<*>> intercept(cb: T): T
-    override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Domain /* this */
-    override fun on(event: String, listener: (args: Array<Any>) -> Unit): Domain /* this */
-    override fun once(event: String, listener: (args: Array<Any>) -> Unit): Domain /* this */
-    override fun removeListener(event: String, listener: (args: Array<Any>) -> Unit): Domain /* this */
-    override fun removeAllListeners(event: String): Domain /* this */
+    override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): EventEmitter /* this */
+    override fun on(event: String, listener: (args: Array<Any>) -> Unit): EventEmitter /* this */
+    override fun once(event: String, listener: (args: Array<Any>) -> Unit): EventEmitter /* this */
+    override fun removeListener(event: String, listener: (args: Array<Any>) -> Unit): EventEmitter /* this */
+    override fun removeAllListeners(event: String): EventEmitter /* this */
 }
 
 external interface MemoryUsage {

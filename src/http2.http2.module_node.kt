@@ -32,6 +32,7 @@ import tls.TlsOptions
 import net.Server
 import stream.internal.Stream
 import http.IncomingHttpHeaders as Http1IncomingHttpHeaders
+import stream.internal.ReadableOptions
 
 external interface IncomingHttpStatusHeader {
     operator fun get(key: String): Number?
@@ -668,7 +669,7 @@ external interface Http2SecureServer : tls.Server {
     fun setTimeout(msec: Number = definedExternally, callback: () -> Unit = definedExternally): Http2SecureServer /* this */
 }
 
-external open class Http2ServerRequest(stream: ServerHttp2Stream, headers: IncomingHttpHeaders, options: stream.ReadableOptions, rawHeaders: Array<String>) : Readable {
+external open class Http2ServerRequest(stream: ServerHttp2Stream, headers: IncomingHttpHeaders, options: ReadableOptions, rawHeaders: Array<String>) : Readable {
     open var aborted: Boolean
     open var authority: String
     open var headers: IncomingHttpHeaders

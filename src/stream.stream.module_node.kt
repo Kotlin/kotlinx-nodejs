@@ -51,8 +51,6 @@ external open class internal : EventEmitter {
             set(value) = definedExternally
         val read: ((self: Readable, size: Number) -> Unit)?
             get() = definedExternally
-        val destroy: ((self: Readable, error: Error?, callback: (error: Error?) -> Unit) -> Unit)?
-            get() = definedExternally
         var autoDestroy: Boolean?
             get() = definedExternally
             set(value) = definedExternally
@@ -81,7 +79,7 @@ external open class internal : EventEmitter {
         override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Readable /* this */
         override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Readable /* this */
         open fun emit(event: String): Boolean
-        override fun emit(event: String /* "data" */, chunk: Any): Boolean
+        fun emit(event: String /* "data" */, chunk: Any): Boolean
         open fun emit(event: String /* "error" */, err: Error): Boolean
         override fun emit(event: Any, vararg args: Any): Boolean
         override fun emit(event: String, vararg args: Any): Boolean
@@ -142,8 +140,6 @@ external open class internal : EventEmitter {
         val write: ((self: Writable, chunk: Any, encoding: String, callback: (error: Error?) -> Unit) -> Unit)?
             get() = definedExternally
         val writev: ((self: Writable, chunks: Array<`T$9`>, callback: (error: Error?) -> Unit) -> Unit)?
-            get() = definedExternally
-        val destroy: ((self: Writable, error: Error?, callback: (error: Error?) -> Unit) -> Unit)?
             get() = definedExternally
         val final: ((self: Writable, callback: (error: Error?) -> Unit) -> Unit)?
             get() = definedExternally
@@ -226,6 +222,15 @@ external open class internal : EventEmitter {
             get() = definedExternally
             set(value) = definedExternally
         var writableObjectMode: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+	override var highWaterMark: Number?
+            get() = definedExternally
+            set(value) = definedExternally
+	override var objectMode: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+	override var autoDestroy: Boolean? 
             get() = definedExternally
             set(value) = definedExternally
     }

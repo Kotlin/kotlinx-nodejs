@@ -52,7 +52,33 @@ external interface StatsBase<T> {
     var birthtime: Date
 }
 
-external open class Stats : StatsBase<Number>
+external open class Stats : StatsBase<Number> {
+    override fun isFile(): Boolean
+    override fun isDirectory(): Boolean
+    override fun isBlockDevice(): Boolean
+    override fun isCharacterDevice(): Boolean
+    override fun isSymbolicLink(): Boolean
+    override fun isFIFO(): Boolean
+    override fun isSocket(): Boolean
+    override var dev: Number
+    override var ino: Number
+    override var mode: Number
+    override var nlink: Number
+    override var uid: Number
+    override var gid: Number
+    override var rdev: Number
+    override var size: Number
+    override var blksize: Number
+    override var blocks: Number
+    override var atimeMs: Number
+    override var mtimeMs: Number
+    override var ctimeMs: Number
+    override var birthtimeMs: Number
+    override var atime: Date
+    override var mtime: Date
+    override var ctime: Date
+    override var birthtime: Date
+ }
 
 external open class Dirent {
     open fun isFile(): Boolean

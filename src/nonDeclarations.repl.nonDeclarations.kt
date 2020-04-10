@@ -16,9 +16,12 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import vm.Context
+import SyntaxError
 
 typealias REPLEval = (self: REPLServer, evalCmd: String, context: Context, file: String, cb: (err: Error?, result: Any) -> Unit) -> Unit
 
 typealias REPLWriter = (self: REPLServer, obj: Any) -> String
 
 typealias REPLCommandAction = (self: REPLServer, text: String) -> Unit
+
+typealias Recoverable = SyntaxError

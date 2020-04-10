@@ -46,7 +46,7 @@ external open class MessagePort : EventEmitter {
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): MessagePort /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): MessagePort /* this */
     open fun emit(event: String /* "close" */): Boolean
-    override fun emit(event: String /* "message" */, value: Any): Boolean
+    fun emit(event: String /* "message" */, value: Any): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
@@ -117,7 +117,7 @@ external open class Worker(filename: String, options: WorkerOptions = definedExt
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "exit" */, exitCode: Number): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
-    override fun emit(event: String /* "message" */, value: Any): Boolean
+    fun emit(event: String /* "message" */, value: Any): Boolean
     open fun emit(event: String /* "online" */): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean

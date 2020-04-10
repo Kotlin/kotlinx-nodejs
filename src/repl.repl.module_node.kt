@@ -21,7 +21,6 @@ import NodeJS.ReadableStream
 import NodeJS.WritableStream
 import vm.Context
 import readline.Interface
-import SyntaxError
 
 external interface ReplOptions {
     var prompt: String?
@@ -135,9 +134,5 @@ external var REPL_MODE_STRICT: Any
 external fun start(options: String = definedExternally): REPLServer
 
 external fun start(options: ReplOptions = definedExternally): REPLServer
-
-external open class Recoverable(err: Error) : SyntaxError {
-    open var err: Error
-}
 
 external fun start(): REPLServer

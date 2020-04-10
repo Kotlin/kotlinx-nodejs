@@ -31,6 +31,9 @@ external interface AgentOptions : http.AgentOptions, ConnectionOptions {
     var maxCachedSessions: Number?
         get() = definedExternally
         set(value) = definedExternally
+    override var timeout: Number?
+        get() = definedExternally
+        set(value) = definedExternally
 }
 
 external open class Agent(options: AgentOptions = definedExternally) : http.Agent {
