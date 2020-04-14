@@ -1,4 +1,4 @@
-Following third-party dependencies exist in Dukat:
+Following third-party dependencies exist in kotlinx-nodejs:
     
 * DefinitelyTyped:
     * the MIT license: [definitelyTyped.txt](definitelyTyped.txt)
