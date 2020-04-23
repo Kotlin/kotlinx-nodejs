@@ -12,6 +12,4 @@ pluginManagement {
     }
 }
 
-include(":nodejs")
-
-rootProject.name = "kotlinx-nodejs"
+include(":kotlinx-nodejs")
