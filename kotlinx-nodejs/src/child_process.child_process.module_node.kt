@@ -65,7 +65,6 @@ external interface ChildProcess : EventEmitter {
     fun emit(event: String /* "close" */, code: Number, signal: String): Boolean
     fun emit(event: String /* "disconnect" */): Boolean
     fun emit(event: String /* "error" */, err: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "exit" */, code: Number?, signal: String?): Boolean
     fun emit(event: String /* "message" */, message: Any, sendHandle: Socket): Boolean
     fun emit(event: String /* "message" */, message: Any, sendHandle: Server): Boolean

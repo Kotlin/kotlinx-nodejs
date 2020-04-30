@@ -77,10 +77,8 @@ external open class Worker : EventEmitter {
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "error" */, error: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "exit" */, code: Number, signal: String): Boolean
     open fun emit(event: String /* "listening" */, address: Address): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "message" */, message: Any, handle: Socket): Boolean
     open fun emit(event: String /* "message" */, message: Any, handle: Server): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
@@ -139,13 +137,11 @@ external interface Cluster : EventEmitter {
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String, worker: Worker): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "exit" */, worker: Worker, code: Number, signal: String): Boolean
     fun emit(event: String /* "listening" */, worker: Worker, address: Address): Boolean
     fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Socket): Boolean
     fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Server): Boolean
     fun emit(event: String /* "setup" */, settings: ClusterSettings): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Cluster /* this */
     fun on(event: String, listener: (worker: Worker) -> Unit): Cluster /* this */
     fun on(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster /* this */
@@ -199,13 +195,9 @@ external fun addListener(event: String /* "disconnect" */, listener: (worker: Wo
 
 external fun addListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
-external fun addListener(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun addListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun addListener(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
-
-external fun addListener(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun addListener(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 
@@ -217,15 +209,11 @@ external fun emit(event: String /* "disconnect" */, worker: Worker): Boolean
 
 external fun emit(event: String /* "exit" */, worker: Worker, code: Number, signal: String): Boolean
 
-external fun emit(event: String /* "fork" */, worker: Worker): Boolean
-
 external fun emit(event: String /* "listening" */, worker: Worker, address: Address): Boolean
 
 external fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Socket): Boolean
 
 external fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Server): Boolean
-
-external fun emit(event: String /* "online" */, worker: Worker): Boolean
 
 external fun emit(event: String /* "setup" */, settings: ClusterSettings): Boolean
 
@@ -235,13 +223,9 @@ external fun on(event: String /* "disconnect" */, listener: (worker: Worker) -> 
 
 external fun on(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
-external fun on(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun on(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun on(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
-
-external fun on(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun on(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 
@@ -251,13 +235,9 @@ external fun once(event: String /* "disconnect" */, listener: (worker: Worker) -
 
 external fun once(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
-external fun once(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun once(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun once(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
-
-external fun once(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun once(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 
@@ -279,13 +259,9 @@ external fun prependListener(event: String /* "disconnect" */, listener: (worker
 
 external fun prependListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
-external fun prependListener(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun prependListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun prependListener(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
-
-external fun prependListener(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun prependListener(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 
@@ -295,13 +271,9 @@ external fun prependOnceListener(event: String /* "disconnect" */, listener: (wo
 
 external fun prependOnceListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
-external fun prependOnceListener(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun prependOnceListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun prependOnceListener(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
-
-external fun prependOnceListener(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun prependOnceListener(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 

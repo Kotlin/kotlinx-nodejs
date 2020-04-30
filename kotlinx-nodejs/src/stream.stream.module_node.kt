@@ -83,7 +83,6 @@ external open class internal : EventEmitter {
         open fun emit(event: String /* "error" */, err: Error): Boolean
         override fun emit(event: Any, vararg args: Any): Boolean
         override fun emit(event: String, vararg args: Any): Boolean
-        override fun emit(event: Any, vararg args: Any): Boolean
         open fun on(event: String, listener: () -> Unit): Readable /* this */
         open fun on(event: String /* "data" */, listener: (chunk: Any) -> Unit): Readable /* this */
         open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Readable /* this */
@@ -181,9 +180,6 @@ external open class internal : EventEmitter {
         open fun emit(event: String /* "error" */, err: Error): Boolean
         override fun emit(event: Any, vararg args: Any): Boolean
         open fun emit(event: String, src: Readable): Boolean
-        override fun emit(event: Any, vararg args: Any): Boolean
-        override fun emit(event: String, vararg args: Any): Boolean
-        override fun emit(event: Any, vararg args: Any): Boolean
         open fun on(event: String, listener: () -> Unit): Writable /* this */
         open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Writable /* this */
         open fun on(event: String, listener: (src: Readable) -> Unit): Writable /* this */
@@ -209,9 +205,7 @@ external open class internal : EventEmitter {
         open fun removeListener(event: String, listener: (src: Readable) -> Unit): Writable /* this */
         override fun removeListener(event: String, listener: (args: Array<Any>) -> Unit): Writable /* this */
         override fun removeListener(event: Any, listener: (args: Array<Any>) -> Unit): Writable /* this */
-        override fun write(buffer: Uint8Array, cb: (err: Error?) -> Unit): Boolean
         override fun write(buffer: String, cb: (err: Error?) -> Unit): Boolean
-        override fun end(data: String, cb: () -> Unit)
         override fun end(data: Uint8Array, cb: () -> Unit)
     }
     interface DuplexOptions : ReadableOptions, WritableOptions {

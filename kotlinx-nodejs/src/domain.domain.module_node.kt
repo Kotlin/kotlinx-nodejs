@@ -29,8 +29,6 @@ external open class Domain : EventEmitter, NodeJS.Domain {
     open var members: Array<dynamic /* events.EventEmitter | NodeJS.Timer */>
     open fun enter()
     open fun exit()
-    override fun add(emitter: Timer)
-    override fun remove(emitter: Timer)
 }
 
 external fun create(): Domain

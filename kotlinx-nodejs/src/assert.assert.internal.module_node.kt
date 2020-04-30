@@ -80,26 +80,6 @@ external fun notDeepStrictEqual(actual: Any, expected: Any, message: String = de
 
 external fun notDeepStrictEqual(actual: Any, expected: Any, message: Error = definedExternally)
 
-external fun throws(block: () -> Any, message: String = definedExternally)
-
-external fun throws(block: () -> Any, message: Error = definedExternally)
-
-external fun throws(block: () -> Any, error: RegExp, message: String = definedExternally)
-
-external fun throws(block: () -> Any, error: RegExp, message: Error = definedExternally)
-
-external fun throws(block: () -> Any, error: Function<*>, message: String = definedExternally)
-
-external fun throws(block: () -> Any, error: Function<*>, message: Error = definedExternally)
-
-external fun throws(block: () -> Any, error: Any, message: String = definedExternally)
-
-external fun throws(block: () -> Any, error: Any, message: Error = definedExternally)
-
-external fun throws(block: () -> Any, error: Error, message: String = definedExternally)
-
-external fun throws(block: () -> Any, error: Error, message: Error = definedExternally)
-
 external fun doesNotThrow(block: () -> Any, message: String = definedExternally)
 
 external fun doesNotThrow(block: () -> Any, message: Error = definedExternally)

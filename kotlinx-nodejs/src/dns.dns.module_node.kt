@@ -155,19 +155,11 @@ external fun resolve(hostname: String, callback: (err: ErrnoException?, addresse
 
 external fun resolve(hostname: String, rrtype: String /* "A" */, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)
 
-external fun resolve(hostname: String, rrtype: String /* "AAAA" */, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)
-
 external fun resolve(hostname: String, rrtype: String /* "ANY" */, callback: (err: ErrnoException?, addresses: Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */>) -> Unit)
-
-external fun resolve(hostname: String, rrtype: String /* "CNAME" */, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)
 
 external fun resolve(hostname: String, rrtype: String /* "MX" */, callback: (err: ErrnoException?, addresses: Array<MxRecord>) -> Unit)
 
 external fun resolve(hostname: String, rrtype: String /* "NAPTR" */, callback: (err: ErrnoException?, addresses: Array<NaptrRecord>) -> Unit)
-
-external fun resolve(hostname: String, rrtype: String /* "NS" */, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)
-
-external fun resolve(hostname: String, rrtype: String /* "PTR" */, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)
 
 external fun resolve(hostname: String, rrtype: String /* "SOA" */, callback: (err: ErrnoException?, addresses: SoaRecord) -> Unit)
 

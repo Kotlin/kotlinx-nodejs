@@ -95,7 +95,6 @@ external open class Socket : EventEmitter {
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "error" */, err: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "message" */, msg: Buffer, rinfo: RemoteInfo): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun on(event: String, listener: () -> Unit): Socket /* this */

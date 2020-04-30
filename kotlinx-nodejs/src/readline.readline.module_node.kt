@@ -59,7 +59,6 @@ external open class Interface(options: ReadLineOptions) : EventEmitter {
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "line" */, input: String): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Interface /* this */
     open fun on(event: String, listener: () -> Unit): Interface /* this */
     open fun on(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */

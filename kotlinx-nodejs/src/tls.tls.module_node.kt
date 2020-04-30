@@ -107,34 +107,22 @@ external open class TLSSocket(socket: net.Socket, options: TLSSocketOptions = de
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun addListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun addListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun addListener(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
-    override fun addListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "OCSPResponse" */, response: Buffer): Boolean
     override fun emit(event: String /* "secureConnect" */): Boolean
-    override fun emit(event: String /* "session" */, session: Buffer): Boolean
-    override fun emit(event: String /* "keylog" */, line: Buffer): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun on(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun on(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun on(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
-    override fun on(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun once(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun once(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun once(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
-    override fun once(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun prependListener(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
-    override fun prependListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun prependOnceListener(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
-    override fun prependOnceListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     open fun getPeerCertificate(): PeerCertificate
 }
 
@@ -220,7 +208,6 @@ external open class Server : net.Server {
     open fun emit(event: String /* "OCSPRequest" */, certificate: Buffer, issuer: Buffer, callback: (err: Error?, resp: Buffer) -> Unit): Boolean
     open fun emit(event: String /* "resumeSession" */, sessionId: Buffer, callback: (err: Error, sessionData: Buffer) -> Unit): Boolean
     open fun emit(event: String /* "secureConnection" */, tlsSocket: TLSSocket): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "keylog" */, line: Buffer, tlsSocket: TLSSocket): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
     open fun on(event: String /* "tlsClientError" */, listener: (err: Error, tlsSocket: TLSSocket) -> Unit): Server /* this */

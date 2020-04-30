@@ -108,7 +108,6 @@ external open class REPLServer : Interface {
     override fun emit(event: String): Boolean
     override fun emit(event: String /* "line" */, input: String): Boolean
     open fun emit(event: String /* "reset" */, context: Context): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): REPLServer /* this */
     override fun on(event: String, listener: () -> Unit): REPLServer /* this */
     override fun on(event: String /* "line" */, listener: (input: String) -> Unit): REPLServer /* this */

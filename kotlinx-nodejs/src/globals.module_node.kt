@@ -67,8 +67,6 @@ external interface RequireResolve {
 }
 
 external interface NodeExtensions {
-    operator fun get(key: String): (m: NodeModule, filename: String) -> Any
-    operator fun set(key: String, value: (m: NodeModule, filename: String) -> Any)
     @nativeGetter
     operator fun get(ext: String): ((m: NodeModule, filename: String) -> Any)?
     @nativeSetter

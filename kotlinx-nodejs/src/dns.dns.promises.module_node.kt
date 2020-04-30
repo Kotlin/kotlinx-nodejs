@@ -36,25 +36,15 @@ external fun resolve(hostname: String): Promise<Array<String>>
 
 external fun resolve(hostname: String, rrtype: String /* "A" */): Promise<Array<String>>
 
-external fun resolve(hostname: String, rrtype: String /* "AAAA" */): Promise<Array<String>>
-
 external fun resolve(hostname: String, rrtype: String /* "ANY" */): Promise<Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */>>
-
-external fun resolve(hostname: String, rrtype: String /* "CNAME" */): Promise<Array<String>>
 
 external fun resolve(hostname: String, rrtype: String /* "MX" */): Promise<Array<dns.MxRecord>>
 
 external fun resolve(hostname: String, rrtype: String /* "NAPTR" */): Promise<Array<dns.NaptrRecord>>
 
-external fun resolve(hostname: String, rrtype: String /* "NS" */): Promise<Array<String>>
-
-external fun resolve(hostname: String, rrtype: String /* "PTR" */): Promise<Array<String>>
-
 external fun resolve(hostname: String, rrtype: String /* "SOA" */): Promise<dns.SoaRecord>
 
 external fun resolve(hostname: String, rrtype: String /* "SRV" */): Promise<Array<dns.SrvRecord>>
-
-external fun resolve(hostname: String, rrtype: String /* "TXT" */): Promise<Array<Array<String>>>
 
 external fun resolve(hostname: String, rrtype: String): Promise<dynamic /* Array<String> | Array<MxRecord> | Array<NaptrRecord> | SoaRecord | Array<SrvRecord> | Array<Array<String>> | Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */> */>
 

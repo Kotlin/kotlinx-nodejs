@@ -116,11 +116,9 @@ external open class Worker(filename: String, options: WorkerOptions = definedExt
     open fun emit(event: String /* "error" */, err: Error): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "exit" */, exitCode: Number): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "message" */, value: Any): Boolean
     open fun emit(event: String /* "online" */): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun on(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
     open fun on(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */

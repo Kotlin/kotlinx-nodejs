@@ -85,11 +85,9 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     open fun write(buffer: Uint8Array, cb: (err: Error) -> Unit = definedExternally): Boolean
     override fun write(chunk: Any, cb: (error: Error?) -> Unit): Boolean
     open fun write(buffer: String, cb: (err: Error) -> Unit = definedExternally): Boolean
-    override fun write(chunk: Any, cb: (error: Error?) -> Unit): Boolean
     open fun write(str: Uint8Array, encoding: String = definedExternally, cb: (err: Error) -> Unit = definedExternally): Boolean
     override fun write(chunk: Any, encoding: String, cb: (error: Error?) -> Unit): Boolean
     open fun write(str: String, encoding: String = definedExternally, cb: (err: Error) -> Unit = definedExternally): Boolean
-    override fun write(chunk: Any, encoding: String, cb: (error: Error?) -> Unit): Boolean
     open fun connect(options: TcpSocketConnectOpts, connectionListener: () -> Unit = definedExternally): Socket /* this */
     open fun connect(options: IpcSocketConnectOpts, connectionListener: () -> Unit = definedExternally): Socket /* this */
     open fun connect(port: Number, host: String, connectionListener: () -> Unit = definedExternally): Socket /* this */
@@ -118,11 +116,9 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     open fun end(buffer: Uint8Array, cb: () -> Unit = definedExternally)
     override fun end(chunk: Any, cb: () -> Unit)
     open fun end(buffer: String, cb: () -> Unit = definedExternally)
-    override fun end(chunk: Any, cb: () -> Unit)
     open fun end(str: Uint8Array, encoding: String = definedExternally, cb: () -> Unit = definedExternally)
     override fun end(chunk: Any, encoding: String, cb: () -> Unit)
     open fun end(str: String, encoding: String = definedExternally, cb: () -> Unit = definedExternally)
-    override fun end(chunk: Any, encoding: String, cb: () -> Unit)
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun addListener(event: String /* "close" */, listener: (had_error: Boolean) -> Unit): Socket /* this */
     override fun addListener(event: String, listener: () -> Unit): Socket /* this */
@@ -132,10 +128,8 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "close" */, had_error: Boolean): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String): Boolean
     open fun emit(event: String /* "data" */, data: Buffer): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "error" */, err: Error): Boolean
     open fun emit(event: String /* "lookup" */, err: Error, address: String, family: String, host: String): Boolean
     open fun emit(event: String /* "lookup" */, err: Error, address: String, family: Number, host: String): Boolean
@@ -224,13 +218,10 @@ external open class Server(connectionListener: (socket: Socket) -> Unit = define
     open fun addListener(event: String, listener: () -> Unit): Server /* this */
     open fun addListener(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Server /* this */
-    override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "connection" */, socket: Socket): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "error" */, err: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
     open fun on(event: String, listener: () -> Unit): Server /* this */
     open fun on(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */

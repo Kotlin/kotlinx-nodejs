@@ -225,8 +225,6 @@ external interface ArrayConstructor {
     fun <T> from(iterable: ArrayLike<T>): Array<T>
     fun <T, U> from(iterable: Iterable<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
     fun <T, U> from(iterable: ArrayLike<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
-    fun <T> from(arrayLike: ArrayLike<T>): Array<T>
-    fun <T, U> from(arrayLike: ArrayLike<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
     fun <T> of(vararg items: T): Array<T>
     @nativeInvoke
     operator fun invoke(arrayLength: Number = definedExternally): Array<Any>
@@ -236,7 +234,6 @@ external interface ArrayConstructor {
     operator fun <T> invoke(vararg items: T): Array<T>
     fun isArray(arg: Any): Boolean
     var prototype: Array<Any>
-    fun <T, U> from(iterable: ArrayLike<T>, mapfn: (v: T, k: Number) -> U): Array<U>
 }
 
 external interface PromiseLike<T> {
