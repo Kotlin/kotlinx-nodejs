@@ -1,9 +1,11 @@
 plugins {
-    id("kotlin2js") version "1.3.72"
+    id("kotlin2js")
 }
 
 repositories {
     maven("https://kotlin.bintray.com/kotlin-bootstrap/")
+    maven("https://kotlin.bintray.com/kotlin-eap/")
     mavenCentral()
 }
+
 
