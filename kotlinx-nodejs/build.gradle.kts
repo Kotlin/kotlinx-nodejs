@@ -10,12 +10,6 @@ group = "org.jetbrains.kotlinx"
 version = "0.0.1"
 val artifactId = "kotlinx-nodejs"
 
-repositories {
-    mavenCentral()
-    maven("https://kotlin.bintray.com/kotlin-bootstrap/")
-    maven("https://kotlin.bintray.com/kotlin-eap/")
-}
-
 sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
     kotlin.srcDir("src")
 }

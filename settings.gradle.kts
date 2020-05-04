@@ -1,19 +1,20 @@
 pluginManagement {
     repositories {
-        maven("https://kotlin.bintray.com/kotlin-eap/")
         maven("https://kotlin.bintray.com/kotlin-bootstrap/")
+        maven("https://kotlin.bintray.com/kotlin-dev/")
+        maven("https://kotlin.bintray.com/kotlin-eap/")
         gradlePluginPortal()
     }
     resolutionStrategy {
-        val kotlinVersionFromSettings: String? by settings
-        val kotlinVersion = kotlinVersionFromSettings ?:  ("1.3.72").also {
+        val kotlinVersion: String? by settings
+        val kotlinVersionResolved = kotlinVersion ?:  ("1.3.72").also {
             println("building with kotlin version ${it}")
             println("use -PkotlinVersion for setting non-default version")
         }
 
         eachPlugin {
             if (requested.id.id == "kotlin2js") {
-                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersionResolved")
             }
         }
     }
