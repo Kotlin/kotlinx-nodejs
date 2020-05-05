@@ -1,6 +1,6 @@
 @file:JsModule("tls")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package tls
 
 import kotlin.js.*
@@ -96,8 +96,6 @@ external open class TLSSocket(socket: net.Socket, options: TLSSocketOptions = de
     open var alpnProtocol: String
     open fun getCipher(): CipherNameAndProtocol
     open fun getPeerCertificate(detailed: Boolean): DetailedPeerCertificate
-    open fun getPeerCertificate(detailed: Boolean = definedExternally): PeerCertificate
-    open fun getPeerCertificate(detailed: Boolean = definedExternally): dynamic /* PeerCertificate | DetailedPeerCertificate */
     open fun getProtocol(): String?
     open fun getSession(): Buffer?
     open fun getTLSTicket(): Buffer?

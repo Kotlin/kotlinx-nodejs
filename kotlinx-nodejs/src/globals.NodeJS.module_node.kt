@@ -1,5 +1,5 @@
 @file:JsQualifier("NodeJS")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package NodeJS
 
 import kotlin.js.*
@@ -431,14 +431,6 @@ external interface Process : EventEmitter {
     fun prependOnceListener(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
     fun prependOnceListener(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
     override fun listeners(event: String /* "beforeExit" */): Array<BeforeExitListener>
-    override fun listeners(event: String /* "disconnect" */): Array<DisconnectListener>
-    override fun listeners(event: String /* "rejectionHandled" */): Array<RejectionHandledListener>
-    override fun listeners(event: String /* "uncaughtException" */): Array<UncaughtExceptionListener>
-    override fun listeners(event: String /* "unhandledRejection" */): Array<UnhandledRejectionListener>
-    override fun listeners(event: String /* "message" */): Array<MessageListener>
-    override fun listeners(event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */): Array<SignalsListener>
-    override fun listeners(event: String /* "newListener" */): Array<NewListenerListener>
-    override fun listeners(event: String /* "multipleResolves" */): Array<MultipleResolveListener>
     fun kill(pid: Number)
 }
 

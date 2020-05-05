@@ -1,6 +1,6 @@
 @file:JsModule("child_process")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package child_process
 
 import kotlin.js.*
@@ -168,41 +168,9 @@ external interface SpawnOptionsWithStdioTuple<Stdin, Stdout, Stderr> : SpawnOpti
 
 external fun spawn(command: String, options: SpawnOptionsWithoutStdio = definedExternally): ChildProcessWithoutNullStreams
 
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<String /* 'pipe' */, String /* 'pipe' */, String /* 'pipe' */>): ChildProcessByStdio<Writable, Readable, Readable>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<String /* 'pipe' */, String /* 'pipe' */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Writable, Readable, Nothing?>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<String /* 'pipe' */, dynamic /* String | String | Stream */, String /* 'pipe' */>): ChildProcessByStdio<Writable, Nothing?, Readable>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, String /* 'pipe' */, String /* 'pipe' */>): ChildProcessByStdio<Nothing?, Readable, Readable>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<String /* 'pipe' */, dynamic /* String | String | Stream */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Writable, Nothing?, Nothing?>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, String /* 'pipe' */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Nothing?, Readable, Nothing?>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, dynamic /* String | String | Stream */, String /* 'pipe' */>): ChildProcessByStdio<Nothing?, Nothing?, Readable>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, dynamic /* String | String | Stream */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Nothing?, Nothing?, Nothing?>
-
 external fun spawn(command: String, options: SpawnOptions): ChildProcess
 
 external fun spawn(command: String, args: Array<String> = definedExternally, options: SpawnOptionsWithoutStdio = definedExternally): ChildProcessWithoutNullStreams
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<String /* 'pipe' */, String /* 'pipe' */, String /* 'pipe' */>): ChildProcessByStdio<Writable, Readable, Readable>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<String /* 'pipe' */, String /* 'pipe' */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Writable, Readable, Nothing?>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<String /* 'pipe' */, dynamic /* String | String | Stream */, String /* 'pipe' */>): ChildProcessByStdio<Writable, Nothing?, Readable>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, String /* 'pipe' */, String /* 'pipe' */>): ChildProcessByStdio<Nothing?, Readable, Readable>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<String /* 'pipe' */, dynamic /* String | String | Stream */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Writable, Nothing?, Nothing?>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, String /* 'pipe' */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Nothing?, Readable, Nothing?>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, dynamic /* String | String | Stream */, String /* 'pipe' */>): ChildProcessByStdio<Nothing?, Nothing?, Readable>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, dynamic /* String | String | Stream */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Nothing?, Nothing?, Nothing?>
 
 external fun spawn(command: String, args: Array<String>, options: SpawnOptions): ChildProcess
 

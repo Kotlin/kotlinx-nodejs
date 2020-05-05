@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.readlink")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package fs.readlink
 
 import kotlin.js.*
@@ -21,15 +21,9 @@ import child_process.`T$16`
 
 external fun __promisify__(path: String, options: fs.`T$31`? = definedExternally): Promise<String>
 
-external fun __promisify__(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
-
 external fun __promisify__(path: Buffer, options: fs.`T$31`? = definedExternally): Promise<String>
 
-external fun __promisify__(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
-
 external fun __promisify__(path: URL, options: fs.`T$31`? = definedExternally): Promise<String>
-
-external fun __promisify__(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
 external fun __promisify__(path: String, options: fs.`T$32`): Promise<Buffer>
 

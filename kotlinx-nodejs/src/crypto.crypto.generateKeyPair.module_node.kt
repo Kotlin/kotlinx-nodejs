@@ -1,5 +1,5 @@
 @file:JsQualifier("crypto.generateKeyPair")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package crypto.generateKeyPair
 
 import kotlin.js.*
@@ -30,40 +30,18 @@ external interface `T$28` {
     var privateKey: Buffer
 }
 
-external fun __promisify__(type: String /* "rsa" */, options: crypto.RSAKeyPairOptions<String /* 'pem' */, String /* 'der' */>): Promise<`T$28`>
-
 external interface `T$29` {
     var publicKey: Buffer
     var privateKey: String
 }
-
-external fun __promisify__(type: String /* "rsa" */, options: crypto.RSAKeyPairOptions<String /* 'der' */, String /* 'pem' */>): Promise<`T$29`>
 
 external interface `T$30` {
     var publicKey: Buffer
     var privateKey: Buffer
 }
 
-external fun __promisify__(type: String /* "rsa" */, options: crypto.RSAKeyPairOptions<String /* 'der' */, String /* 'der' */>): Promise<`T$30`>
-
 external fun __promisify__(type: String /* "rsa" */, options: crypto.RSAKeyPairKeyObjectOptions): Promise<crypto.KeyPairKeyObjectResult>
 
-external fun __promisify__(type: String /* "dsa" */, options: crypto.DSAKeyPairOptions<String /* 'pem' */, String /* 'pem' */>): Promise<`T$27`>
-
-external fun __promisify__(type: String /* "dsa" */, options: crypto.DSAKeyPairOptions<String /* 'pem' */, String /* 'der' */>): Promise<`T$28`>
-
-external fun __promisify__(type: String /* "dsa" */, options: crypto.DSAKeyPairOptions<String /* 'der' */, String /* 'pem' */>): Promise<`T$29`>
-
-external fun __promisify__(type: String /* "dsa" */, options: crypto.DSAKeyPairOptions<String /* 'der' */, String /* 'der' */>): Promise<`T$30`>
-
 external fun __promisify__(type: String /* "dsa" */, options: crypto.DSAKeyPairKeyObjectOptions): Promise<crypto.KeyPairKeyObjectResult>
-
-external fun __promisify__(type: String /* "ec" */, options: crypto.ECKeyPairOptions<String /* 'pem' */, String /* 'pem' */>): Promise<`T$27`>
-
-external fun __promisify__(type: String /* "ec" */, options: crypto.ECKeyPairOptions<String /* 'pem' */, String /* 'der' */>): Promise<`T$28`>
-
-external fun __promisify__(type: String /* "ec" */, options: crypto.ECKeyPairOptions<String /* 'der' */, String /* 'pem' */>): Promise<`T$29`>
-
-external fun __promisify__(type: String /* "ec" */, options: crypto.ECKeyPairOptions<String /* 'der' */, String /* 'der' */>): Promise<`T$30`>
 
 external fun __promisify__(type: String /* "ec" */, options: crypto.ECKeyPairKeyObjectOptions): Promise<crypto.KeyPairKeyObjectResult>

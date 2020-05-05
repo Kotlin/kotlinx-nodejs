@@ -1,6 +1,6 @@
 @file:JsModule("fs")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package fs
 
 import kotlin.js.*
@@ -476,15 +476,9 @@ external fun readlink(path: URL, callback: (err: ErrnoException?, linkString: St
 
 external fun readlinkSync(path: String, options: `T$31`? = definedExternally): String
 
-external fun readlinkSync(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
-
 external fun readlinkSync(path: Buffer, options: `T$31`? = definedExternally): String
 
-external fun readlinkSync(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
-
 external fun readlinkSync(path: URL, options: `T$31`? = definedExternally): String
-
-external fun readlinkSync(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
 external fun readlinkSync(path: String, options: `T$32`): Buffer
 
@@ -554,15 +548,9 @@ external fun realpath(path: URL, callback: (err: ErrnoException?, resolvedPath: 
 
 external fun realpathSync(path: String, options: `T$31`? = definedExternally): String
 
-external fun realpathSync(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
-
 external fun realpathSync(path: Buffer, options: `T$31`? = definedExternally): String
 
-external fun realpathSync(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
-
 external fun realpathSync(path: URL, options: `T$31`? = definedExternally): String
-
-external fun realpathSync(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
 external fun realpathSync(path: String, options: `T$32`): Buffer
 
@@ -700,8 +688,6 @@ external fun mkdtemp(prefix: String, callback: (err: ErrnoException?, folder: St
 
 external fun mkdtempSync(prefix: String, options: `T$31`? = definedExternally): String
 
-external fun mkdtempSync(prefix: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
-
 external fun mkdtempSync(prefix: String, options: `T$32`): Buffer
 
 external fun mkdtempSync(prefix: String, options: String /* "buffer" */): Buffer
@@ -802,15 +788,9 @@ external fun readdirSync(path: URL, options: String /* "ascii" | "utf8" | "utf-8
 
 external fun readdirSync(path: String, options: `T$34`): Array<Buffer>
 
-external fun readdirSync(path: String, options: String /* "buffer" */): Array<Buffer>
-
 external fun readdirSync(path: Buffer, options: `T$34`): Array<Buffer>
 
-external fun readdirSync(path: Buffer, options: String /* "buffer" */): Array<Buffer>
-
 external fun readdirSync(path: URL, options: `T$34`): Array<Buffer>
-
-external fun readdirSync(path: URL, options: String /* "buffer" */): Array<Buffer>
 
 external fun readdirSync(path: String, options: `T$35`? = definedExternally): dynamic /* Array<String> | Array<Buffer> */
 
