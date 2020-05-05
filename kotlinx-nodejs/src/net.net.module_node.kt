@@ -19,7 +19,7 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
 import stream.internal.Duplex
-import events.internal.EventEmitter
+import events.EventEmitter
 
 external interface AddressInfo {
     var address: String

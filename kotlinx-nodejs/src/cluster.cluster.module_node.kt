@@ -20,7 +20,7 @@ import org.w3c.xhr.*
 import child_process.ChildProcess
 import net.Socket
 import net.Server
-import events.internal.EventEmitter
+import events.EventEmitter
 
 external interface ClusterSettings {
     var execArgv: Array<String>?

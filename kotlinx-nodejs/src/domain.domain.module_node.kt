@@ -17,7 +17,7 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import events.internal.EventEmitter
+import events.EventEmitter
 import NodeJS.Timer
 
 external open class Domain : EventEmitter, NodeJS.Domain {

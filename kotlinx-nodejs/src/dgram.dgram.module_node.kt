@@ -20,7 +20,7 @@ import org.w3c.xhr.*
 import dns.LookupOneOptions
 import NodeJS.ErrnoException
 import Buffer
-import events.internal.EventEmitter
+import events.EventEmitter
 
 external interface RemoteInfo {
     var address: String

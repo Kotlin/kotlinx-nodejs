@@ -20,7 +20,7 @@ import org.w3c.xhr.*
 import NodeJS.ReadableStream
 import NodeJS.WritableStream
 import Buffer
-import events.internal.EventEmitter
+import events.EventEmitter
 
 external interface Key {
     var sequence: String?

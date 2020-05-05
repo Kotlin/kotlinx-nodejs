@@ -18,7 +18,7 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import NodeJS.ErrnoException
-import events.internal.EventEmitter
+import events.EventEmitter
 import stream.internal.Readable
 import stream.internal.Writable
 import Buffer

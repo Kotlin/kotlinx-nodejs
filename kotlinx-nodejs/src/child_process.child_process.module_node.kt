@@ -22,7 +22,7 @@ import stream.internal.Readable
 import stream.internal.Pipe
 import net.Socket
 import net.Server
-import events.internal.EventEmitter
+import events.EventEmitter
 import NodeJS.ProcessEnv
 import Buffer
 

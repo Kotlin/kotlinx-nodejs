@@ -24,7 +24,7 @@ import stream.internal.Readable
 import Buffer
 import stream.internal.Duplex
 import fs.promises.FileHandle
-import events.internal.EventEmitter
+import events.EventEmitter
 import net.Socket
 import tls.TLSSocket
 import tls.ConnectionOptions

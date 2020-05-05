@@ -29,7 +29,7 @@ import stream.internal.WritableOptions
 import stream.internal.Duplex
 import stream.internal.Transform
 import stream.internal.DuplexOptions
-import events.internal.EventEmitter
+import events.EventEmitter
 import NodeJS.ErrnoException
 import NodeJS.ReadWriteStream
 
