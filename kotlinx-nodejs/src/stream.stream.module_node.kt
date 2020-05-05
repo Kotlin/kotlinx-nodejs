@@ -19,7 +19,6 @@ import NodeJS.`T$2`
 import NodeJS.WritableStream
 import stream.internal.Readable
 import NodeJS.ReadableStream
-import stream.internal.Stream
 import Iterable
 import stream.internal.ReadableOptions
 import AsyncIterable
@@ -38,7 +37,6 @@ typealias TransformCallback = (error: Error?, data: Any) -> Unit
 @JsModule("stream")
 external open class internal : EventEmitter {
     open fun <T : WritableStream> pipe(destination: T, options: `T$2` = definedExternally): T
-    open class Stream : internal
     interface ReadableOptions {
         var highWaterMark: Number?
             get() = definedExternally
@@ -283,3 +281,5 @@ external open class internal : EventEmitter {
         fun pipeline(stream1: ReadableStream, stream2: WritableStream, vararg streams: (err: ErrnoException?) -> Unit): WritableStream
     }
 }
+
+external open class Stream : internal

@@ -30,7 +30,7 @@ import tls.TLSSocket
 import tls.ConnectionOptions
 import tls.TlsOptions
 import net.Server
-import stream.internal.Stream
+import stream.Stream
 import http.IncomingHttpHeaders as Http1IncomingHttpHeaders
 import stream.internal.ReadableOptions
 
