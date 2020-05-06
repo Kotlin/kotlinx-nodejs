@@ -1,6 +1,6 @@
 @file:JsModule("tty")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package tty
 
 import kotlin.js.*
@@ -23,7 +23,7 @@ external fun isatty(fd: Number): Boolean
 
 external open class ReadStream(fd: Number, options: net.SocketConstructorOpts = definedExternally) : Socket {
     open var isRaw: Boolean
-    open fun setRawMode(mode: Boolean)
+    open fun setRawMode(mode: Boolean): ReadStream /* this */
     open var isTTY: Boolean
 }
 

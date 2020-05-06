@@ -1,6 +1,6 @@
 @file:JsModule("worker_threads")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package worker_threads
 
 import kotlin.js.*
@@ -17,7 +17,7 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import events.internal.EventEmitter
+import events.EventEmitter.EventEmitter
 import stream.internal.Writable
 import stream.internal.Readable
 import vm.Context
@@ -25,6 +25,8 @@ import vm.Context
 external var isMainThread: Boolean
 
 external var parentPort: MessagePort?
+
+external var SHARE_ENV: Any
 
 external var threadId: Number
 
@@ -46,7 +48,7 @@ external open class MessagePort : EventEmitter {
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): MessagePort /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): MessagePort /* this */
     open fun emit(event: String /* "close" */): Boolean
-    fun emit(event: String /* "message" */, value: Any): Boolean
+    open fun emit(event: String /* "message" */, value: Any): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
@@ -76,6 +78,12 @@ external open class MessagePort : EventEmitter {
 }
 
 external interface WorkerOptions {
+    var argv: Array<Any>?
+        get() = definedExternally
+        set(value) = definedExternally
+    var env: dynamic /* NodeJS.Dict<String>? | Any? */
+        get() = definedExternally
+        set(value) = definedExternally
     var eval: Boolean?
         get() = definedExternally
         set(value) = definedExternally
@@ -94,19 +102,39 @@ external interface WorkerOptions {
     var execArgv: Array<String>?
         get() = definedExternally
         set(value) = definedExternally
+    var resourceLimits: ResourceLimits?
+        get() = definedExternally
+        set(value) = definedExternally
+    var transferList: Array<dynamic /* ArrayBuffer | MessagePort */>?
+        get() = definedExternally
+        set(value) = definedExternally
 }
 
-external open class Worker(filename: String, options: WorkerOptions = definedExternally) : EventEmitter {
+external interface ResourceLimits {
+    var maxYoungGenerationSizeMb: Number?
+        get() = definedExternally
+        set(value) = definedExternally
+    var maxOldGenerationSizeMb: Number?
+        get() = definedExternally
+        set(value) = definedExternally
+    var codeRangeSizeMb: Number?
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
+external open class Worker : EventEmitter {
+    constructor(filename: String, options: WorkerOptions)
+    constructor(filename: URL, options: WorkerOptions)
     open var stdin: Writable?
     open var stdout: Readable
     open var stderr: Readable
     open var threadId: Number
+    open var resourceLimits: ResourceLimits
     open fun postMessage(value: Any, transferList: Array<dynamic /* ArrayBuffer | MessagePort */> = definedExternally)
     open fun ref()
     open fun unref()
     open fun terminate(): Promise<Number>
-    open fun moveMessagePortToContext(port: MessagePort, context: Context): MessagePort
-    open fun receiveMessageOnPort(port: MessagePort): Any?
+    open fun getHeapSnapshot(): Promise<Readable>
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun addListener(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
     open fun addListener(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */
@@ -116,9 +144,11 @@ external open class Worker(filename: String, options: WorkerOptions = definedExt
     open fun emit(event: String /* "error" */, err: Error): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "exit" */, exitCode: Number): Boolean
-    fun emit(event: String /* "message" */, value: Any): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
+    open fun emit(event: String /* "message" */, value: Any): Boolean
     open fun emit(event: String /* "online" */): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun on(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
     open fun on(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */
@@ -156,3 +186,11 @@ external open class Worker(filename: String, options: WorkerOptions = definedExt
     override fun off(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
     override fun off(event: Any, listener: (args: Array<Any>) -> Unit): Worker /* this */
 }
+
+external fun moveMessagePortToContext(port: MessagePort, context: Context): MessagePort
+
+external interface `T$67` {
+    var message: Any
+}
+
+external fun receiveMessageOnPort(port: MessagePort): `T$67`

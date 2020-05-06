@@ -1,4 +1,5 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+package tsstdlib
 
 import kotlin.js.*
 import kotlin.js.Json
@@ -192,7 +193,7 @@ external interface RegExpConstructor {
 }
 
 external interface ErrorConstructor {
-    fun captureStackTrace(targetObject: Any, constructorOpt: Function<*> = definedExternally)
+    fun captureStackTrace(targetObject: Any?, constructorOpt: Function<*> = definedExternally)
     var prepareStackTrace: ((err: Error, stackTraces: Array<CallSite>) -> Any)?
         get() = definedExternally
         set(value) = definedExternally
@@ -225,6 +226,8 @@ external interface ArrayConstructor {
     fun <T> from(iterable: ArrayLike<T>): Array<T>
     fun <T, U> from(iterable: Iterable<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
     fun <T, U> from(iterable: ArrayLike<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
+    fun <T> from(arrayLike: ArrayLike<T>): Array<T>
+    fun <T, U> from(arrayLike: ArrayLike<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
     fun <T> of(vararg items: T): Array<T>
     @nativeInvoke
     operator fun invoke(arrayLength: Number = definedExternally): Array<Any>
@@ -234,6 +237,7 @@ external interface ArrayConstructor {
     operator fun <T> invoke(vararg items: T): Array<T>
     fun isArray(arg: Any): Boolean
     var prototype: Array<Any>
+    fun <T, U> from(iterable: ArrayLike<T>, mapfn: (v: T, k: Number) -> U): Array<U>
 }
 
 external interface PromiseLike<T> {

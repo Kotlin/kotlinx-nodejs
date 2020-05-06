@@ -1,6 +1,6 @@
 @file:JsModule("url")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package url
 
 import kotlin.js.*
@@ -19,7 +19,7 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import querystring.ParsedUrlQuery
 
-external interface UrlObjectCommon {
+external interface UrlObject {
     var auth: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -35,9 +35,6 @@ external interface UrlObjectCommon {
     var href: String?
         get() = definedExternally
         set(value) = definedExternally
-    var path: String?
-        get() = definedExternally
-        set(value) = definedExternally
     var pathname: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -50,9 +47,6 @@ external interface UrlObjectCommon {
     var slashes: Boolean?
         get() = definedExternally
         set(value) = definedExternally
-}
-
-external interface UrlObject : UrlObjectCommon {
     var port: dynamic /* String? | Number? */
         get() = definedExternally
         set(value) = definedExternally
@@ -61,10 +55,18 @@ external interface UrlObject : UrlObjectCommon {
         set(value) = definedExternally
 }
 
-external interface Url : UrlObjectCommon {
+external interface Url {
+    var auth: String?
+    var hash: String?
+    var host: String?
+    var hostname: String?
+    var href: String
+    var path: String?
+    var pathname: String?
+    var protocol: String?
+    var search: String?
+    var slashes: Boolean?
     var port: String?
-        get() = definedExternally
-        set(value) = definedExternally
     var query: dynamic /* String? | ParsedUrlQuery? */
         get() = definedExternally
         set(value) = definedExternally
@@ -76,8 +78,6 @@ external interface UrlWithParsedQuery : Url {
 
 external interface UrlWithStringQuery : Url {
     override var query: String?
-        get() = definedExternally
-        set(value) = definedExternally
 }
 
 external fun parse(urlStr: String): UrlWithStringQuery
@@ -85,6 +85,8 @@ external fun parse(urlStr: String): UrlWithStringQuery
 external fun parse(urlStr: String, parseQueryString: Boolean?, slashesDenoteHost: Boolean = definedExternally): UrlWithStringQuery
 
 external fun parse(urlStr: String, parseQueryString: Boolean, slashesDenoteHost: Boolean = definedExternally): UrlWithParsedQuery
+
+external fun parse(urlStr: String, parseQueryString: Boolean, slashesDenoteHost: Boolean = definedExternally): Url
 
 external fun format(URL: URL, options: URLFormatOptions = definedExternally): String
 
@@ -136,15 +138,6 @@ external open class URL {
     open var username: String
     override fun toString(): String
     open fun toJSON(): String
-}
-
-external interface `T$55` {
-    @nativeGetter
-    operator fun get(key: String): dynamic /* String? | Array<String>? */
-    @nativeSetter
-    operator fun set(key: String, value: String?)
-    @nativeSetter
-    operator fun set(key: String, value: Array<String>?)
 }
 
 external fun parse(urlStr: String, parseQueryString: Boolean): UrlWithParsedQuery

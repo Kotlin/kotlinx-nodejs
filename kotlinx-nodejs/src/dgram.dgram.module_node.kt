@@ -1,6 +1,6 @@
 @file:JsModule("dgram")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package dgram
 
 import kotlin.js.*
@@ -20,7 +20,8 @@ import org.w3c.xhr.*
 import dns.LookupOneOptions
 import NodeJS.ErrnoException
 import Buffer
-import events.internal.EventEmitter
+import net.AddressInfo
+import events.EventEmitter.EventEmitter
 
 external interface RemoteInfo {
     var address: String
@@ -30,11 +31,16 @@ external interface RemoteInfo {
 }
 
 external interface BindOptions {
-    var port: Number
+    var port: Number?
+        get() = definedExternally
+        set(value) = definedExternally
     var address: String?
         get() = definedExternally
         set(value) = definedExternally
     var exclusive: Boolean?
+        get() = definedExternally
+        set(value) = definedExternally
+    var fd: Number?
         get() = definedExternally
         set(value) = definedExternally
 }
@@ -63,30 +69,46 @@ external fun createSocket(type: String /* "udp4" | "udp6" */, callback: (msg: Bu
 external fun createSocket(options: SocketOptions, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
 
 external open class Socket : EventEmitter {
-    open fun send(msg: String, port: Number, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
-    open fun send(msg: Uint8Array, port: Number, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
-    open fun send(msg: Array<Any>, port: Number, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
-    open fun send(msg: String, offset: Number, length: Number, port: Number, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
-    open fun send(msg: Uint8Array, offset: Number, length: Number, port: Number, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun addMembership(multicastAddress: String, multicastInterface: String = definedExternally)
+    open fun address(): AddressInfo
     open fun bind(port: Number = definedExternally, address: String = definedExternally, callback: () -> Unit = definedExternally)
     open fun bind(port: Number = definedExternally, callback: () -> Unit = definedExternally)
     open fun bind(callback: () -> Unit = definedExternally)
     open fun bind(options: BindOptions, callback: () -> Unit = definedExternally)
     open fun close(callback: () -> Unit = definedExternally)
-    open fun address(): dynamic /* AddressInfo | String */
-    open fun setBroadcast(flag: Boolean)
-    open fun setTTL(ttl: Number)
-    open fun setMulticastTTL(ttl: Number)
-    open fun setMulticastInterface(multicastInterface: String)
-    open fun setMulticastLoopback(flag: Boolean)
-    open fun addMembership(multicastAddress: String, multicastInterface: String = definedExternally)
+    open fun connect(port: Number, address: String = definedExternally, callback: () -> Unit = definedExternally)
+    open fun connect(port: Number, callback: () -> Unit)
+    open fun disconnect()
     open fun dropMembership(multicastAddress: String, multicastInterface: String = definedExternally)
-    open fun ref(): Socket /* this */
-    open fun unref(): Socket /* this */
-    open fun setRecvBufferSize(size: Number)
-    open fun setSendBufferSize(size: Number)
     open fun getRecvBufferSize(): Number
     open fun getSendBufferSize(): Number
+    open fun ref(): Socket /* this */
+    open fun remoteAddress(): AddressInfo
+    open fun send(msg: String, port: Number = definedExternally, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: Uint8Array, port: Number = definedExternally, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: Array<Any>, port: Number = definedExternally, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: String, port: Number = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: Uint8Array, port: Number = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: Array<Any>, port: Number = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: String, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: Uint8Array, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: Array<Any>, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: String, offset: Number, length: Number, port: Number = definedExternally, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: Uint8Array, offset: Number, length: Number, port: Number = definedExternally, address: String = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: String, offset: Number, length: Number, port: Number = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: Uint8Array, offset: Number, length: Number, port: Number = definedExternally, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: String, offset: Number, length: Number, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun send(msg: Uint8Array, offset: Number, length: Number, callback: (error: Error?, bytes: Number) -> Unit = definedExternally)
+    open fun setBroadcast(flag: Boolean)
+    open fun setMulticastInterface(multicastInterface: String)
+    open fun setMulticastLoopback(flag: Boolean)
+    open fun setMulticastTTL(ttl: Number)
+    open fun setRecvBufferSize(size: Number)
+    open fun setSendBufferSize(size: Number)
+    open fun setTTL(ttl: Number)
+    open fun unref(): Socket /* this */
+    open fun addSourceSpecificMembership(sourceAddress: String, groupAddress: String, multicastInterface: String = definedExternally)
+    open fun dropSourceSpecificMembership(sourceAddress: String, groupAddress: String, multicastInterface: String = definedExternally)
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun addListener(event: String, listener: () -> Unit): Socket /* this */
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
@@ -95,6 +117,7 @@ external open class Socket : EventEmitter {
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "error" */, err: Error): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "message" */, msg: Buffer, rinfo: RemoteInfo): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun on(event: String, listener: () -> Unit): Socket /* this */

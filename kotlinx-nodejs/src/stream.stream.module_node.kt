@@ -1,4 +1,4 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package stream
 
 import kotlin.js.*
@@ -20,16 +20,17 @@ import NodeJS.WritableStream
 import stream.internal.Readable
 import NodeJS.ReadableStream
 import stream.internal.Stream
-import Iterable
+import tsstdlib.Iterable
 import stream.internal.ReadableOptions
 import AsyncIterable
+import stream.internal.`T$10`
 import stream.internal.Writable
-import stream.internal.`T$9`
 import stream.internal.WritableOptions
 import stream.internal.Duplex
-import stream.internal.Transform
 import stream.internal.DuplexOptions
-import events.internal.EventEmitter
+import stream.internal.Transform
+import events.EventEmitter.EventEmitter
+import stream.internal.FinishedOptions
 import NodeJS.ErrnoException
 import NodeJS.ReadWriteStream
 
@@ -38,7 +39,7 @@ typealias TransformCallback = (error: Error?, data: Any) -> Unit
 @JsModule("stream")
 external open class internal : EventEmitter {
     open fun <T : WritableStream> pipe(destination: T, options: `T$2` = definedExternally): T
-    open class Stream : internal
+    open class Stream(opts: ReadableOptions = definedExternally) : internal
     interface ReadableOptions {
         var highWaterMark: Number?
             get() = definedExternally
@@ -49,7 +50,9 @@ external open class internal : EventEmitter {
         var objectMode: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        val read: ((self: Readable, size: Number) -> Unit)?
+        val read: ((size: Number) -> Unit)?
+            get() = definedExternally
+        val destroy: ((error: Error?, callback: (error: Error?) -> Unit) -> Unit)?
             get() = definedExternally
         var autoDestroy: Boolean?
             get() = definedExternally
@@ -79,10 +82,11 @@ external open class internal : EventEmitter {
         override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Readable /* this */
         override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Readable /* this */
         open fun emit(event: String): Boolean
-        fun emit(event: String /* "data" */, chunk: Any): Boolean
+        open fun emit(event: String /* "data" */, chunk: Any): Boolean
         open fun emit(event: String /* "error" */, err: Error): Boolean
         override fun emit(event: Any, vararg args: Any): Boolean
         override fun emit(event: String, vararg args: Any): Boolean
+        override fun emit(event: Any, vararg args: Any): Boolean
         open fun on(event: String, listener: () -> Unit): Readable /* this */
         open fun on(event: String /* "data" */, listener: (chunk: Any) -> Unit): Readable /* this */
         open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Readable /* this */
@@ -110,13 +114,23 @@ external open class internal : EventEmitter {
         override fun removeListener(event: Any, listener: (args: Array<Any>) -> Unit): Readable /* this */
         override fun unshift(chunk: String, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */)
         override fun unshift(chunk: Uint8Array, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */)
+        override fun off(event: String, listener: (args: Array<Any>) -> Unit): EventEmitter
+        override fun off(event: Any, listener: (args: Array<Any>) -> Unit): EventEmitter
+        override fun removeAllListeners(event: String): EventEmitter
+        override fun removeAllListeners(event: Any): EventEmitter
+        override fun removeAllListeners(): EventEmitter
+        override fun off(event: String, listener: (args: Array<Any>) -> Unit): EventEmitter
+        override fun off(event: Any, listener: (args: Array<Any>) -> Unit): EventEmitter
+        override fun removeAllListeners(event: String): EventEmitter
+        override fun removeAllListeners(event: Any): EventEmitter
+        override fun removeAllListeners(): EventEmitter
 
         companion object {
             fun from(iterable: Iterable<Any>, options: ReadableOptions = definedExternally): Readable
             fun from(iterable: AsyncIterable<Any>, options: ReadableOptions = definedExternally): Readable
         }
     }
-    interface `T$9` {
+    interface `T$10` {
         var chunk: Any
         var encoding: String
     }
@@ -136,11 +150,13 @@ external open class internal : EventEmitter {
         var emitClose: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-        val write: ((self: Writable, chunk: Any, encoding: String, callback: (error: Error?) -> Unit) -> Unit)?
+        val write: ((chunk: Any, encoding: String, callback: (error: Error?) -> Unit) -> Unit)?
             get() = definedExternally
-        val writev: ((self: Writable, chunks: Array<`T$9`>, callback: (error: Error?) -> Unit) -> Unit)?
+        val writev: ((chunks: Array<`T$10`>, callback: (error: Error?) -> Unit) -> Unit)?
             get() = definedExternally
-        val final: ((self: Writable, callback: (error: Error?) -> Unit) -> Unit)?
+        val destroy: ((error: Error?, callback: (error: Error?) -> Unit) -> Unit)?
+            get() = definedExternally
+        val final: ((callback: (error: Error?) -> Unit) -> Unit)?
             get() = definedExternally
         var autoDestroy: Boolean?
             get() = definedExternally
@@ -153,9 +169,10 @@ external open class internal : EventEmitter {
         open var writableHighWaterMark: Number
         open var writableLength: Number
         open var writableObjectMode: Boolean
+        open var writableCorked: Number
         open var destroyed: Boolean
         open fun _write(chunk: Any, encoding: String, callback: (error: Error?) -> Unit)
-        open fun _writev(chunks: Array<`T$9`>, callback: (error: Error?) -> Unit)
+        open fun _writev(chunks: Array<`T$10`>, callback: (error: Error?) -> Unit)
         open fun _destroy(error: Error?, callback: (error: Error?) -> Unit)
         open fun _final(callback: (error: Error?) -> Unit)
         open fun write(chunk: Any, cb: (error: Error?) -> Unit = definedExternally): Boolean
@@ -180,6 +197,9 @@ external open class internal : EventEmitter {
         open fun emit(event: String /* "error" */, err: Error): Boolean
         override fun emit(event: Any, vararg args: Any): Boolean
         open fun emit(event: String, src: Readable): Boolean
+        override fun emit(event: Any, vararg args: Any): Boolean
+        override fun emit(event: String, vararg args: Any): Boolean
+        override fun emit(event: Any, vararg args: Any): Boolean
         open fun on(event: String, listener: () -> Unit): Writable /* this */
         open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Writable /* this */
         open fun on(event: String, listener: (src: Readable) -> Unit): Writable /* this */
@@ -205,9 +225,22 @@ external open class internal : EventEmitter {
         open fun removeListener(event: String, listener: (src: Readable) -> Unit): Writable /* this */
         override fun removeListener(event: String, listener: (args: Array<Any>) -> Unit): Writable /* this */
         override fun removeListener(event: Any, listener: (args: Array<Any>) -> Unit): Writable /* this */
+        override fun write(buffer: Uint8Array, cb: (err: Error?) -> Unit): Boolean
         override fun write(buffer: String, cb: (err: Error?) -> Unit): Boolean
+        override fun end(data: String, cb: () -> Unit)
         override fun end(data: Uint8Array, cb: () -> Unit)
+        override fun off(event: String, listener: (args: Array<Any>) -> Unit): EventEmitter
+        override fun off(event: Any, listener: (args: Array<Any>) -> Unit): EventEmitter
+        override fun removeAllListeners(event: String): EventEmitter
+        override fun removeAllListeners(event: Any): EventEmitter
+        override fun removeAllListeners(): EventEmitter
+        override fun off(event: String, listener: (args: Array<Any>) -> Unit): EventEmitter
+        override fun off(event: Any, listener: (args: Array<Any>) -> Unit): EventEmitter
+        override fun removeAllListeners(event: String): EventEmitter
+        override fun removeAllListeners(event: Any): EventEmitter
+        override fun removeAllListeners(): EventEmitter
     }
+
     interface DuplexOptions : ReadableOptions, WritableOptions {
         var allowHalfOpen: Boolean?
             get() = definedExternally
@@ -218,15 +251,34 @@ external open class internal : EventEmitter {
         var writableObjectMode: Boolean?
             get() = definedExternally
             set(value) = definedExternally
-	override var highWaterMark: Number?
+        var readableHighWaterMark: Number?
             get() = definedExternally
             set(value) = definedExternally
-	override var objectMode: Boolean?
+        var writableHighWaterMark: Number?
             get() = definedExternally
             set(value) = definedExternally
-	override var autoDestroy: Boolean? 
+        var writableCorked: Number?
             get() = definedExternally
             set(value) = definedExternally
+        override val read: ((size: Number) -> Unit)?
+            get() = definedExternally
+        override val write: ((chunk: Any, encoding: String, callback: (error: Error?) -> Unit) -> Unit)?
+            get() = definedExternally
+        override val writev: ((chunks: Array<`T$10`>, callback: (error: Error?) -> Unit) -> Unit)?
+            get() = definedExternally
+        override val final: ((callback: (error: Error?) -> Unit) -> Unit)?
+            get() = definedExternally
+        override val destroy: ((error: Error?, callback: (error: Error?) -> Unit) -> Unit)?
+            get() = definedExternally
+        override var highWaterMark: Number?
+            get() = definedExternally
+            set(value) = definedExternally;
+        override var objectMode: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally;
+        override var autoDestroy: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally;
     }
     open class Duplex(opts: DuplexOptions = definedExternally) : Readable {
         open var writable: Boolean
@@ -235,8 +287,9 @@ external open class internal : EventEmitter {
         open var writableHighWaterMark: Number
         open var writableLength: Number
         open var writableObjectMode: Boolean
+        open var writableCorked: Number
         open fun _write(chunk: Any, encoding: String, callback: (error: Error?) -> Unit)
-        open fun _writev(chunks: Array<`T$9`>, callback: (error: Error?) -> Unit)
+        open fun _writev(chunks: Array<`T$10`>, callback: (error: Error?) -> Unit)
         override fun _destroy(error: Error?, callback: (error: Error?) -> Unit)
         open fun _final(callback: (error: Error?) -> Unit)
         open fun write(chunk: Any, encoding: String = definedExternally, cb: (error: Error?) -> Unit = definedExternally): Boolean
@@ -249,9 +302,19 @@ external open class internal : EventEmitter {
         open fun uncork()
     }
     interface TransformOptions : DuplexOptions {
-        val transform: ((self: Transform, chunk: Any, encoding: String, callback: TransformCallback) -> Unit)?
+        override val read: ((size: Number) -> Unit)?
             get() = definedExternally
-        val flush: ((self: Transform, callback: TransformCallback) -> Unit)?
+        override val write: ((chunk: Any, encoding: String, callback: (error: Error?) -> Unit) -> Unit)?
+            get() = definedExternally
+        override val writev: ((chunks: Array<`T$10`>, callback: (error: Error?) -> Unit) -> Unit)?
+            get() = definedExternally
+        override val final: ((callback: (error: Error?) -> Unit) -> Unit)?
+            get() = definedExternally
+        override val destroy: ((error: Error?, callback: (error: Error?) -> Unit) -> Unit)?
+            get() = definedExternally
+        val transform: ((chunk: Any, encoding: String, callback: TransformCallback) -> Unit)?
+            get() = definedExternally
+        val flush: ((callback: TransformCallback) -> Unit)?
             get() = definedExternally
     }
     open class Transform(opts: TransformOptions = definedExternally) : Duplex {
@@ -259,6 +322,17 @@ external open class internal : EventEmitter {
         open fun _flush(callback: TransformCallback)
     }
     open class PassThrough : Transform
+    interface FinishedOptions {
+        var error: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var readable: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+        var writable: Boolean?
+            get() = definedExternally
+            set(value) = definedExternally
+    }
     interface Pipe {
         fun close()
         fun hasRef(): Boolean
@@ -267,6 +341,9 @@ external open class internal : EventEmitter {
     }
 
     companion object {
+        fun finished(stream: ReadableStream, options: FinishedOptions, callback: (err: ErrnoException?) -> Unit): () -> Unit
+        fun finished(stream: WritableStream, options: FinishedOptions, callback: (err: ErrnoException?) -> Unit): () -> Unit
+        fun finished(stream: ReadWriteStream, options: FinishedOptions, callback: (err: ErrnoException?) -> Unit): () -> Unit
         fun finished(stream: ReadableStream, callback: (err: ErrnoException?) -> Unit): () -> Unit
         fun finished(stream: WritableStream, callback: (err: ErrnoException?) -> Unit): () -> Unit
         fun finished(stream: ReadWriteStream, callback: (err: ErrnoException?) -> Unit): () -> Unit

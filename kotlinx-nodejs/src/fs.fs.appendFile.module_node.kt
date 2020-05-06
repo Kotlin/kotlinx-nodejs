@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.appendFile")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package fs.appendFile
 
 import kotlin.js.*
@@ -18,19 +18,19 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
 
-external fun __promisify__(file: String, data: Any, options: fs.`T$54`? = definedExternally): Promise<Unit>
+external fun __promisify__(file: String, data: Any, options: fs.`T$57`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(file: String, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun __promisify__(file: Buffer, data: Any, options: fs.`T$54`? = definedExternally): Promise<Unit>
+external fun __promisify__(file: Buffer, data: Any, options: fs.`T$57`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(file: Buffer, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun __promisify__(file: URL, data: Any, options: fs.`T$54`? = definedExternally): Promise<Unit>
+external fun __promisify__(file: URL, data: Any, options: fs.`T$57`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(file: URL, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun __promisify__(file: Number, data: Any, options: fs.`T$54`? = definedExternally): Promise<Unit>
+external fun __promisify__(file: Number, data: Any, options: fs.`T$57`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(file: Number, data: Any, options: String? = definedExternally): Promise<Unit>
 

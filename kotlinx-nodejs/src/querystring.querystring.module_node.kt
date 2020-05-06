@@ -1,6 +1,6 @@
 @file:JsModule("querystring")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package querystring
 
 import kotlin.js.*
@@ -17,7 +17,7 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import NodeJS.PoorMansUnknown
+import NodeJS.Dict
 
 external interface StringifyOptions {
     var encodeURIComponent: ((str: String) -> String)?
@@ -34,21 +34,9 @@ external interface ParseOptions {
         set(value) = definedExternally
 }
 
-external interface ParsedUrlQuery {
-    @nativeGetter
-    operator fun get(key: String): dynamic /* String? | Array<String>? */
-    @nativeSetter
-    operator fun set(key: String, value: String)
-    @nativeSetter
-    operator fun set(key: String, value: Array<String>)
-}
+external interface ParsedUrlQuery : Dict<dynamic /* String | Array<String> */>
 
-external interface ParsedUrlQueryInput {
-    @nativeGetter
-    operator fun get(key: String): PoorMansUnknown?
-    @nativeSetter
-    operator fun set(key: String, value: PoorMansUnknown)
-}
+external interface ParsedUrlQueryInput : Dict<dynamic /* String? | Number? | Boolean? | Array<String>? | Array<Number>? | Array<Boolean>? */>
 
 external fun stringify(obj: ParsedUrlQueryInput = definedExternally, sep: String = definedExternally, eq: String = definedExternally, options: StringifyOptions = definedExternally): String
 

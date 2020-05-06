@@ -1,5 +1,5 @@
 @file:JsQualifier("dns.promises")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package dns.promises
 
 import kotlin.js.*
@@ -16,7 +16,7 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import dns.lookupService.`T$11`
+import dns.lookupService.`T$12`
 
 external fun getServers(): Array<String>
 
@@ -30,9 +30,31 @@ external fun lookup(hostname: String, options: dns.LookupOptions): Promise<dynam
 
 external fun lookup(hostname: String): Promise<dns.LookupAddress>
 
-external fun lookupService(address: String, port: Number): Promise<`T$11`>
+external fun lookupService(address: String, port: Number): Promise<`T$12`>
 
 external fun resolve(hostname: String): Promise<Array<String>>
+
+external fun resolve(hostname: String, rrtype: String /* "A" */): Promise<Array<String>>
+
+external fun resolve(hostname: String, rrtype: String /* "AAAA" */): Promise<Array<String>>
+
+external fun resolve(hostname: String, rrtype: String /* "ANY" */): Promise<Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */>>
+
+external fun resolve(hostname: String, rrtype: String /* "CNAME" */): Promise<Array<String>>
+
+external fun resolve(hostname: String, rrtype: String /* "MX" */): Promise<Array<dns.MxRecord>>
+
+external fun resolve(hostname: String, rrtype: String /* "NAPTR" */): Promise<Array<dns.NaptrRecord>>
+
+external fun resolve(hostname: String, rrtype: String /* "NS" */): Promise<Array<String>>
+
+external fun resolve(hostname: String, rrtype: String /* "PTR" */): Promise<Array<String>>
+
+external fun resolve(hostname: String, rrtype: String /* "SOA" */): Promise<dns.SoaRecord>
+
+external fun resolve(hostname: String, rrtype: String /* "SRV" */): Promise<Array<dns.SrvRecord>>
+
+external fun resolve(hostname: String, rrtype: String /* "TXT" */): Promise<Array<Array<String>>>
 
 external fun resolve(hostname: String, rrtype: String): Promise<dynamic /* Array<String> | Array<MxRecord> | Array<NaptrRecord> | SoaRecord | Array<SrvRecord> | Array<Array<String>> | Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */> */>
 

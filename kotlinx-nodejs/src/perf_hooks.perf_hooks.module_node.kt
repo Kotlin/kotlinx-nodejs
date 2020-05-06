@@ -1,6 +1,6 @@
 @file:JsModule("perf_hooks")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package perf_hooks
 
 import kotlin.js.*
@@ -18,14 +18,17 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import async_hooks.AsyncResource
-import Map
+import tsstdlib.Map
 
 external interface PerformanceEntry {
     var duration: Number
     var name: String
     var startTime: Number
-    var entryType: String
+    var entryType: String /* 'node' | 'mark' | 'measure' | 'gc' | 'function' | 'http2' | 'http' */
     var kind: Number?
+        get() = definedExternally
+        set(value) = definedExternally
+    var flags: Number?
         get() = definedExternally
         set(value) = definedExternally
 }
@@ -51,8 +54,8 @@ external interface Performance {
     fun clearMarks(name: String = definedExternally)
     fun clearMeasures(name: String = definedExternally)
     fun getEntries(): Array<PerformanceEntry>
-    fun getEntriesByName(name: String, type: String = definedExternally): Array<PerformanceEntry>
-    fun getEntriesByType(type: String): Array<PerformanceEntry>
+    fun getEntriesByName(name: String, type: String /* 'node' | 'mark' | 'measure' | 'gc' | 'function' | 'http2' | 'http' */ = definedExternally): Array<PerformanceEntry>
+    fun getEntriesByType(type: String /* 'node' | 'mark' | 'measure' | 'gc' | 'function' | 'http2' | 'http' */): Array<PerformanceEntry>
     fun mark(name: String = definedExternally)
     fun measure(name: String, startMark: String, endMark: String)
     var nodeTiming: PerformanceNodeTiming
@@ -63,12 +66,12 @@ external interface Performance {
 
 external interface PerformanceObserverEntryList {
     fun getEntries(): Array<PerformanceEntry>
-    fun getEntriesByName(name: String, type: String = definedExternally): Array<PerformanceEntry>
-    fun getEntriesByType(type: String): Array<PerformanceEntry>
+    fun getEntriesByName(name: String, type: String /* 'node' | 'mark' | 'measure' | 'gc' | 'function' | 'http2' | 'http' */ = definedExternally): Array<PerformanceEntry>
+    fun getEntriesByType(type: String /* 'node' | 'mark' | 'measure' | 'gc' | 'function' | 'http2' | 'http' */): Array<PerformanceEntry>
 }
 
-external interface `T$69` {
-    var entryTypes: Array<String>
+external interface `T$61` {
+    var entryTypes: Array<String /* 'node' | 'mark' | 'measure' | 'gc' | 'function' | 'http2' | 'http' */>
     var buffered: Boolean?
         get() = definedExternally
         set(value) = definedExternally
@@ -76,7 +79,7 @@ external interface `T$69` {
 
 external open class PerformanceObserver(callback: PerformanceObserverCallback) : AsyncResource {
     open fun disconnect()
-    open fun observe(options: `T$69`)
+    open fun observe(options: `T$61`)
 }
 
 external var performance: Performance

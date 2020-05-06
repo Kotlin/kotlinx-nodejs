@@ -1,6 +1,6 @@
 @file:JsModule("http")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package http
 
 import kotlin.js.*
@@ -17,14 +17,17 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import NodeJS.Dict
 import net.Socket
 import stream.internal.Writable
 import Buffer
 import stream.internal.Readable
+import NodeJS.ReadOnlyDict
 import net.Server as NetServer
 
-external interface IncomingHttpHeaders {
-    operator fun set(key: String, value: Any?)
+external interface IncomingHttpHeaders : Dict<dynamic /* String | Array<String> */> {
+    override operator fun get(key: String): Any?
+    override operator fun set(key: String, value: Any?)
     var accept: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -91,24 +94,9 @@ external interface IncomingHttpHeaders {
     var warning: String?
         get() = definedExternally
         set(value) = definedExternally
-    @nativeGetter
-    operator fun get(header: String): dynamic /* String? | Array<String>? */
-    @nativeSetter
-    operator fun set(header: String, value: String?)
-    @nativeSetter
-    operator fun set(header: String, value: Array<String>?)
 }
 
-external interface OutgoingHttpHeaders {
-    @nativeGetter
-    operator fun get(header: String): dynamic /* Number? | String? | Array<String>? */
-    @nativeSetter
-    operator fun set(header: String, value: Number?)
-    @nativeSetter
-    operator fun set(header: String, value: String?)
-    @nativeSetter
-    operator fun set(header: String, value: Array<String>?)
-}
+external interface OutgoingHttpHeaders : Dict<dynamic /* Number | String | Array<String> */>
 
 external interface ClientRequestArgs {
     var protocol: String?
@@ -133,6 +121,9 @@ external interface ClientRequestArgs {
         get() = definedExternally
         set(value) = definedExternally
     var socketPath: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var maxHeaderSize: Number?
         get() = definedExternally
         set(value) = definedExternally
     var method: String?
@@ -171,16 +162,31 @@ external interface ServerOptions {
     var ServerResponse: Any?
         get() = definedExternally
         set(value) = definedExternally
+    var maxHeaderSize: Number?
+        get() = definedExternally
+        set(value) = definedExternally
+    var insecureHTTPParser: Boolean?
+        get() = definedExternally
+        set(value) = definedExternally
 }
 
-external open class Server(requestListener: RequestListener = definedExternally) : NetServer {
+external interface HttpBase {
+    fun setTimeout(msecs: Number = definedExternally, callback: () -> Unit = definedExternally): HttpBase /* this */
+    fun setTimeout(callback: () -> Unit): HttpBase /* this */
+    var maxHeadersCount: Number?
+    var timeout: Number
+    var headersTimeout: Number
+    var keepAliveTimeout: Number
+}
+
+external open class Server(requestListener: RequestListener = definedExternally) : NetServer, HttpBase {
     constructor(options: ServerOptions, requestListener: RequestListener)
-    open fun setTimeout(msecs: Number = definedExternally, callback: () -> Unit = definedExternally): Server /* this */
-    open fun setTimeout(callback: () -> Unit): Server /* this */
-    open var maxHeadersCount: Number?
-    open var timeout: Number
-    open var headersTimeout: Number
-    open var keepAliveTimeout: Number
+    override fun setTimeout(msecs: Number, callback: () -> Unit): Server /* this */
+    override fun setTimeout(callback: () -> Unit): Server /* this */
+    override var maxHeadersCount: Number?
+    override var timeout: Number
+    override var headersTimeout: Number
+    override var keepAliveTimeout: Number
 }
 
 external open class OutgoingMessage : Writable {
@@ -192,6 +198,7 @@ external open class OutgoingMessage : Writable {
     open var finished: Boolean
     open var headersSent: Boolean
     open var connection: Socket
+    open var socket: Socket
     open fun setTimeout(msecs: Number, callback: () -> Unit = definedExternally): OutgoingMessage /* this */
     open fun setHeader(name: String, value: Number)
     open fun setHeader(name: String, value: String)
@@ -209,12 +216,12 @@ external open class OutgoingMessage : Writable {
 external open class ServerResponse(req: IncomingMessage) : OutgoingMessage {
     open var statusCode: Number
     open var statusMessage: String
-    override var writableFinished: Boolean
     open fun assignSocket(socket: Socket)
     open fun detachSocket(socket: Socket)
     open fun writeContinue(callback: () -> Unit = definedExternally)
     open fun writeHead(statusCode: Number, reasonPhrase: String = definedExternally, headers: OutgoingHttpHeaders = definedExternally): ServerResponse /* this */
     open fun writeHead(statusCode: Number, headers: OutgoingHttpHeaders = definedExternally): ServerResponse /* this */
+    open fun writeProcessing()
 }
 
 external interface InformationEvent {
@@ -232,8 +239,9 @@ external open class ClientRequest : OutgoingMessage {
     constructor(url: URL, cb: (res: IncomingMessage) -> Unit)
     constructor(url: ClientRequestArgs, cb: (res: IncomingMessage) -> Unit)
     override var connection: Socket
-    open var socket: Socket
+    override var socket: Socket
     open var aborted: Number
+    open var method: String
     open var path: String
     open fun abort()
     open fun onSocket(socket: Socket)
@@ -287,29 +295,23 @@ external open class ClientRequest : OutgoingMessage {
     override fun prependOnceListener(event: Any, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
 }
 
-external interface `T$56` {
-    @nativeGetter
-    operator fun get(key: String): String?
-    @nativeSetter
-    operator fun set(key: String, value: String?)
-}
-
 external open class IncomingMessage(socket: Socket) : Readable {
+    open var aborted: Boolean
     open var httpVersion: String
     open var httpVersionMajor: Number
     open var httpVersionMinor: Number
     open var complete: Boolean
     open var connection: Socket
+    open var socket: Socket
     open var headers: IncomingHttpHeaders
     open var rawHeaders: Array<String>
-    open var trailers: `T$56`
+    open var trailers: Dict<String>
     open var rawTrailers: Array<String>
     open fun setTimeout(msecs: Number, callback: () -> Unit = definedExternally): IncomingMessage /* this */
     open var method: String
     open var url: String
     open var statusCode: Number
     open var statusMessage: String
-    open var socket: Socket
     override fun destroy(error: Error)
 }
 
@@ -331,25 +333,11 @@ external interface AgentOptions {
         set(value) = definedExternally
 }
 
-external interface `T$57` {
-    @nativeGetter
-    operator fun get(key: String): Array<Socket>?
-    @nativeSetter
-    operator fun set(key: String, value: Array<Socket>)
-}
-
-external interface `T$58` {
-    @nativeGetter
-    operator fun get(key: String): Array<IncomingMessage>?
-    @nativeSetter
-    operator fun set(key: String, value: Array<IncomingMessage>)
-}
-
 external open class Agent(opts: AgentOptions = definedExternally) {
     open var maxFreeSockets: Number
     open var maxSockets: Number
-    open var sockets: `T$57`
-    open var requests: `T$58`
+    open var sockets: ReadOnlyDict<Array<Socket>>
+    open var requests: ReadOnlyDict<Array<IncomingMessage>>
     open fun destroy()
 }
 

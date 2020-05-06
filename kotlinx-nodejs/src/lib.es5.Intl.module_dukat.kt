@@ -1,6 +1,6 @@
-@file:JsQualifier("Intl")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
-package Intl
+@file:JsQualifier("tsstdlib.Intl")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+package tsstdlib.Intl
 
 import kotlin.js.*
 import kotlin.js.Json

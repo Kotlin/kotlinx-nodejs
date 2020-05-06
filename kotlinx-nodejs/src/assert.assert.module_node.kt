@@ -1,4 +1,4 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package assert
 
 import kotlin.js.*
@@ -17,10 +17,10 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 
 @JsModule("assert")
-external fun internal(value: Any, message: String = definedExternally)
+external fun assert(value: Any, message: String = definedExternally)
 
 @JsModule("assert")
-external fun internal(value: Any, message: Error = definedExternally)
+external fun assert(value: Any, message: Error = definedExternally)
 
 @JsModule("assert")
-external fun internal(value: Any)
+external fun assert(value: Any)

@@ -1,6 +1,6 @@
 @file:JsModule("vm")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package vm
 
 import kotlin.js.*
@@ -17,14 +17,10 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import NodeJS.Dict
 import Buffer
 
-external interface Context {
-    @nativeGetter
-    operator fun get(key: String): Any?
-    @nativeSetter
-    operator fun set(key: String, value: Any)
-}
+external interface Context : Dict<Any>
 
 external interface BaseOptions {
     var filename: String?
@@ -80,7 +76,7 @@ external interface CompileFunctionOptions : BaseOptions {
         set(value) = definedExternally
 }
 
-external interface `T$72` {
+external interface `T$63` {
     var strings: Boolean?
         get() = definedExternally
         set(value) = definedExternally
@@ -96,9 +92,29 @@ external interface CreateContextOptions {
     var origin: String?
         get() = definedExternally
         set(value) = definedExternally
-    var codeGeneration: `T$72`?
+    var codeGeneration: `T$63`?
         get() = definedExternally
         set(value) = definedExternally
+}
+
+external interface MeasureMemoryOptions {
+    var mode: String? /* 'summary' | 'detailed' */
+        get() = definedExternally
+        set(value) = definedExternally
+    var context: Context?
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
+external interface `T$64` {
+    var jsMemoryEstimate: Number
+    var jsMemoryRange: dynamic /* JsTuple<Number, Number> */
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
+external interface MemoryMeasurement {
+    var total: `T$64`
 }
 
 external open class Script(code: String, options: ScriptOptions = definedExternally) {
@@ -124,7 +140,9 @@ external fun runInThisContext(code: String, options: RunningScriptOptions = defi
 
 external fun runInThisContext(code: String, options: String = definedExternally): Any
 
-external fun compileFunction(code: String, params: Array<String>, options: CompileFunctionOptions): Function<*>
+external fun compileFunction(code: String, params: Array<String> = definedExternally, options: CompileFunctionOptions = definedExternally): Function<*>
+
+external fun measureMemory(options: MeasureMemoryOptions = definedExternally): Promise<MemoryMeasurement>
 
 external fun runInContext(code: String, contextifiedSandbox: Context): Any
 

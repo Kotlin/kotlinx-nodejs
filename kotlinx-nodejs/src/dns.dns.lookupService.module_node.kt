@@ -1,5 +1,5 @@
 @file:JsQualifier("dns.lookupService")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package dns.lookupService
 
 import kotlin.js.*
@@ -17,9 +17,9 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 
-external interface `T$11` {
+external interface `T$12` {
     var hostname: String
     var service: String
 }
 
-external fun __promisify__(address: String, port: Number): Promise<`T$11`>
+external fun __promisify__(address: String, port: Number): Promise<`T$12`>

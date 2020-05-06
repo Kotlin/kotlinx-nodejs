@@ -1,6 +1,6 @@
 @file:JsModule("repl")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package repl
 
 import kotlin.js.*
@@ -20,6 +20,7 @@ import org.w3c.xhr.*
 import NodeJS.ReadableStream
 import NodeJS.WritableStream
 import vm.Context
+import NodeJS.ReadOnlyDict
 import readline.Interface
 
 external interface ReplOptions {
@@ -36,6 +37,9 @@ external interface ReplOptions {
         get() = definedExternally
         set(value) = definedExternally
     var eval: REPLEval?
+        get() = definedExternally
+        set(value) = definedExternally
+    var preview: Boolean?
         get() = definedExternally
         set(value) = definedExternally
     var useColors: Boolean?
@@ -61,7 +65,7 @@ external interface ReplOptions {
         set(value) = definedExternally
 }
 
-external var writer: REPLWriter /* REPLWriter & `T$70` */
+external var writer: REPLWriter /* REPLWriter & `T$62` */
 
 external interface REPLCommand {
     var help: String?
@@ -70,18 +74,11 @@ external interface REPLCommand {
     var action: REPLCommandAction
 }
 
-external interface `T$71` {
-    @nativeGetter
-    operator fun get(name: String): REPLCommand?
-    @nativeSetter
-    operator fun set(name: String, value: REPLCommand?)
-}
-
 external open class REPLServer : Interface {
     open var context: Context
     open var inputStream: ReadableStream
     open var outputStream: WritableStream
-    open var commands: `T$71`
+    open var commands: ReadOnlyDict<REPLCommand>
     open var editorMode: Boolean
     open var underscoreAssigned: Boolean
     open var last: Any
@@ -108,6 +105,7 @@ external open class REPLServer : Interface {
     override fun emit(event: String): Boolean
     override fun emit(event: String /* "line" */, input: String): Boolean
     open fun emit(event: String /* "reset" */, context: Context): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): REPLServer /* this */
     override fun on(event: String, listener: () -> Unit): REPLServer /* this */
     override fun on(event: String /* "line" */, listener: (input: String) -> Unit): REPLServer /* this */

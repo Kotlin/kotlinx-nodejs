@@ -1,6 +1,6 @@
 @file:JsModule("tls")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package tls
 
 import kotlin.js.*
@@ -17,6 +17,7 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import NodeJS.Dict
 import Buffer
 import net.Socket
 import net.LookupFunction
@@ -34,23 +35,17 @@ external interface Certificate {
     var CN: String
 }
 
-external interface `T$60` {
-    @nativeGetter
-    operator fun get(index: String): Array<String>?
-    @nativeSetter
-    operator fun set(index: String, value: Array<String>?)
-}
-
 external interface PeerCertificate {
     var subject: Certificate
     var issuer: Certificate
     var subjectaltname: String
-    var infoAccess: `T$60`
+    var infoAccess: Dict<Array<String>>
     var modulus: String
     var exponent: String
     var valid_from: String
     var valid_to: String
     var fingerprint: String
+    var fingerprint256: String
     var ext_key_usage: Array<String>
     var serialNumber: String
     var raw: Buffer
@@ -63,6 +58,33 @@ external interface DetailedPeerCertificate : PeerCertificate {
 external interface CipherNameAndProtocol {
     var name: String
     var version: String
+    var standardName: String
+}
+
+external interface EphemeralKeyInfo {
+    var type: String
+    var name: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var size: Number
+}
+
+external interface KeyObject {
+    var pem: dynamic /* String | Buffer */
+        get() = definedExternally
+        set(value) = definedExternally
+    var passphrase: String?
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
+external interface PxfObject {
+    var buf: dynamic /* String | Buffer */
+        get() = definedExternally
+        set(value) = definedExternally
+    var passphrase: String?
+        get() = definedExternally
+        set(value) = definedExternally
 }
 
 external interface TLSSocketOptions : SecureContextOptions, CommonConnectionOptions {
@@ -80,7 +102,7 @@ external interface TLSSocketOptions : SecureContextOptions, CommonConnectionOpti
         set(value) = definedExternally
 }
 
-external interface `T$61` {
+external interface `T$59` {
     var rejectUnauthorized: Boolean?
         get() = definedExternally
         set(value) = definedExternally
@@ -94,33 +116,55 @@ external open class TLSSocket(socket: net.Socket, options: TLSSocketOptions = de
     open var authorizationError: Error
     open var encrypted: Boolean
     open var alpnProtocol: String
+    open fun getCertificate(): dynamic /* PeerCertificate? | Any?? */
     open fun getCipher(): CipherNameAndProtocol
+    open fun getEphemeralKeyInfo(): dynamic /* EphemeralKeyInfo? | Any?? */
+    open fun getFinished(): Buffer?
     open fun getPeerCertificate(detailed: Boolean): DetailedPeerCertificate
+    open fun getPeerCertificate(detailed: Boolean = definedExternally): PeerCertificate
+    open fun getPeerCertificate(detailed: Boolean = definedExternally): dynamic /* PeerCertificate | DetailedPeerCertificate */
+    open fun getPeerFinished(): Buffer?
     open fun getProtocol(): String?
     open fun getSession(): Buffer?
+    open fun getSharedSigalgs(): Array<String>
     open fun getTLSTicket(): Buffer?
-    open fun renegotiate(options: `T$61`, callback: (err: Error?) -> Unit): Boolean?
+    open fun isSessionReused(): Boolean
+    open fun renegotiate(options: `T$59`, callback: (err: Error?) -> Unit): Boolean?
     open fun setMaxSendFragment(size: Number): Boolean
+    open fun disableRenegotiation()
     open fun enableTrace()
+    open fun exportKeyingMaterial(length: Number, label: String, context: Buffer): Buffer
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun addListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun addListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
+    override fun addListener(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
+    override fun addListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "OCSPResponse" */, response: Buffer): Boolean
     override fun emit(event: String /* "secureConnect" */): Boolean
+    override fun emit(event: String /* "session" */, session: Buffer): Boolean
+    override fun emit(event: String /* "keylog" */, line: Buffer): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun on(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun on(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
+    override fun on(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
+    override fun on(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun once(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun once(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
+    override fun once(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
+    override fun once(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
+    override fun prependListener(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
+    override fun prependListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
+    override fun prependOnceListener(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
+    override fun prependOnceListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     open fun getPeerCertificate(): PeerCertificate
 }
 
@@ -155,6 +199,18 @@ external interface TlsOptions : SecureContextOptions, CommonConnectionOptions {
     var ticketKeys: Buffer?
         get() = definedExternally
         set(value) = definedExternally
+    val pskCallback: ((socket: TLSSocket, identity: String) -> dynamic)?
+        get() = definedExternally
+    var pskIdentityHint: String?
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
+external interface PSKCallbackNegotation {
+    var psk: dynamic /* DataView | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array */
+        get() = definedExternally
+        set(value) = definedExternally
+    var identitty: String
 }
 
 external interface ConnectionOptions : SecureContextOptions, CommonConnectionOptions {
@@ -188,10 +244,15 @@ external interface ConnectionOptions : SecureContextOptions, CommonConnectionOpt
     var timeout: Number?
         get() = definedExternally
         set(value) = definedExternally
+    val pskCallback: ((hint: String?) -> PSKCallbackNegotation?)?
+        get() = definedExternally
 }
 
 external open class Server : net.Server {
     open fun addContext(hostName: String, credentials: SecureContextOptions)
+    open fun getTicketKeys(): Buffer
+    open fun setSecureContext(details: SecureContextOptions)
+    open fun setTicketKeys(keys: Buffer)
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
     open fun addListener(event: String /* "tlsClientError" */, listener: (err: Error, tlsSocket: TLSSocket) -> Unit): Server /* this */
     open fun addListener(event: String /* "newSession" */, listener: (sessionId: Buffer, sessionData: Buffer, callback: (err: Error, resp: Buffer) -> Unit) -> Unit): Server /* this */
@@ -206,6 +267,7 @@ external open class Server : net.Server {
     open fun emit(event: String /* "OCSPRequest" */, certificate: Buffer, issuer: Buffer, callback: (err: Error?, resp: Buffer) -> Unit): Boolean
     open fun emit(event: String /* "resumeSession" */, sessionId: Buffer, callback: (err: Error, sessionData: Buffer) -> Unit): Boolean
     open fun emit(event: String /* "secureConnection" */, tlsSocket: TLSSocket): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "keylog" */, line: Buffer, tlsSocket: TLSSocket): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
     open fun on(event: String /* "tlsClientError" */, listener: (err: Error, tlsSocket: TLSSocket) -> Unit): Server /* this */
@@ -243,28 +305,16 @@ external interface SecurePair {
 }
 
 external interface SecureContextOptions {
-    var pfx: dynamic /* String? | Buffer? | Array<dynamic /* String | Buffer | Any */>? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var key: dynamic /* String? | Buffer? | Array<dynamic /* Buffer | Any */>? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var passphrase: String?
+    var ca: dynamic /* String? | Buffer? | Array<dynamic /* String | Buffer */>? */
         get() = definedExternally
         set(value) = definedExternally
     var cert: dynamic /* String? | Buffer? | Array<dynamic /* String | Buffer */>? */
         get() = definedExternally
         set(value) = definedExternally
-    var ca: dynamic /* String? | Buffer? | Array<dynamic /* String | Buffer */>? */
+    var sigalgs: String?
         get() = definedExternally
         set(value) = definedExternally
     var ciphers: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var honorCipherOrder: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var ecdhCurve: String?
         get() = definedExternally
         set(value) = definedExternally
     var clientCertEngine: String?
@@ -276,6 +326,33 @@ external interface SecureContextOptions {
     var dhparam: dynamic /* String? | Buffer? */
         get() = definedExternally
         set(value) = definedExternally
+    var ecdhCurve: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var honorCipherOrder: Boolean?
+        get() = definedExternally
+        set(value) = definedExternally
+    var key: dynamic /* String? | Buffer? | Array<dynamic /* Buffer | KeyObject */>? */
+        get() = definedExternally
+        set(value) = definedExternally
+    var privateKeyEngine: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var privateKeyIdentifier: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var maxVersion: String? /* 'TLSv1.3' | 'TLSv1.2' | 'TLSv1.1' | 'TLSv1' */
+        get() = definedExternally
+        set(value) = definedExternally
+    var minVersion: String? /* 'TLSv1.3' | 'TLSv1.2' | 'TLSv1.1' | 'TLSv1' */
+        get() = definedExternally
+        set(value) = definedExternally
+    var passphrase: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var pfx: dynamic /* String? | Buffer? | Array<dynamic /* String | Buffer | PxfObject */>? */
+        get() = definedExternally
+        set(value) = definedExternally
     var secureOptions: Number?
         get() = definedExternally
         set(value) = definedExternally
@@ -285,8 +362,6 @@ external interface SecureContextOptions {
     var sessionIdContext: String?
         get() = definedExternally
         set(value) = definedExternally
-    var maxVersion: String /* 'TLSv1.3' | 'TLSv1.2' | 'TLSv1.1' | 'TLSv1' */
-    var minVersion: String /* 'TLSv1.3' | 'TLSv1.2' | 'TLSv1.1' | 'TLSv1' */
 }
 
 external interface SecureContext {
@@ -312,5 +387,9 @@ external fun createSecureContext(details: SecureContextOptions): SecureContext
 external fun getCiphers(): Array<String>
 
 external var DEFAULT_ECDH_CURVE: String
+
+external var DEFAULT_MAX_VERSION: String /* 'TLSv1.3' | 'TLSv1.2' | 'TLSv1.1' | 'TLSv1' */
+
+external var DEFAULT_MIN_VERSION: String /* 'TLSv1.3' | 'TLSv1.2' | 'TLSv1.1' | 'TLSv1' */
 
 external var rootCertificates: Array<String>

@@ -1,6 +1,6 @@
 @file:JsModule("net")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package net
 
 import kotlin.js.*
@@ -19,7 +19,7 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
 import stream.internal.Duplex
-import events.internal.EventEmitter
+import events.EventEmitter.EventEmitter
 
 external interface AddressInfo {
     var address: String
@@ -85,9 +85,11 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     open fun write(buffer: Uint8Array, cb: (err: Error) -> Unit = definedExternally): Boolean
     override fun write(chunk: Any, cb: (error: Error?) -> Unit): Boolean
     open fun write(buffer: String, cb: (err: Error) -> Unit = definedExternally): Boolean
+    override fun write(chunk: Any, cb: (error: Error?) -> Unit): Boolean
     open fun write(str: Uint8Array, encoding: String = definedExternally, cb: (err: Error) -> Unit = definedExternally): Boolean
     override fun write(chunk: Any, encoding: String, cb: (error: Error?) -> Unit): Boolean
     open fun write(str: String, encoding: String = definedExternally, cb: (err: Error) -> Unit = definedExternally): Boolean
+    override fun write(chunk: Any, encoding: String, cb: (error: Error?) -> Unit): Boolean
     open fun connect(options: TcpSocketConnectOpts, connectionListener: () -> Unit = definedExternally): Socket /* this */
     open fun connect(options: IpcSocketConnectOpts, connectionListener: () -> Unit = definedExternally): Socket /* this */
     open fun connect(port: Number, host: String, connectionListener: () -> Unit = definedExternally): Socket /* this */
@@ -100,8 +102,8 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     open fun setNoDelay(noDelay: Boolean = definedExternally): Socket /* this */
     open fun setKeepAlive(enable: Boolean = definedExternally, initialDelay: Number = definedExternally): Socket /* this */
     open fun address(): dynamic /* AddressInfo | String */
-    open fun unref()
-    open fun ref()
+    open fun unref(): Socket /* this */
+    open fun ref(): Socket /* this */
     open var bufferSize: Number
     open var bytesRead: Number
     open var bytesWritten: Number
@@ -116,9 +118,11 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     open fun end(buffer: Uint8Array, cb: () -> Unit = definedExternally)
     override fun end(chunk: Any, cb: () -> Unit)
     open fun end(buffer: String, cb: () -> Unit = definedExternally)
+    override fun end(chunk: Any, cb: () -> Unit)
     open fun end(str: Uint8Array, encoding: String = definedExternally, cb: () -> Unit = definedExternally)
     override fun end(chunk: Any, encoding: String, cb: () -> Unit)
     open fun end(str: String, encoding: String = definedExternally, cb: () -> Unit = definedExternally)
+    override fun end(chunk: Any, encoding: String, cb: () -> Unit)
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun addListener(event: String /* "close" */, listener: (had_error: Boolean) -> Unit): Socket /* this */
     override fun addListener(event: String, listener: () -> Unit): Socket /* this */
@@ -128,8 +132,10 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "close" */, had_error: Boolean): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String): Boolean
     open fun emit(event: String /* "data" */, data: Buffer): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "error" */, err: Error): Boolean
     open fun emit(event: String /* "lookup" */, err: Error, address: String, family: String, host: String): Boolean
     open fun emit(event: String /* "lookup" */, err: Error, address: String, family: Number, host: String): Boolean
@@ -186,7 +192,7 @@ external interface ListenOptions {
         set(value) = definedExternally
 }
 
-external interface `T$8` {
+external interface `T$9` {
     var allowHalfOpen: Boolean?
         get() = definedExternally
         set(value) = definedExternally
@@ -196,7 +202,7 @@ external interface `T$8` {
 }
 
 external open class Server(connectionListener: (socket: Socket) -> Unit = definedExternally) : EventEmitter {
-    constructor(options: `T$8`, connectionListener: (socket: Socket) -> Unit)
+    constructor(options: `T$9`, connectionListener: (socket: Socket) -> Unit)
     open fun listen(port: Number = definedExternally, hostname: String = definedExternally, backlog: Number = definedExternally, listeningListener: () -> Unit = definedExternally): Server /* this */
     open fun listen(port: Number = definedExternally, hostname: String = definedExternally, listeningListener: () -> Unit = definedExternally): Server /* this */
     open fun listen(port: Number = definedExternally, backlog: Number = definedExternally, listeningListener: () -> Unit = definedExternally): Server /* this */
@@ -218,10 +224,13 @@ external open class Server(connectionListener: (socket: Socket) -> Unit = define
     open fun addListener(event: String, listener: () -> Unit): Server /* this */
     open fun addListener(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Server /* this */
+    override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "connection" */, socket: Socket): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "error" */, err: Error): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
     open fun on(event: String, listener: () -> Unit): Server /* this */
     open fun on(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
@@ -254,7 +263,7 @@ external interface IpcNetConnectOpts : IpcSocketConnectOpts, SocketConstructorOp
 
 external fun createServer(connectionListener: (socket: Socket) -> Unit = definedExternally): Server
 
-external fun createServer(options: `T$8` = definedExternally, connectionListener: (socket: Socket) -> Unit = definedExternally): Server
+external fun createServer(options: `T$9` = definedExternally, connectionListener: (socket: Socket) -> Unit = definedExternally): Server
 
 external fun connect(options: TcpNetConnectOpts, connectionListener: () -> Unit = definedExternally): Socket
 

@@ -1,6 +1,6 @@
 @file:JsModule("readline")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package readline
 
 import kotlin.js.*
@@ -20,7 +20,7 @@ import org.w3c.xhr.*
 import NodeJS.ReadableStream
 import NodeJS.WritableStream
 import Buffer
-import events.internal.EventEmitter
+import events.EventEmitter.EventEmitter
 
 external interface Key {
     var sequence: String?
@@ -44,6 +44,8 @@ external open class Interface(options: ReadLineOptions) : EventEmitter {
     constructor(input: ReadableStream, output: WritableStream, completer: Completer, terminal: Boolean)
     constructor(input: ReadableStream, output: WritableStream, completer: AsyncCompleter, terminal: Boolean)
     open var terminal: Boolean
+    open var line: String
+    open var cursor: Number
     open fun setPrompt(prompt: String)
     open fun prompt(preserveCursor: Boolean = definedExternally)
     open fun question(query: String, callback: (answer: String) -> Unit)
@@ -52,6 +54,7 @@ external open class Interface(options: ReadLineOptions) : EventEmitter {
     open fun close()
     open fun write(data: String, key: Key = definedExternally)
     open fun write(data: Buffer, key: Key = definedExternally)
+    open fun getCursorPos(): CursorPos
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Interface /* this */
     open fun addListener(event: String, listener: () -> Unit): Interface /* this */
     open fun addListener(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */
@@ -59,6 +62,7 @@ external open class Interface(options: ReadLineOptions) : EventEmitter {
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "line" */, input: String): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Interface /* this */
     open fun on(event: String, listener: () -> Unit): Interface /* this */
     open fun on(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */
@@ -96,6 +100,12 @@ external interface ReadLineOptions {
     var removeHistoryDuplicates: Boolean?
         get() = definedExternally
         set(value) = definedExternally
+    var escapeCodeTimeout: Number?
+        get() = definedExternally
+        set(value) = definedExternally
+    var tabSize: Number?
+        get() = definedExternally
+        set(value) = definedExternally
 }
 
 external fun createInterface(input: ReadableStream, output: WritableStream = definedExternally, completer: Completer = definedExternally, terminal: Boolean = definedExternally): Interface
@@ -105,6 +115,11 @@ external fun createInterface(input: ReadableStream, output: WritableStream = def
 external fun createInterface(options: ReadLineOptions): Interface
 
 external fun emitKeypressEvents(stream: ReadableStream, readlineInterface: Interface = definedExternally)
+
+external interface CursorPos {
+    var rows: Number
+    var cols: Number
+}
 
 external fun clearLine(stream: WritableStream, dir: String /* -1 | 0 | 1 */, callback: () -> Unit = definedExternally): Boolean
 

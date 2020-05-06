@@ -1,6 +1,6 @@
 @file:JsModule("zlib")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package zlib
 
 import kotlin.js.*
@@ -47,7 +47,7 @@ external interface ZlibOptions {
         set(value) = definedExternally
 }
 
-external interface `T$75` {
+external interface `T$68` {
     @nativeGetter
     operator fun get(key: Number): dynamic /* Boolean? | Number? */
     @nativeSetter
@@ -66,7 +66,7 @@ external interface BrotliOptions {
     var chunkSize: Number?
         get() = definedExternally
         set(value) = definedExternally
-    var params: `T$75`?
+    var params: `T$68`?
         get() = definedExternally
         set(value) = definedExternally
 }

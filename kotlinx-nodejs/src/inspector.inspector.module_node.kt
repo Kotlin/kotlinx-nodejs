@@ -1,6 +1,6 @@
 @file:JsModule("inspector")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package inspector
 
 import kotlin.js.*
@@ -17,7 +17,7 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import events.internal.EventEmitter
+import events.EventEmitter.EventEmitter
 
 external interface InspectorNotification<T> {
     var method: String
@@ -131,28 +131,50 @@ external open class Session : EventEmitter {
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "inspectorNotification" */, message: InspectorNotification<Any>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Runtime.executionContextCreated" */, message: InspectorNotification<inspector.Runtime.ExecutionContextCreatedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Runtime.executionContextDestroyed" */, message: InspectorNotification<inspector.Runtime.ExecutionContextDestroyedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "Runtime.exceptionThrown" */, message: InspectorNotification<inspector.Runtime.ExceptionThrownEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Runtime.exceptionRevoked" */, message: InspectorNotification<inspector.Runtime.ExceptionRevokedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Runtime.consoleAPICalled" */, message: InspectorNotification<inspector.Runtime.ConsoleAPICalledEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Runtime.inspectRequested" */, message: InspectorNotification<inspector.Runtime.InspectRequestedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Debugger.scriptParsed" */, message: InspectorNotification<inspector.Debugger.ScriptParsedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Debugger.scriptFailedToParse" */, message: InspectorNotification<inspector.Debugger.ScriptFailedToParseEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Debugger.breakpointResolved" */, message: InspectorNotification<inspector.Debugger.BreakpointResolvedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Debugger.paused" */, message: InspectorNotification<inspector.Debugger.PausedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Console.messageAdded" */, message: InspectorNotification<inspector.Console.MessageAddedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Profiler.consoleProfileStarted" */, message: InspectorNotification<inspector.Profiler.ConsoleProfileStartedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "Profiler.consoleProfileFinished" */, message: InspectorNotification<inspector.Profiler.ConsoleProfileFinishedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "HeapProfiler.addHeapSnapshotChunk" */, message: InspectorNotification<inspector.HeapProfiler.AddHeapSnapshotChunkEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "HeapProfiler.reportHeapSnapshotProgress" */, message: InspectorNotification<inspector.HeapProfiler.ReportHeapSnapshotProgressEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "HeapProfiler.lastSeenObjectId" */, message: InspectorNotification<inspector.HeapProfiler.LastSeenObjectIdEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "HeapProfiler.heapStatsUpdate" */, message: InspectorNotification<inspector.HeapProfiler.HeapStatsUpdateEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "NodeTracing.dataCollected" */, message: InspectorNotification<inspector.NodeTracing.DataCollectedEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "NodeWorker.attachedToWorker" */, message: InspectorNotification<inspector.NodeWorker.AttachedToWorkerEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "NodeWorker.detachedFromWorker" */, message: InspectorNotification<inspector.NodeWorker.DetachedFromWorkerEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "NodeWorker.receivedMessageFromWorker" */, message: InspectorNotification<inspector.NodeWorker.ReceivedMessageFromWorkerEventDataType>): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Session /* this */
     open fun on(event: String /* "inspectorNotification" */, listener: (message: InspectorNotification<Any>) -> Unit): Session /* this */
     open fun on(event: String /* "Runtime.executionContextCreated" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextCreatedEventDataType>) -> Unit): Session /* this */

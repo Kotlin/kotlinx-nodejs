@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.realpath")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package fs.realpath
 
 import kotlin.js.*
@@ -20,21 +20,27 @@ import Buffer
 import child_process.`T$16`
 import NodeJS.ErrnoException
 
-external fun __promisify__(path: String, options: fs.`T$31`? = definedExternally): Promise<String>
+external fun __promisify__(path: String, options: fs.`T$32`? = definedExternally): Promise<String>
 
-external fun __promisify__(path: Buffer, options: fs.`T$31`? = definedExternally): Promise<String>
+external fun __promisify__(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
-external fun __promisify__(path: URL, options: fs.`T$31`? = definedExternally): Promise<String>
+external fun __promisify__(path: Buffer, options: fs.`T$32`? = definedExternally): Promise<String>
 
-external fun __promisify__(path: String, options: fs.`T$32`): Promise<Buffer>
+external fun __promisify__(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
+
+external fun __promisify__(path: URL, options: fs.`T$32`? = definedExternally): Promise<String>
+
+external fun __promisify__(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
+
+external fun __promisify__(path: String, options: fs.`T$33`): Promise<Buffer>
 
 external fun __promisify__(path: String, options: String /* "buffer" */): Promise<Buffer>
 
-external fun __promisify__(path: Buffer, options: fs.`T$32`): Promise<Buffer>
+external fun __promisify__(path: Buffer, options: fs.`T$33`): Promise<Buffer>
 
 external fun __promisify__(path: Buffer, options: String /* "buffer" */): Promise<Buffer>
 
-external fun __promisify__(path: URL, options: fs.`T$32`): Promise<Buffer>
+external fun __promisify__(path: URL, options: fs.`T$33`): Promise<Buffer>
 
 external fun __promisify__(path: URL, options: String /* "buffer" */): Promise<Buffer>
 
@@ -50,27 +56,27 @@ external fun __promisify__(path: URL, options: `T$16`? = definedExternally): Pro
 
 external fun __promisify__(path: URL, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
 
-external fun native(path: String, options: fs.`T$31`?, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
+external fun native(path: String, options: fs.`T$32`?, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
 external fun native(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
-external fun native(path: Buffer, options: fs.`T$31`?, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
+external fun native(path: Buffer, options: fs.`T$32`?, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
 external fun native(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
-external fun native(path: URL, options: fs.`T$31`?, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
+external fun native(path: URL, options: fs.`T$32`?, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
 external fun native(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
-external fun native(path: String, options: fs.`T$32`, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
+external fun native(path: String, options: fs.`T$33`, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
 
 external fun native(path: String, options: String /* "buffer" */, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
 
-external fun native(path: Buffer, options: fs.`T$32`, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
+external fun native(path: Buffer, options: fs.`T$33`, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
 
 external fun native(path: Buffer, options: String /* "buffer" */, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
 
-external fun native(path: URL, options: fs.`T$32`, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
+external fun native(path: URL, options: fs.`T$33`, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
 
 external fun native(path: URL, options: String /* "buffer" */, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
 

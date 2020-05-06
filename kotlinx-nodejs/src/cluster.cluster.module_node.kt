@@ -1,6 +1,6 @@
 @file:JsModule("cluster")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
 package cluster
 
 import kotlin.js.*
@@ -20,7 +20,8 @@ import org.w3c.xhr.*
 import child_process.ChildProcess
 import net.Socket
 import net.Server
-import events.internal.EventEmitter
+import events.EventEmitter.EventEmitter
+import NodeJS.Dict
 
 external interface ClusterSettings {
     var execArgv: Array<String>?
@@ -60,7 +61,14 @@ external interface Address {
 external open class Worker : EventEmitter {
     open var id: Number
     open var process: ChildProcess
-    open fun send(message: Any, sendHandle: Any = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    open fun send(message: String, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    open fun send(message: String, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    open fun send(message: Any?, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    open fun send(message: Any?, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    open fun send(message: Number, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    open fun send(message: Number, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    open fun send(message: Boolean, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    open fun send(message: Boolean, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
     open fun kill(signal: String = definedExternally)
     open fun destroy(signal: String = definedExternally)
     open fun disconnect()
@@ -77,8 +85,10 @@ external open class Worker : EventEmitter {
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "error" */, error: Error): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "exit" */, code: Number, signal: String): Boolean
     open fun emit(event: String /* "listening" */, address: Address): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "message" */, message: Any, handle: Socket): Boolean
     open fun emit(event: String /* "message" */, message: Any, handle: Server): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
@@ -105,13 +115,10 @@ external open class Worker : EventEmitter {
     open fun prependOnceListener(event: String /* "exit" */, listener: (code: Number, signal: String) -> Unit): Worker /* this */
     open fun prependOnceListener(event: String /* "listening" */, listener: (address: Address) -> Unit): Worker /* this */
     open fun prependOnceListener(event: String /* "message" */, listener: (message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Worker /* this */
-}
-
-external interface `T$20` {
-    @nativeGetter
-    operator fun get(index: String): Worker?
-    @nativeSetter
-    operator fun set(index: String, value: Worker?)
+    open fun send(message: String): Boolean
+    open fun send(message: Any?): Boolean
+    open fun send(message: Number): Boolean
+    open fun send(message: Boolean): Boolean
 }
 
 external interface Cluster : EventEmitter {
@@ -120,14 +127,17 @@ external interface Cluster : EventEmitter {
     fun fork(env: Any = definedExternally): Worker
     var isMaster: Boolean
     var isWorker: Boolean
+    var schedulingPolicy: Number
     var settings: ClusterSettings
     fun setupMaster(settings: ClusterSettings = definedExternally)
     var worker: Worker?
         get() = definedExternally
         set(value) = definedExternally
-    var workers: `T$20`?
+    var workers: Dict<Worker>?
         get() = definedExternally
         set(value) = definedExternally
+    var SCHED_NONE: Number
+    var SCHED_RR: Number
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Cluster /* this */
     fun addListener(event: String, listener: (worker: Worker) -> Unit): Cluster /* this */
     fun addListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster /* this */
@@ -137,11 +147,13 @@ external interface Cluster : EventEmitter {
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String, worker: Worker): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "exit" */, worker: Worker, code: Number, signal: String): Boolean
     fun emit(event: String /* "listening" */, worker: Worker, address: Address): Boolean
     fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Socket): Boolean
     fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Server): Boolean
     fun emit(event: String /* "setup" */, settings: ClusterSettings): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Cluster /* this */
     fun on(event: String, listener: (worker: Worker) -> Unit): Cluster /* this */
     fun on(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster /* this */
@@ -168,6 +180,10 @@ external interface Cluster : EventEmitter {
     fun prependOnceListener(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster /* this */
 }
 
+external var SCHED_NONE: Number
+
+external var SCHED_RR: Number
+
 external fun disconnect(callback: () -> Unit = definedExternally)
 
 external fun fork(env: Any = definedExternally): Worker
@@ -176,18 +192,15 @@ external var isMaster: Boolean
 
 external var isWorker: Boolean
 
+external var schedulingPolicy: Number
+
 external var settings: ClusterSettings
 
 external fun setupMaster(settings: ClusterSettings = definedExternally)
 
 external var worker: Worker
 
-external object workers {
-    @nativeGetter
-    operator fun get(index: String): Worker?
-    @nativeSetter
-    operator fun set(index: String, value: Worker?)
-}
+external var workers: Dict<Worker>
 
 external fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Cluster
 
@@ -195,9 +208,13 @@ external fun addListener(event: String /* "disconnect" */, listener: (worker: Wo
 
 external fun addListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
+external fun addListener(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
+
 external fun addListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun addListener(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
+
+external fun addListener(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun addListener(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 
@@ -209,11 +226,15 @@ external fun emit(event: String /* "disconnect" */, worker: Worker): Boolean
 
 external fun emit(event: String /* "exit" */, worker: Worker, code: Number, signal: String): Boolean
 
+external fun emit(event: String /* "fork" */, worker: Worker): Boolean
+
 external fun emit(event: String /* "listening" */, worker: Worker, address: Address): Boolean
 
 external fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Socket): Boolean
 
 external fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Server): Boolean
+
+external fun emit(event: String /* "online" */, worker: Worker): Boolean
 
 external fun emit(event: String /* "setup" */, settings: ClusterSettings): Boolean
 
@@ -223,9 +244,13 @@ external fun on(event: String /* "disconnect" */, listener: (worker: Worker) -> 
 
 external fun on(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
+external fun on(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
+
 external fun on(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun on(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
+
+external fun on(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun on(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 
@@ -235,9 +260,13 @@ external fun once(event: String /* "disconnect" */, listener: (worker: Worker) -
 
 external fun once(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
+external fun once(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
+
 external fun once(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun once(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
+
+external fun once(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun once(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 
@@ -259,9 +288,13 @@ external fun prependListener(event: String /* "disconnect" */, listener: (worker
 
 external fun prependListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
+external fun prependListener(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
+
 external fun prependListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun prependListener(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
+
+external fun prependListener(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun prependListener(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 
@@ -271,9 +304,13 @@ external fun prependOnceListener(event: String /* "disconnect" */, listener: (wo
 
 external fun prependOnceListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
 
+external fun prependOnceListener(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
+
 external fun prependOnceListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
 external fun prependOnceListener(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster
+
+external fun prependOnceListener(event: String /* "online" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun prependOnceListener(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster
 
