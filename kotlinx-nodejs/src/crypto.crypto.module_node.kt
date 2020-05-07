@@ -18,10 +18,10 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
-import stream.internal.TransformOptions
-import stream.internal.Transform
-import stream.internal.WritableOptions
-import stream.internal.Writable
+import stream.TransformOptions
+import stream.Transform
+import stream.WritableOptions
+import stream.Writable
 
 @Suppress("NESTED_CLASS_IN_EXTERNAL_INTERFACE")
 external interface Certificate {

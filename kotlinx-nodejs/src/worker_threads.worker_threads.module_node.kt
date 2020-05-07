@@ -18,8 +18,8 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import events.EventEmitter.EventEmitter
-import stream.internal.Writable
-import stream.internal.Readable
+import stream.Writable
+import stream.Readable
 import vm.Context
 
 external var isMainThread: Boolean

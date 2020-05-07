@@ -17,7 +17,7 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import stream.internal.Transform
+import stream.Transform
 import Buffer
 
 external interface ZlibOptions {

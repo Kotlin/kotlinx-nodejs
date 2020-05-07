@@ -17,7 +17,7 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import stream.internal.Readable
+import stream.Readable
 import Buffer
 
 external interface HeapSpaceInfo {

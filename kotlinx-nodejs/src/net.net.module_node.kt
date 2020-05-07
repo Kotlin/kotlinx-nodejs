@@ -18,7 +18,7 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
-import stream.internal.Duplex
+import stream.Duplex
 import events.EventEmitter.EventEmitter
 
 external interface AddressInfo {

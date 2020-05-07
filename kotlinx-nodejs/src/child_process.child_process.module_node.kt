@@ -17,9 +17,9 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import stream.internal.Writable
-import stream.internal.Readable
-import stream.internal.Pipe
+import stream.Writable
+import stream.Readable
+import stream.Pipe
 import net.Socket
 import net.Server
 import events.EventEmitter.EventEmitter

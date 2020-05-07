@@ -20,9 +20,9 @@ import org.w3c.xhr.*
 import fs.Stats
 import http.OutgoingHttpHeaders
 import NodeJS.ErrnoException
-import stream.internal.Readable
+import stream.Readable
 import Buffer
-import stream.internal.Duplex
+import stream.Duplex
 import fs.promises.FileHandle
 import events.EventEmitter.EventEmitter
 import net.Socket
@@ -30,7 +30,8 @@ import tls.TLSSocket
 import tls.ConnectionOptions
 import tls.TlsOptions
 import net.Server
-import stream.internal.Stream
+import stream.ReadableOptions
+import stream.Stream
 import http.IncomingHttpHeaders as Http1IncomingHttpHeaders
 
 external interface IncomingHttpStatusHeader {

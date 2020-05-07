@@ -19,8 +19,8 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import NodeJS.ErrnoException
 import events.EventEmitter.EventEmitter
-import stream.internal.Readable
-import stream.internal.Writable
+import stream.Readable
+import stream.Writable
 import Buffer
 import child_process.`T$16`
 

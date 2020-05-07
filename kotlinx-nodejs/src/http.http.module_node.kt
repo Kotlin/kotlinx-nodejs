@@ -19,9 +19,9 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import NodeJS.Dict
 import net.Socket
-import stream.internal.Writable
+import stream.Writable
 import Buffer
-import stream.internal.Readable
+import stream.Readable
 import NodeJS.ReadOnlyDict
 import net.Server as NetServer
 
