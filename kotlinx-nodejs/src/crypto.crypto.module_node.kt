@@ -1,6 +1,6 @@
 @file:JsModule("crypto")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package crypto
 
 import kotlin.js.*
@@ -148,7 +148,6 @@ external open class KeyObject {
     open var asymmetricKeyType: String /* 'rsa' | 'dsa' | 'ec' */
     open var asymmetricKeySize: Number
     open fun export(options: KeyExportOptions<String /* 'pem' */>): dynamic /* String | Buffer */
-    open fun export(options: KeyExportOptions<String /* 'der' */> = definedExternally): Buffer
     open var symmetricKeySize: Number
     open var type: String /* 'secret' | 'public' | 'private' */
 }
@@ -1146,33 +1145,9 @@ external interface KeyPairSyncResult<T1, T2> {
     var privateKey: T2
 }
 
-external fun generateKeyPairSync(type: String /* 'rsa' */, options: RSAKeyPairOptions<String /* 'pem' */, String /* 'pem' */>): KeyPairSyncResult<String, String>
-
-external fun generateKeyPairSync(type: String /* 'rsa' */, options: RSAKeyPairOptions<String /* 'pem' */, String /* 'der' */>): KeyPairSyncResult<String, Buffer>
-
-external fun generateKeyPairSync(type: String /* 'rsa' */, options: RSAKeyPairOptions<String /* 'der' */, String /* 'pem' */>): KeyPairSyncResult<Buffer, String>
-
-external fun generateKeyPairSync(type: String /* 'rsa' */, options: RSAKeyPairOptions<String /* 'der' */, String /* 'der' */>): KeyPairSyncResult<Buffer, Buffer>
-
 external fun generateKeyPairSync(type: String /* 'rsa' */, options: RSAKeyPairKeyObjectOptions): KeyPairKeyObjectResult
 
-external fun generateKeyPairSync(type: String /* 'dsa' */, options: DSAKeyPairOptions<String /* 'pem' */, String /* 'pem' */>): KeyPairSyncResult<String, String>
-
-external fun generateKeyPairSync(type: String /* 'dsa' */, options: DSAKeyPairOptions<String /* 'pem' */, String /* 'der' */>): KeyPairSyncResult<String, Buffer>
-
-external fun generateKeyPairSync(type: String /* 'dsa' */, options: DSAKeyPairOptions<String /* 'der' */, String /* 'pem' */>): KeyPairSyncResult<Buffer, String>
-
-external fun generateKeyPairSync(type: String /* 'dsa' */, options: DSAKeyPairOptions<String /* 'der' */, String /* 'der' */>): KeyPairSyncResult<Buffer, Buffer>
-
 external fun generateKeyPairSync(type: String /* 'dsa' */, options: DSAKeyPairKeyObjectOptions): KeyPairKeyObjectResult
-
-external fun generateKeyPairSync(type: String /* 'ec' */, options: ECKeyPairOptions<String /* 'pem' */, String /* 'pem' */>): KeyPairSyncResult<String, String>
-
-external fun generateKeyPairSync(type: String /* 'ec' */, options: ECKeyPairOptions<String /* 'pem' */, String /* 'der' */>): KeyPairSyncResult<String, Buffer>
-
-external fun generateKeyPairSync(type: String /* 'ec' */, options: ECKeyPairOptions<String /* 'der' */, String /* 'pem' */>): KeyPairSyncResult<Buffer, String>
-
-external fun generateKeyPairSync(type: String /* 'ec' */, options: ECKeyPairOptions<String /* 'der' */, String /* 'der' */>): KeyPairSyncResult<Buffer, Buffer>
 
 external fun generateKeyPairSync(type: String /* 'ec' */, options: ECKeyPairKeyObjectOptions): KeyPairKeyObjectResult
 

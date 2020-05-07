@@ -1,6 +1,6 @@
 @file:JsModule("net")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package net
 
 import kotlin.js.*
@@ -83,11 +83,8 @@ external interface IpcSocketConnectOpts : ConnectOpts {
 
 external open class Socket(options: SocketConstructorOpts = definedExternally) : Duplex {
     open fun write(buffer: Uint8Array, cb: (err: Error) -> Unit = definedExternally): Boolean
-    override fun write(chunk: Any, cb: (error: Error?) -> Unit): Boolean
     open fun write(buffer: String, cb: (err: Error) -> Unit = definedExternally): Boolean
-    override fun write(chunk: Any, cb: (error: Error?) -> Unit): Boolean
     open fun write(str: Uint8Array, encoding: String = definedExternally, cb: (err: Error) -> Unit = definedExternally): Boolean
-    override fun write(chunk: Any, encoding: String, cb: (error: Error?) -> Unit): Boolean
     open fun write(str: String, encoding: String = definedExternally, cb: (err: Error) -> Unit = definedExternally): Boolean
     override fun write(chunk: Any, encoding: String, cb: (error: Error?) -> Unit): Boolean
     open fun connect(options: TcpSocketConnectOpts, connectionListener: () -> Unit = definedExternally): Socket /* this */
@@ -116,11 +113,9 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     open var remotePort: Number
     override fun end(cb: () -> Unit)
     open fun end(buffer: Uint8Array, cb: () -> Unit = definedExternally)
-    override fun end(chunk: Any, cb: () -> Unit)
     open fun end(buffer: String, cb: () -> Unit = definedExternally)
     override fun end(chunk: Any, cb: () -> Unit)
     open fun end(str: Uint8Array, encoding: String = definedExternally, cb: () -> Unit = definedExternally)
-    override fun end(chunk: Any, encoding: String, cb: () -> Unit)
     open fun end(str: String, encoding: String = definedExternally, cb: () -> Unit = definedExternally)
     override fun end(chunk: Any, encoding: String, cb: () -> Unit)
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
@@ -130,9 +125,7 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun addListener(event: String /* "lookup" */, listener: (err: Error, address: String, family: dynamic /* String | Number */, host: String) -> Unit): Socket /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "close" */, had_error: Boolean): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String): Boolean
     open fun emit(event: String /* "data" */, data: Buffer): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
@@ -225,10 +218,8 @@ external open class Server(connectionListener: (socket: Socket) -> Unit = define
     open fun addListener(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Server /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "connection" */, socket: Socket): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "error" */, err: Error): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */

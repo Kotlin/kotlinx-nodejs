@@ -1,6 +1,6 @@
 @file:JsModule("fs")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package fs
 
 import kotlin.js.*
@@ -131,31 +131,26 @@ external open class ReadStream : Readable {
     open var path: dynamic /* String | Buffer */
     open var pending: Boolean
     override fun addListener(event: String, listener: () -> Unit): ReadStream /* this */
-    override fun addListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun addListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun on(event: String, listener: () -> Unit): ReadStream /* this */
-    override fun on(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun on(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun on(event: Any, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun once(event: String, listener: () -> Unit): ReadStream /* this */
-    override fun once(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun once(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun once(event: Any, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun prependListener(event: String, listener: () -> Unit): ReadStream /* this */
-    override fun prependListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun prependListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun prependListener(event: Any, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String, listener: () -> Unit): ReadStream /* this */
-    override fun prependOnceListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun prependOnceListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
@@ -515,27 +510,15 @@ external fun readlink(path: URL, callback: (err: ErrnoException?, linkString: St
 
 external fun readlinkSync(path: String, options: `T$32`? = definedExternally): String
 
-external fun readlinkSync(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
-
 external fun readlinkSync(path: Buffer, options: `T$32`? = definedExternally): String
-
-external fun readlinkSync(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
 external fun readlinkSync(path: URL, options: `T$32`? = definedExternally): String
 
-external fun readlinkSync(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
-
 external fun readlinkSync(path: String, options: `T$33`): Buffer
-
-external fun readlinkSync(path: String, options: String /* "buffer" */): Buffer
 
 external fun readlinkSync(path: Buffer, options: `T$33`): Buffer
 
-external fun readlinkSync(path: Buffer, options: String /* "buffer" */): Buffer
-
 external fun readlinkSync(path: URL, options: `T$33`): Buffer
-
-external fun readlinkSync(path: URL, options: String /* "buffer" */): Buffer
 
 external fun readlinkSync(path: String, options: `T$16`? = definedExternally): dynamic /* String | Buffer */
 
@@ -593,27 +576,15 @@ external fun realpath(path: URL, callback: (err: ErrnoException?, resolvedPath: 
 
 external fun realpathSync(path: String, options: `T$32`? = definedExternally): String
 
-external fun realpathSync(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
-
 external fun realpathSync(path: Buffer, options: `T$32`? = definedExternally): String
-
-external fun realpathSync(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
 external fun realpathSync(path: URL, options: `T$32`? = definedExternally): String
 
-external fun realpathSync(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
-
 external fun realpathSync(path: String, options: `T$33`): Buffer
-
-external fun realpathSync(path: String, options: String /* "buffer" */): Buffer
 
 external fun realpathSync(path: Buffer, options: `T$33`): Buffer
 
-external fun realpathSync(path: Buffer, options: String /* "buffer" */): Buffer
-
 external fun realpathSync(path: URL, options: `T$33`): Buffer
-
-external fun realpathSync(path: URL, options: String /* "buffer" */): Buffer
 
 external fun realpathSync(path: String, options: `T$16`? = definedExternally): dynamic /* String | Buffer */
 
@@ -735,24 +706,6 @@ external fun mkdirSync(path: Buffer, options: MakeDirectoryOptions /* MakeDirect
 
 external fun mkdirSync(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */): String
 
-external fun mkdirSync(path: String, options: Number? = definedExternally)
-
-external fun mkdirSync(path: String, options: String? = definedExternally)
-
-external fun mkdirSync(path: String, options: MakeDirectoryOptions? /* MakeDirectoryOptions & `T$35` */ = definedExternally)
-
-external fun mkdirSync(path: Buffer, options: Number? = definedExternally)
-
-external fun mkdirSync(path: Buffer, options: String? = definedExternally)
-
-external fun mkdirSync(path: Buffer, options: MakeDirectoryOptions? /* MakeDirectoryOptions & `T$35` */ = definedExternally)
-
-external fun mkdirSync(path: URL, options: Number? = definedExternally)
-
-external fun mkdirSync(path: URL, options: String? = definedExternally)
-
-external fun mkdirSync(path: URL, options: MakeDirectoryOptions? /* MakeDirectoryOptions & `T$35` */ = definedExternally)
-
 external fun mkdirSync(path: String, options: Number? = definedExternally): String?
 
 external fun mkdirSync(path: String, options: String? = definedExternally): String?
@@ -786,8 +739,6 @@ external fun mkdtemp(prefix: String, options: String?, callback: (err: ErrnoExce
 external fun mkdtemp(prefix: String, callback: (err: ErrnoException?, folder: String) -> Unit)
 
 external fun mkdtempSync(prefix: String, options: `T$32`? = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
 external fun mkdtempSync(prefix: String, options: `T$33`): Buffer
 
@@ -877,27 +828,15 @@ external fun readdir(path: URL, options: `T$39`, callback: (err: ErrnoException?
 
 external fun readdirSync(path: String, options: `T$36`? = definedExternally): Array<String>
 
-external fun readdirSync(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Array<String>
-
 external fun readdirSync(path: Buffer, options: `T$36`? = definedExternally): Array<String>
-
-external fun readdirSync(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Array<String>
 
 external fun readdirSync(path: URL, options: `T$36`? = definedExternally): Array<String>
 
-external fun readdirSync(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Array<String>
-
 external fun readdirSync(path: String, options: `T$37`): Array<Buffer>
-
-external fun readdirSync(path: String, options: String /* "buffer" */): Array<Buffer>
 
 external fun readdirSync(path: Buffer, options: `T$37`): Array<Buffer>
 
-external fun readdirSync(path: Buffer, options: String /* "buffer" */): Array<Buffer>
-
 external fun readdirSync(path: URL, options: `T$37`): Array<Buffer>
-
-external fun readdirSync(path: URL, options: String /* "buffer" */): Array<Buffer>
 
 external fun readdirSync(path: String, options: `T$38`? = definedExternally): dynamic /* Array<String> | Array<Buffer> */
 

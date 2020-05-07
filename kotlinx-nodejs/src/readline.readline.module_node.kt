@@ -1,6 +1,6 @@
 @file:JsModule("readline")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package readline
 
 import kotlin.js.*
@@ -59,7 +59,6 @@ external open class Interface(options: ReadLineOptions) : EventEmitter {
     open fun addListener(event: String, listener: () -> Unit): Interface /* this */
     open fun addListener(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "line" */, input: String): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean

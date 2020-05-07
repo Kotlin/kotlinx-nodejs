@@ -1,5 +1,5 @@
 @file:JsQualifier("NodeJS")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package NodeJS
 
 import kotlin.js.*
@@ -374,93 +374,59 @@ external interface Process : EventEmitter {
         get() = definedExternally
         set(value) = definedExternally
     fun resourceUsage(): ResourceUsage
-    fun addListener(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun addListener(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
     fun addListener(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun addListener(event: String /* "rejectionHandled" */, listener: RejectionHandledListener): Process /* this */
-    fun addListener(event: String, listener: UncaughtExceptionListener): Process /* this */
     fun addListener(event: String /* "unhandledRejection" */, listener: UnhandledRejectionListener): Process /* this */
     fun addListener(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun addListener(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun addListener(event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */, listener: SignalsListener): Process /* this */
-    fun addListener(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
     fun addListener(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun addListener(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
     fun emit(event: String, code: Number): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "disconnect" */): Boolean
     fun emit(event: String /* "rejectionHandled" */, promise: Promise<Any>): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
-    fun emit(event: String, error: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "unhandledRejection" */, reason: Any, promise: Promise<Any>): Boolean
     fun emit(event: String /* "warning" */, warning: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "message" */, message: Any, sendHandle: Any): Process /* this */
     fun emit(event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String, eventName: String, listener: (args: Array<Any>) -> Unit): Process /* this */
     fun emit(event: String /* "newListener" */, eventName: Any, listener: (args: Array<Any>) -> Unit): Process /* this */
     fun emit(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
-    fun on(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun on(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
     fun on(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun on(event: String /* "rejectionHandled" */, listener: RejectionHandledListener): Process /* this */
-    fun on(event: String, listener: UncaughtExceptionListener): Process /* this */
     fun on(event: String /* "unhandledRejection" */, listener: UnhandledRejectionListener): Process /* this */
-    fun on(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun on(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun on(event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */, listener: SignalsListener): Process /* this */
-    fun on(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
     fun on(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun on(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
-    fun once(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun once(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
     fun once(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun once(event: String /* "rejectionHandled" */, listener: RejectionHandledListener): Process /* this */
-    fun once(event: String, listener: UncaughtExceptionListener): Process /* this */
     fun once(event: String /* "unhandledRejection" */, listener: UnhandledRejectionListener): Process /* this */
     fun once(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun once(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun once(event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */, listener: SignalsListener): Process /* this */
-    fun once(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
     fun once(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun once(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
-    fun prependListener(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun prependListener(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
     fun prependListener(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun prependListener(event: String /* "rejectionHandled" */, listener: RejectionHandledListener): Process /* this */
-    fun prependListener(event: String, listener: UncaughtExceptionListener): Process /* this */
     fun prependListener(event: String /* "unhandledRejection" */, listener: UnhandledRejectionListener): Process /* this */
-    fun prependListener(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun prependListener(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun prependListener(event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */, listener: SignalsListener): Process /* this */
-    fun prependListener(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
     fun prependListener(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun prependListener(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
-    fun prependOnceListener(event: String /* "beforeExit" */, listener: BeforeExitListener): Process /* this */
     fun prependOnceListener(event: String /* "disconnect" */, listener: DisconnectListener): Process /* this */
     fun prependOnceListener(event: String /* "exit" */, listener: ExitListener): Process /* this */
     fun prependOnceListener(event: String /* "rejectionHandled" */, listener: RejectionHandledListener): Process /* this */
-    fun prependOnceListener(event: String, listener: UncaughtExceptionListener): Process /* this */
     fun prependOnceListener(event: String /* "unhandledRejection" */, listener: UnhandledRejectionListener): Process /* this */
-    fun prependOnceListener(event: String /* "warning" */, listener: WarningListener): Process /* this */
     fun prependOnceListener(event: String /* "message" */, listener: MessageListener): Process /* this */
     fun prependOnceListener(event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */, listener: SignalsListener): Process /* this */
-    fun prependOnceListener(event: String /* "newListener" */, listener: NewListenerListener): Process /* this */
     fun prependOnceListener(event: String /* "removeListener" */, listener: RemoveListenerListener): Process /* this */
     fun prependOnceListener(event: String /* "multipleResolves" */, listener: MultipleResolveListener): Process /* this */
-    override fun listeners(event: String /* "beforeExit" */): Array<BeforeExitListener>
-    override fun listeners(event: String /* "disconnect" */): Array<DisconnectListener>
-    override fun listeners(event: String /* "exit" */): Array<ExitListener>
-    override fun listeners(event: String /* "rejectionHandled" */): Array<RejectionHandledListener>
-    override fun listeners(event: String): Array<UncaughtExceptionListener>
-    override fun listeners(event: String /* "unhandledRejection" */): Array<UnhandledRejectionListener>
-    override fun listeners(event: String /* "warning" */): Array<WarningListener>
-    override fun listeners(event: String /* "message" */): Array<MessageListener>
-    override fun listeners(event: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */): Array<SignalsListener>
-    override fun listeners(event: String /* "newListener" */): Array<NewListenerListener>
-    override fun listeners(event: String /* "removeListener" */): Array<RemoveListenerListener>
     override fun listeners(event: String /* "multipleResolves" */): Array<MultipleResolveListener>
     fun kill(pid: Number)
 }

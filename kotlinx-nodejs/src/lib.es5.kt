@@ -1,4 +1,4 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package tsstdlib
 
 import kotlin.js.*
@@ -223,9 +223,7 @@ external interface ConcatArray<T> {
 
 external interface ArrayConstructor {
     fun <T> from(iterable: Iterable<T>): Array<T>
-    fun <T> from(iterable: ArrayLike<T>): Array<T>
     fun <T, U> from(iterable: Iterable<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
-    fun <T, U> from(iterable: ArrayLike<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
     fun <T> from(arrayLike: ArrayLike<T>): Array<T>
     fun <T, U> from(arrayLike: ArrayLike<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
     fun <T> of(vararg items: T): Array<T>

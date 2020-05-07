@@ -1,6 +1,6 @@
 @file:JsModule("repl")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package repl
 
 import kotlin.js.*
@@ -101,7 +101,6 @@ external open class REPLServer : Interface {
     override fun addListener(event: String /* "line" */, listener: (input: String) -> Unit): REPLServer /* this */
     open fun addListener(event: String /* "reset" */, listener: (context: Context) -> Unit): REPLServer /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String): Boolean
     override fun emit(event: String /* "line" */, input: String): Boolean
     open fun emit(event: String /* "reset" */, context: Context): Boolean

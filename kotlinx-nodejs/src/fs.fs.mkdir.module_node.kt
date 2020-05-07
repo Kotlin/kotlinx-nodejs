@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.mkdir")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package fs.mkdir
 
 import kotlin.js.*
@@ -23,24 +23,6 @@ external fun __promisify__(path: String, options: fs.MakeDirectoryOptions): Prom
 external fun __promisify__(path: Buffer, options: fs.MakeDirectoryOptions): Promise<String>
 
 external fun __promisify__(path: URL, options: fs.MakeDirectoryOptions): Promise<String>
-
-external fun __promisify__(path: String, options: Number? = definedExternally): Promise<Unit>
-
-external fun __promisify__(path: String, options: String? = definedExternally): Promise<Unit>
-
-external fun __promisify__(path: String, options: fs.MakeDirectoryOptions? = definedExternally): Promise<Unit>
-
-external fun __promisify__(path: Buffer, options: Number? = definedExternally): Promise<Unit>
-
-external fun __promisify__(path: Buffer, options: String? = definedExternally): Promise<Unit>
-
-external fun __promisify__(path: Buffer, options: fs.MakeDirectoryOptions? = definedExternally): Promise<Unit>
-
-external fun __promisify__(path: URL, options: Number? = definedExternally): Promise<Unit>
-
-external fun __promisify__(path: URL, options: String? = definedExternally): Promise<Unit>
-
-external fun __promisify__(path: URL, options: fs.MakeDirectoryOptions? = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: String, options: Number? = definedExternally): Promise<String?>
 

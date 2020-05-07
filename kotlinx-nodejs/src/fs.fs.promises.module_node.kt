@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.promises")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package fs.promises
 
 import kotlin.js.*
@@ -193,24 +193,6 @@ external fun mkdir(path: Buffer, options: fs.MakeDirectoryOptions): Promise<Stri
 
 external fun mkdir(path: URL, options: fs.MakeDirectoryOptions): Promise<String>
 
-external fun mkdir(path: String, options: Number? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: String, options: String? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: String, options: fs.MakeDirectoryOptions? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: Buffer, options: Number? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: Buffer, options: String? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: Buffer, options: fs.MakeDirectoryOptions? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: URL, options: Number? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: URL, options: String? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: URL, options: fs.MakeDirectoryOptions? = definedExternally): Promise<Unit>
-
 external fun mkdir(path: String, options: Number? = definedExternally): Promise<String?>
 
 external fun mkdir(path: String, options: String? = definedExternally): Promise<String?>
@@ -240,15 +222,9 @@ external interface `T$56` {
 
 external fun readdir(path: String, options: `T$56`? = definedExternally): Promise<Array<String>>
 
-external fun readdir(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<Array<String>>
-
 external fun readdir(path: Buffer, options: `T$56`? = definedExternally): Promise<Array<String>>
 
-external fun readdir(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<Array<String>>
-
 external fun readdir(path: URL, options: `T$56`? = definedExternally): Promise<Array<String>>
-
-external fun readdir(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<Array<String>>
 
 external fun readdir(path: String, options: fs.`T$37`): Promise<Array<Buffer>>
 
@@ -282,15 +258,9 @@ external fun readdir(path: URL, options: fs.`T$39`): Promise<Array<fs.Dirent>>
 
 external fun readlink(path: String, options: fs.`T$32`? = definedExternally): Promise<String>
 
-external fun readlink(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
-
 external fun readlink(path: Buffer, options: fs.`T$32`? = definedExternally): Promise<String>
 
-external fun readlink(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
-
 external fun readlink(path: URL, options: fs.`T$32`? = definedExternally): Promise<String>
-
-external fun readlink(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
 external fun readlink(path: String, options: fs.`T$33`): Promise<Buffer>
 
@@ -301,8 +271,6 @@ external fun readlink(path: Buffer, options: fs.`T$33`): Promise<Buffer>
 external fun readlink(path: Buffer, options: String /* "buffer" */): Promise<Buffer>
 
 external fun readlink(path: URL, options: fs.`T$33`): Promise<Buffer>
-
-external fun readlink(path: URL, options: String /* "buffer" */): Promise<Buffer>
 
 external fun readlink(path: String, options: `T$16`? = definedExternally): Promise<dynamic /* String | Buffer */>
 
@@ -452,15 +420,9 @@ external fun futimes(handle: FileHandle, atime: Date, mtime: Date): Promise<Unit
 
 external fun realpath(path: String, options: fs.`T$32`? = definedExternally): Promise<String>
 
-external fun realpath(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
-
 external fun realpath(path: Buffer, options: fs.`T$32`? = definedExternally): Promise<String>
 
-external fun realpath(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
-
 external fun realpath(path: URL, options: fs.`T$32`? = definedExternally): Promise<String>
-
-external fun realpath(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
 external fun realpath(path: String, options: fs.`T$33`): Promise<Buffer>
 
@@ -487,8 +449,6 @@ external fun realpath(path: URL, options: `T$16`? = definedExternally): Promise<
 external fun realpath(path: URL, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
 
 external fun mkdtemp(prefix: String, options: fs.`T$32`? = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
 external fun mkdtemp(prefix: String, options: fs.`T$33`): Promise<Buffer>
 

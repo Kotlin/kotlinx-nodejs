@@ -1,6 +1,6 @@
 @file:JsModule("assert")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package assert.assert
 
 import kotlin.js.*
@@ -81,8 +81,6 @@ external fun notDeepStrictEqual(actual: Any, expected: Any, message: String = de
 external fun notDeepStrictEqual(actual: Any, expected: Any, message: Error = definedExternally)
 
 external fun throws(block: () -> Any, message: String = definedExternally)
-
-external fun throws(block: () -> Any, message: Error = definedExternally)
 
 external fun throws(block: () -> Any, error: RegExp, message: String = definedExternally)
 

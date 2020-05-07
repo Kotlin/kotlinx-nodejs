@@ -1,6 +1,6 @@
 @file:JsModule("dgram")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package dgram
 
 import kotlin.js.*
@@ -114,7 +114,6 @@ external open class Socket : EventEmitter {
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun addListener(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "error" */, err: Error): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean

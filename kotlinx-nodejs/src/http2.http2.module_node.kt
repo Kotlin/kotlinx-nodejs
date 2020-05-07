@@ -1,6 +1,6 @@
 @file:JsModule("http2")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package http2
 
 import kotlin.js.*
@@ -137,7 +137,6 @@ external interface Http2Stream : Duplex {
     fun setTimeout(msecs: Number, callback: () -> Unit = definedExternally)
     fun sendTrailers(headers: OutgoingHttpHeaders)
     override fun addListener(event: String, listener: () -> Unit): Http2Stream /* this */
-    override fun addListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun addListener(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun addListener(event: String, listener: (src: Readable) -> Unit): Http2Stream /* this */
@@ -147,20 +146,15 @@ external interface Http2Stream : Duplex {
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Http2Stream /* this */
     override fun emit(event: String): Boolean
     fun emit(event: String /* "data" */, chunk: Buffer): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "data" */, chunk: String): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "error" */, err: Error): Boolean
     fun emit(event: String /* "frameError" */, frameType: Number, errorCode: Number): Boolean
     fun emit(event: String, src: Readable): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "streamClosed" */, code: Number): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "trailers" */, trailers: IncomingHttpHeaders, flags: Number): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: () -> Unit): Http2Stream /* this */
-    override fun on(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun on(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun on(event: String, listener: (src: Readable) -> Unit): Http2Stream /* this */
@@ -169,16 +163,13 @@ external interface Http2Stream : Duplex {
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Http2Stream /* this */
     override fun on(event: Any, listener: (args: Array<Any>) -> Unit): Http2Stream /* this */
     override fun once(event: String, listener: () -> Unit): Http2Stream /* this */
-    override fun once(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun once(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun once(event: String, listener: (src: Readable) -> Unit): Http2Stream /* this */
     fun once(event: String /* "streamClosed" */, listener: (code: Number) -> Unit): Http2Stream /* this */
     fun once(event: String /* "trailers" */, listener: (trailers: IncomingHttpHeaders, flags: Number) -> Unit): Http2Stream /* this */
-    override fun once(event: String, listener: (args: Array<Any>) -> Unit): Http2Stream /* this */
     override fun once(event: Any, listener: (args: Array<Any>) -> Unit): Http2Stream /* this */
     override fun prependListener(event: String, listener: () -> Unit): Http2Stream /* this */
-    override fun prependListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun prependListener(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun prependListener(event: String, listener: (src: Readable) -> Unit): Http2Stream /* this */
@@ -187,7 +178,6 @@ external interface Http2Stream : Duplex {
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): Http2Stream /* this */
     override fun prependListener(event: Any, listener: (args: Array<Any>) -> Unit): Http2Stream /* this */
     override fun prependOnceListener(event: String, listener: () -> Unit): Http2Stream /* this */
-    override fun prependOnceListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun prependOnceListener(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun prependOnceListener(event: String, listener: (src: Readable) -> Unit): Http2Stream /* this */
@@ -199,7 +189,6 @@ external interface Http2Stream : Duplex {
 
 external interface ClientHttp2Stream : Http2Stream {
     fun addListener(event: String /* "continue" */, listener: () -> Any): ClientHttp2Stream /* this */
-    override fun addListener(event: String, listener: (headers: IncomingHttpHeaders /* IncomingHttpHeaders & IncomingHttpStatusHeader */, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun addListener(event: String /* "push" */, listener: (headers: IncomingHttpHeaders, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
@@ -208,22 +197,18 @@ external interface ClientHttp2Stream : Http2Stream {
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     fun on(event: String /* "continue" */, listener: () -> Any): ClientHttp2Stream /* this */
-    override fun on(event: String, listener: (headers: IncomingHttpHeaders /* IncomingHttpHeaders & IncomingHttpStatusHeader */, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun on(event: String /* "push" */, listener: (headers: IncomingHttpHeaders, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
     override fun on(event: Any, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
     fun once(event: String /* "continue" */, listener: () -> Any): ClientHttp2Stream /* this */
-    override fun once(event: String, listener: (headers: IncomingHttpHeaders /* IncomingHttpHeaders & IncomingHttpStatusHeader */, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun once(event: String /* "push" */, listener: (headers: IncomingHttpHeaders, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
     override fun once(event: Any, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
     fun prependListener(event: String /* "continue" */, listener: () -> Any): ClientHttp2Stream /* this */
-    override fun prependListener(event: String, listener: (headers: IncomingHttpHeaders /* IncomingHttpHeaders & IncomingHttpStatusHeader */, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun prependListener(event: String /* "push" */, listener: (headers: IncomingHttpHeaders, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
     override fun prependListener(event: Any, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
     fun prependOnceListener(event: String /* "continue" */, listener: () -> Any): ClientHttp2Stream /* this */
-    override fun prependOnceListener(event: String, listener: (headers: IncomingHttpHeaders /* IncomingHttpHeaders & IncomingHttpStatusHeader */, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun prependOnceListener(event: String /* "push" */, listener: (headers: IncomingHttpHeaders, flags: Number) -> Unit): ClientHttp2Stream /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
     override fun prependOnceListener(event: Any, listener: (args: Array<Any>) -> Unit): ClientHttp2Stream /* this */
@@ -370,11 +355,9 @@ external interface Http2Session : EventEmitter {
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Http2Session /* this */
     fun emit(event: String): Boolean
     fun emit(event: String /* "error" */, err: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "frameError" */, frameType: Number, errorCode: Number, streamID: Number): Boolean
     fun emit(event: String /* "goaway" */, errorCode: Number, lastStreamID: Number, opaqueData: Buffer): Boolean
     fun emit(event: String, settings: Settings): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     fun on(event: String, listener: () -> Unit): Http2Session /* this */
@@ -418,7 +401,6 @@ external interface ClientHttp2Session : Http2Session {
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): ClientHttp2Session /* this */
     fun emit(event: String /* "altsvc" */, alt: String, origin: String, stream: Number): Boolean
     fun emit(event: String /* "origin" */, origins: Array<String>): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "connect" */, session: ClientHttp2Session, socket: Socket): Boolean
     fun emit(event: String /* "connect" */, session: ClientHttp2Session, socket: TLSSocket): Boolean
     fun emit(event: String /* "stream" */, stream: ClientHttp2Stream, headers: IncomingHttpHeaders /* IncomingHttpHeaders & IncomingHttpStatusHeader */, flags: Number): Boolean
@@ -581,7 +563,6 @@ external interface Http2Server : Server {
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Http2Server /* this */
     fun emit(event: String, request: Http2ServerRequest, response: Http2ServerResponse): Boolean
     fun emit(event: String /* "session" */, session: ServerHttp2Session): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "sessionError" */, err: Error): Boolean
     fun emit(event: String /* "stream" */, stream: ServerHttp2Stream, headers: IncomingHttpHeaders, flags: Number): Boolean
     override fun emit(event: String /* "timeout" */): Boolean
@@ -629,7 +610,6 @@ external interface Http2SecureServer : tls.Server {
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Http2SecureServer /* this */
     fun emit(event: String, request: Http2ServerRequest, response: Http2ServerResponse): Boolean
     fun emit(event: String /* "session" */, session: ServerHttp2Session): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "sessionError" */, err: Error): Boolean
     fun emit(event: String /* "stream" */, stream: ServerHttp2Stream, headers: IncomingHttpHeaders, flags: Number): Boolean
     override fun emit(event: String /* "timeout" */): Boolean
@@ -688,40 +668,33 @@ external open class Http2ServerRequest(stream: ServerHttp2Stream, headers: Incom
     override fun read(size: Number): dynamic /* Buffer? | String? */
     open fun addListener(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun addListener(event: String, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun addListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
     open fun emit(event: String /* "aborted" */, hadError: Boolean, code: Number): Boolean
     override fun emit(event: String): Boolean
     open fun emit(event: String /* "data" */, chunk: Buffer): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "data" */, chunk: String): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "error" */, err: Error): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun on(event: String, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun on(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
     override fun on(event: Any, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
     open fun once(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun once(event: String, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun once(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
     override fun once(event: Any, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
     open fun prependListener(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun prependListener(event: String, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun prependListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
     override fun prependListener(event: Any, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
     open fun prependOnceListener(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun prependOnceListener(event: String, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun prependOnceListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
     override fun prependOnceListener(event: Any, listener: (args: Array<Any>) -> Unit): Http2ServerRequest /* this */
@@ -766,9 +739,7 @@ external open class Http2ServerResponse(stream: ServerHttp2Stream) : Stream {
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Http2ServerResponse /* this */
     open fun emit(event: String): Boolean
     open fun emit(event: String /* "error" */, error: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String, src: Readable): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String, listener: () -> Unit): Http2ServerResponse /* this */

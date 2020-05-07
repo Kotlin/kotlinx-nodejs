@@ -1,6 +1,6 @@
 @file:JsModule("url")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package url
 
 import kotlin.js.*
@@ -83,8 +83,6 @@ external interface UrlWithStringQuery : Url {
 external fun parse(urlStr: String): UrlWithStringQuery
 
 external fun parse(urlStr: String, parseQueryString: Boolean?, slashesDenoteHost: Boolean = definedExternally): UrlWithStringQuery
-
-external fun parse(urlStr: String, parseQueryString: Boolean, slashesDenoteHost: Boolean = definedExternally): UrlWithParsedQuery
 
 external fun parse(urlStr: String, parseQueryString: Boolean, slashesDenoteHost: Boolean = definedExternally): Url
 
