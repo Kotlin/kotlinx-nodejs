@@ -17,6 +17,7 @@ sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourc
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile>().configureEach {
     kotlinOptions {
         moduleKind = "commonjs"
+        freeCompilerArgs += listOf("-Xir-produce-klib-dir", "-Xir-only")
     }
 }
 
