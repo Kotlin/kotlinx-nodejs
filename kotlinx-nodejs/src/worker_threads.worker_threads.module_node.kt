@@ -1,6 +1,6 @@
 @file:JsModule("worker_threads")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
 package worker_threads
 
 import kotlin.js.*
@@ -142,9 +142,7 @@ external open class Worker : EventEmitter {
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Worker /* this */
     open fun emit(event: String /* "error" */, err: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "exit" */, exitCode: Number): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "message" */, value: Any): Boolean
     open fun emit(event: String /* "online" */): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
