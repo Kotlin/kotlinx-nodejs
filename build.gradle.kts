@@ -1,5 +1,5 @@
 plugins {
-    id("kotlin2js")
+    id("org.jetbrains.kotlin.js")
 }
 
 allprojects {
