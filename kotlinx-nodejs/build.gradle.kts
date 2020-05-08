@@ -43,6 +43,7 @@ publishing {
 }
 
 bintray {
+    apiUrl = "https://kotlin.bintray.com/kotlin-dev"
     user = System.getenv("BINTRAY_USER")
     key = System.getenv("BINTRAY_API_KEY")
     publish = true
@@ -57,7 +58,7 @@ bintray {
         issueTrackerUrl = "https://github.com/Kotlin/kotlinx-nodejs/issues"
         vcsUrl = "https://github.com/Kotlin/kotlinx-nodejs.git"
         description = "Kotlin nodejs API"
-        setLabels("kotlin", "nodejs", "kotlinx")
+        setLabels("kotlin", "kotlinjs", "nodejs", "kotlinx")
         desc = description
     })
 }
