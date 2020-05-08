@@ -56,7 +56,7 @@ bintray {
         websiteUrl = "https://github.com/Kotlin/kotlinx-nodejs"
         issueTrackerUrl = "https://github.com/Kotlin/kotlinx-nodejs/issues"
         vcsUrl = "https://github.com/Kotlin/kotlinx-nodejs.git"
-        description = "Kotlin browser API"
+        description = "Kotlin nodejs API"
         setLabels("kotlin", "nodejs", "kotlinx")
         desc = description
     })
