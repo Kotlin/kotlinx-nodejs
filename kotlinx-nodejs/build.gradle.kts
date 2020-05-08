@@ -28,6 +28,22 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile>().configureEa
     }
 }
 
+
+val sourcesJar by tasks.registering(Jar::class) {
+    classifier = "sources"
+    from(kotlin.sourceSets["main"].kotlin.srcDirs)
+}
+
+publishing {
+    publications.invoke {
+        register("maven", MavenPublication::class) {
+            artifactId = artifactId
+            from(components["kotlin"])
+            artifact(sourcesJar.get())
+        }
+    }
+}
+
 bintray {
     user = System.getenv("BINTRAY_USER")
     key = System.getenv("BINTRAY_API_KEY")
