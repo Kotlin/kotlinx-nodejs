@@ -43,13 +43,12 @@ publishing {
 }
 
 bintray {
-    apiUrl = "https://kotlin.bintray.com/kotlin-dev"
     user = System.getenv("BINTRAY_USER")
     key = System.getenv("BINTRAY_API_KEY")
     publish = true
     setPublications("maven")
     pkg(delegateClosureOf<com.jfrog.bintray.gradle.BintrayExtension.PackageConfig> {
-        repo = "kotlinx"
+        repo = "kotlin-dev"
         name = "kotlinx.nodejs"
         userOrg = "kotlin"
         setLicenses("Apache-2.0")
