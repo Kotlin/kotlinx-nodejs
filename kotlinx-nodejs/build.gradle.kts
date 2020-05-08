@@ -8,7 +8,6 @@ plugins {
 
 group = "org.jetbrains.kotlinx"
 version = "0.0.1"
-val artifactId = "kotlinx-nodejs"
 
 kotlin {
     sourceSets {
@@ -37,7 +36,6 @@ val sourcesJar by tasks.registering(Jar::class) {
 publishing {
     publications.invoke {
         register("maven", MavenPublication::class) {
-            artifactId = artifactId
             from(components["kotlin"])
             artifact(sourcesJar.get())
         }
