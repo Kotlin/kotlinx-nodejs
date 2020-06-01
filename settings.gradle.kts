@@ -7,7 +7,7 @@ pluginManagement {
     }
     resolutionStrategy {
         val kotlinVersion: String? by settings
-        val kotlinVersionResolved = kotlinVersion ?:  ("1.4-M1").also {
+        val kotlinVersionResolved = kotlinVersion ?:  ("1.4-M2-eap-83").also {
             println("building with kotlin version ${it}")
             println("use -PkotlinVersion for setting non-default version")
         }

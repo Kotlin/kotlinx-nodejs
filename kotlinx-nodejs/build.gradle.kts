@@ -11,7 +11,6 @@ version = "0.0.1"
 
 kotlin {
     js {
-        // To build distributions for and run tests on browser or Node.js use one or both of:
         nodejs()
     }
     sourceSets {
