@@ -48,7 +48,6 @@ external open class MessagePort : EventEmitter {
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): MessagePort /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): MessagePort /* this */
     open fun emit(event: String /* "close" */): Boolean
-    open fun emit(event: String /* "message" */, value: Any): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
@@ -142,11 +141,10 @@ external open class Worker : EventEmitter {
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): Worker /* this */
     open fun emit(event: String /* "error" */, err: Error): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "exit" */, exitCode: Number): Boolean
-    open fun emit(event: String /* "message" */, value: Any): Boolean
     open fun emit(event: String /* "online" */): Boolean
     override fun emit(event: String, vararg args: Any): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun on(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
     open fun on(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */

@@ -18,6 +18,8 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
+import NodeJS.WritableStream
+import NodeJS.`T$2`
 import stream.Duplex
 import events.EventEmitter.EventEmitter
 
@@ -83,10 +85,11 @@ external interface IpcSocketConnectOpts : ConnectOpts {
 
 external open class Socket(options: SocketConstructorOpts = definedExternally) : Duplex {
     open fun write(buffer: Uint8Array, cb: (err: Error) -> Unit = definedExternally): Boolean
+    override fun write(chunk: Any, cb: (error: Error?) -> Unit): Boolean
     open fun write(buffer: String, cb: (err: Error) -> Unit = definedExternally): Boolean
     open fun write(str: Uint8Array, encoding: String = definedExternally, cb: (err: Error) -> Unit = definedExternally): Boolean
-    open fun write(str: String, encoding: String = definedExternally, cb: (err: Error) -> Unit = definedExternally): Boolean
     override fun write(chunk: Any, encoding: String, cb: (error: Error?) -> Unit): Boolean
+    open fun write(str: String, encoding: String = definedExternally, cb: (err: Error) -> Unit = definedExternally): Boolean
     open fun connect(options: TcpSocketConnectOpts, connectionListener: () -> Unit = definedExternally): Socket /* this */
     open fun connect(options: IpcSocketConnectOpts, connectionListener: () -> Unit = definedExternally): Socket /* this */
     open fun connect(port: Number, host: String, connectionListener: () -> Unit = definedExternally): Socket /* this */
@@ -113,49 +116,50 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     open var remotePort: Number
     override fun end(cb: () -> Unit)
     open fun end(buffer: Uint8Array, cb: () -> Unit = definedExternally)
-    open fun end(buffer: String, cb: () -> Unit = definedExternally)
     override fun end(chunk: Any, cb: () -> Unit)
+    open fun end(buffer: String, cb: () -> Unit = definedExternally)
     open fun end(str: Uint8Array, encoding: String = definedExternally, cb: () -> Unit = definedExternally)
-    open fun end(str: String, encoding: String = definedExternally, cb: () -> Unit = definedExternally)
     override fun end(chunk: Any, encoding: String, cb: () -> Unit)
+    open fun end(str: String, encoding: String = definedExternally, cb: () -> Unit = definedExternally)
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun addListener(event: String /* "close" */, listener: (had_error: Boolean) -> Unit): Socket /* this */
-    override fun addListener(event: String, listener: () -> Unit): Socket /* this */
+    override fun addListener(event: String /* "connect" | "drain" | "end" | "timeout" */, listener: () -> Unit): Socket /* this */
     open fun addListener(event: String /* "data" */, listener: (data: Buffer) -> Unit): Socket /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun addListener(event: String /* "lookup" */, listener: (err: Error, address: String, family: dynamic /* String | Number */, host: String) -> Unit): Socket /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    open fun emit(event: String /* "close" */, had_error: Boolean): Boolean
-    override fun emit(event: String): Boolean
-    open fun emit(event: String /* "data" */, data: Buffer): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
+    open fun emit(event: String /* "close" */, had_error: Boolean): Boolean
+    override fun emit(event: String /* "connect" | "drain" | "end" | "timeout" */): Boolean
+    open fun emit(event: String /* "data" */, data: Buffer): Boolean
     override fun emit(event: String /* "error" */, err: Error): Boolean
     open fun emit(event: String /* "lookup" */, err: Error, address: String, family: String, host: String): Boolean
     open fun emit(event: String /* "lookup" */, err: Error, address: String, family: Number, host: String): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun on(event: String /* "close" */, listener: (had_error: Boolean) -> Unit): Socket /* this */
-    override fun on(event: String, listener: () -> Unit): Socket /* this */
+    override fun on(event: String /* "connect" | "drain" | "end" | "timeout" */, listener: () -> Unit): Socket /* this */
     open fun on(event: String /* "data" */, listener: (data: Buffer) -> Unit): Socket /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun on(event: String /* "lookup" */, listener: (err: Error, address: String, family: dynamic /* String | Number */, host: String) -> Unit): Socket /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun once(event: String /* "close" */, listener: (had_error: Boolean) -> Unit): Socket /* this */
-    override fun once(event: String, listener: () -> Unit): Socket /* this */
+    override fun once(event: String /* "connect" | "drain" | "end" | "timeout" */, listener: () -> Unit): Socket /* this */
     open fun once(event: String /* "data" */, listener: (data: Buffer) -> Unit): Socket /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun once(event: String /* "lookup" */, listener: (err: Error, address: String, family: dynamic /* String | Number */, host: String) -> Unit): Socket /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun prependListener(event: String /* "close" */, listener: (had_error: Boolean) -> Unit): Socket /* this */
-    override fun prependListener(event: String, listener: () -> Unit): Socket /* this */
+    override fun prependListener(event: String /* "connect" | "drain" | "end" | "timeout" */, listener: () -> Unit): Socket /* this */
     open fun prependListener(event: String /* "data" */, listener: (data: Buffer) -> Unit): Socket /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun prependListener(event: String /* "lookup" */, listener: (err: Error, address: String, family: dynamic /* String | Number */, host: String) -> Unit): Socket /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
     open fun prependOnceListener(event: String /* "close" */, listener: (had_error: Boolean) -> Unit): Socket /* this */
-    override fun prependOnceListener(event: String, listener: () -> Unit): Socket /* this */
+    override fun prependOnceListener(event: String /* "connect" | "drain" | "end" | "timeout" */, listener: () -> Unit): Socket /* this */
     open fun prependOnceListener(event: String /* "data" */, listener: (data: Buffer) -> Unit): Socket /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun prependOnceListener(event: String /* "lookup" */, listener: (err: Error, address: String, family: dynamic /* String | Number */, host: String) -> Unit): Socket /* this */
+    override fun <T : WritableStream> pipe(destination: T, options: `T$2`): T
 }
 
 external interface ListenOptions {
@@ -214,28 +218,28 @@ external open class Server(connectionListener: (socket: Socket) -> Unit = define
     open var connections: Number
     open var listening: Boolean
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
-    open fun addListener(event: String, listener: () -> Unit): Server /* this */
+    open fun addListener(event: String /* "close" | "listening" */, listener: () -> Unit): Server /* this */
     open fun addListener(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Server /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    open fun emit(event: String): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
+    open fun emit(event: String /* "close" | "listening" */): Boolean
     open fun emit(event: String /* "connection" */, socket: Socket): Boolean
     open fun emit(event: String /* "error" */, err: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
-    open fun on(event: String, listener: () -> Unit): Server /* this */
+    open fun on(event: String /* "close" | "listening" */, listener: () -> Unit): Server /* this */
     open fun on(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
     open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Server /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
-    open fun once(event: String, listener: () -> Unit): Server /* this */
+    open fun once(event: String /* "close" | "listening" */, listener: () -> Unit): Server /* this */
     open fun once(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
     open fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Server /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
-    open fun prependListener(event: String, listener: () -> Unit): Server /* this */
+    open fun prependListener(event: String /* "close" | "listening" */, listener: () -> Unit): Server /* this */
     open fun prependListener(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
     open fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Server /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
-    open fun prependOnceListener(event: String, listener: () -> Unit): Server /* this */
+    open fun prependOnceListener(event: String /* "close" | "listening" */, listener: () -> Unit): Server /* this */
     open fun prependOnceListener(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
     open fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Server /* this */
 }

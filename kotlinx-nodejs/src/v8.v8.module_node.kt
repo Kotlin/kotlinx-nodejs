@@ -37,7 +37,7 @@ external interface HeapInfo {
     var heap_size_limit: Number
     var malloced_memory: Number
     var peak_malloced_memory: Number
-    var does_zap_garbage: String /* 0 | 1 */
+    var does_zap_garbage: Number /* 0 | 1 */
     var number_of_native_contexts: Number
     var number_of_detached_contexts: Number
 }

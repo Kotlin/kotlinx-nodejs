@@ -110,28 +110,28 @@ external open class Socket : EventEmitter {
     open fun addSourceSpecificMembership(sourceAddress: String, groupAddress: String, multicastInterface: String = definedExternally)
     open fun dropSourceSpecificMembership(sourceAddress: String, groupAddress: String, multicastInterface: String = definedExternally)
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
-    open fun addListener(event: String, listener: () -> Unit): Socket /* this */
+    open fun addListener(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun addListener(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    open fun emit(event: String): Boolean
-    open fun emit(event: String /* "error" */, err: Error): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
+    open fun emit(event: String /* "close" | "connect" | "listening" */): Boolean
+    open fun emit(event: String /* "error" */, err: Error): Boolean
     open fun emit(event: String /* "message" */, msg: Buffer, rinfo: RemoteInfo): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
-    open fun on(event: String, listener: () -> Unit): Socket /* this */
+    open fun on(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun on(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
-    open fun once(event: String, listener: () -> Unit): Socket /* this */
+    open fun once(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun once(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
-    open fun prependListener(event: String, listener: () -> Unit): Socket /* this */
+    open fun prependListener(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun prependListener(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
-    open fun prependOnceListener(event: String, listener: () -> Unit): Socket /* this */
+    open fun prependOnceListener(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun prependOnceListener(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
 }

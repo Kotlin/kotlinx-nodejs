@@ -22,6 +22,8 @@ import events.EventEmitter.EventEmitter
 import stream.Readable
 import stream.Writable
 import Buffer
+import NodeJS.WritableStream
+import NodeJS.`T$2`
 import child_process.`T$16`
 
 external interface StatsBase<T> {
@@ -130,31 +132,32 @@ external open class ReadStream : Readable {
     open var bytesRead: Number
     open var path: dynamic /* String | Buffer */
     open var pending: Boolean
-    override fun addListener(event: String, listener: () -> Unit): ReadStream /* this */
+    override fun addListener(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun addListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
-    override fun on(event: String, listener: () -> Unit): ReadStream /* this */
+    override fun on(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun on(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun on(event: Any, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
-    override fun once(event: String, listener: () -> Unit): ReadStream /* this */
+    override fun once(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun once(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun once(event: Any, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
-    override fun prependListener(event: String, listener: () -> Unit): ReadStream /* this */
+    override fun prependListener(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun prependListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun prependListener(event: Any, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
-    override fun prependOnceListener(event: String, listener: () -> Unit): ReadStream /* this */
+    override fun prependOnceListener(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun prependOnceListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: Any, listener: (args: Array<Any>) -> Unit): ReadStream /* this */
+    override fun <T : WritableStream> pipe(destination: T, options: `T$2`): T
 }
 
 external open class WriteStream : Writable {
@@ -162,34 +165,34 @@ external open class WriteStream : Writable {
     open var bytesWritten: Number
     open var path: dynamic /* String | Buffer */
     open var pending: Boolean
-    override fun addListener(event: String, listener: () -> Unit): WriteStream /* this */
+    override fun addListener(event: String /* "close" | "drain" | "finish" | "ready" */, listener: () -> Unit): WriteStream /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): WriteStream /* this */
     open fun addListener(event: String /* "open" */, listener: (fd: Number) -> Unit): WriteStream /* this */
-    override fun addListener(event: String, listener: (src: Readable) -> Unit): WriteStream /* this */
+    override fun addListener(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): WriteStream /* this */
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
-    override fun on(event: String, listener: () -> Unit): WriteStream /* this */
+    override fun on(event: String /* "close" | "drain" | "finish" | "ready" */, listener: () -> Unit): WriteStream /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): WriteStream /* this */
     open fun on(event: String /* "open" */, listener: (fd: Number) -> Unit): WriteStream /* this */
-    override fun on(event: String, listener: (src: Readable) -> Unit): WriteStream /* this */
+    override fun on(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): WriteStream /* this */
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
     override fun on(event: Any, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
-    override fun once(event: String, listener: () -> Unit): WriteStream /* this */
+    override fun once(event: String /* "close" | "drain" | "finish" | "ready" */, listener: () -> Unit): WriteStream /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): WriteStream /* this */
     open fun once(event: String /* "open" */, listener: (fd: Number) -> Unit): WriteStream /* this */
-    override fun once(event: String, listener: (src: Readable) -> Unit): WriteStream /* this */
+    override fun once(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): WriteStream /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
     override fun once(event: Any, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
-    override fun prependListener(event: String, listener: () -> Unit): WriteStream /* this */
+    override fun prependListener(event: String /* "close" | "drain" | "finish" | "ready" */, listener: () -> Unit): WriteStream /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): WriteStream /* this */
     open fun prependListener(event: String /* "open" */, listener: (fd: Number) -> Unit): WriteStream /* this */
-    override fun prependListener(event: String, listener: (src: Readable) -> Unit): WriteStream /* this */
+    override fun prependListener(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): WriteStream /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
     override fun prependListener(event: Any, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
-    override fun prependOnceListener(event: String, listener: () -> Unit): WriteStream /* this */
+    override fun prependOnceListener(event: String /* "close" | "drain" | "finish" | "ready" */, listener: () -> Unit): WriteStream /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): WriteStream /* this */
     open fun prependOnceListener(event: String /* "open" */, listener: (fd: Number) -> Unit): WriteStream /* this */
-    override fun prependOnceListener(event: String, listener: (src: Readable) -> Unit): WriteStream /* this */
+    override fun prependOnceListener(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): WriteStream /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
     override fun prependOnceListener(event: Any, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
 }
@@ -516,9 +519,15 @@ external fun readlinkSync(path: URL, options: `T$32`? = definedExternally): Stri
 
 external fun readlinkSync(path: String, options: `T$33`): Buffer
 
+external fun readlinkSync(path: String, options: String /* "buffer" */): Buffer
+
 external fun readlinkSync(path: Buffer, options: `T$33`): Buffer
 
+external fun readlinkSync(path: Buffer, options: String /* "buffer" */): Buffer
+
 external fun readlinkSync(path: URL, options: `T$33`): Buffer
+
+external fun readlinkSync(path: URL, options: String /* "buffer" */): Buffer
 
 external fun readlinkSync(path: String, options: `T$16`? = definedExternally): dynamic /* String | Buffer */
 
@@ -582,9 +591,15 @@ external fun realpathSync(path: URL, options: `T$32`? = definedExternally): Stri
 
 external fun realpathSync(path: String, options: `T$33`): Buffer
 
+external fun realpathSync(path: String, options: String /* "buffer" */): Buffer
+
 external fun realpathSync(path: Buffer, options: `T$33`): Buffer
 
+external fun realpathSync(path: Buffer, options: String /* "buffer" */): Buffer
+
 external fun realpathSync(path: URL, options: `T$33`): Buffer
+
+external fun realpathSync(path: URL, options: String /* "buffer" */): Buffer
 
 external fun realpathSync(path: String, options: `T$16`? = definedExternally): dynamic /* String | Buffer */
 
@@ -834,9 +849,15 @@ external fun readdirSync(path: URL, options: `T$36`? = definedExternally): Array
 
 external fun readdirSync(path: String, options: `T$37`): Array<Buffer>
 
+external fun readdirSync(path: String, options: String /* "buffer" */): Array<Buffer>
+
 external fun readdirSync(path: Buffer, options: `T$37`): Array<Buffer>
 
+external fun readdirSync(path: Buffer, options: String /* "buffer" */): Array<Buffer>
+
 external fun readdirSync(path: URL, options: `T$37`): Array<Buffer>
+
+external fun readdirSync(path: URL, options: String /* "buffer" */): Array<Buffer>
 
 external fun readdirSync(path: String, options: `T$38`? = definedExternally): dynamic /* Array<String> | Array<Buffer> */
 
@@ -1199,7 +1220,7 @@ external fun readFileSync(path: Number, options: `T$45`? = definedExternally): d
 
 external fun readFileSync(path: Number, options: String? = definedExternally): dynamic /* String | Buffer */
 
-external interface `T$57` {
+external interface `T$46` {
     var encoding: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -1211,19 +1232,19 @@ external interface `T$57` {
         set(value) = definedExternally
 }
 
-external fun writeFile(path: String, data: Any, options: `T$57`?, callback: NoParamCallback)
+external fun writeFile(path: String, data: Any, options: `T$46`?, callback: NoParamCallback)
 
 external fun writeFile(path: String, data: Any, options: String?, callback: NoParamCallback)
 
-external fun writeFile(path: Buffer, data: Any, options: `T$57`?, callback: NoParamCallback)
+external fun writeFile(path: Buffer, data: Any, options: `T$46`?, callback: NoParamCallback)
 
 external fun writeFile(path: Buffer, data: Any, options: String?, callback: NoParamCallback)
 
-external fun writeFile(path: URL, data: Any, options: `T$57`?, callback: NoParamCallback)
+external fun writeFile(path: URL, data: Any, options: `T$46`?, callback: NoParamCallback)
 
 external fun writeFile(path: URL, data: Any, options: String?, callback: NoParamCallback)
 
-external fun writeFile(path: Number, data: Any, options: `T$57`?, callback: NoParamCallback)
+external fun writeFile(path: Number, data: Any, options: `T$46`?, callback: NoParamCallback)
 
 external fun writeFile(path: Number, data: Any, options: String?, callback: NoParamCallback)
 
@@ -1235,35 +1256,35 @@ external fun writeFile(path: URL, data: Any, callback: NoParamCallback)
 
 external fun writeFile(path: Number, data: Any, callback: NoParamCallback)
 
-external fun writeFileSync(path: String, data: Any, options: `T$57`? = definedExternally)
+external fun writeFileSync(path: String, data: Any, options: `T$46`? = definedExternally)
 
 external fun writeFileSync(path: String, data: Any, options: String? = definedExternally)
 
-external fun writeFileSync(path: Buffer, data: Any, options: `T$57`? = definedExternally)
+external fun writeFileSync(path: Buffer, data: Any, options: `T$46`? = definedExternally)
 
 external fun writeFileSync(path: Buffer, data: Any, options: String? = definedExternally)
 
-external fun writeFileSync(path: URL, data: Any, options: `T$57`? = definedExternally)
+external fun writeFileSync(path: URL, data: Any, options: `T$46`? = definedExternally)
 
 external fun writeFileSync(path: URL, data: Any, options: String? = definedExternally)
 
-external fun writeFileSync(path: Number, data: Any, options: `T$57`? = definedExternally)
+external fun writeFileSync(path: Number, data: Any, options: `T$46`? = definedExternally)
 
 external fun writeFileSync(path: Number, data: Any, options: String? = definedExternally)
 
-external fun appendFile(file: String, data: Any, options: `T$57`?, callback: NoParamCallback)
+external fun appendFile(file: String, data: Any, options: `T$46`?, callback: NoParamCallback)
 
 external fun appendFile(file: String, data: Any, options: String?, callback: NoParamCallback)
 
-external fun appendFile(file: Buffer, data: Any, options: `T$57`?, callback: NoParamCallback)
+external fun appendFile(file: Buffer, data: Any, options: `T$46`?, callback: NoParamCallback)
 
 external fun appendFile(file: Buffer, data: Any, options: String?, callback: NoParamCallback)
 
-external fun appendFile(file: URL, data: Any, options: `T$57`?, callback: NoParamCallback)
+external fun appendFile(file: URL, data: Any, options: `T$46`?, callback: NoParamCallback)
 
 external fun appendFile(file: URL, data: Any, options: String?, callback: NoParamCallback)
 
-external fun appendFile(file: Number, data: Any, options: `T$57`?, callback: NoParamCallback)
+external fun appendFile(file: Number, data: Any, options: `T$46`?, callback: NoParamCallback)
 
 external fun appendFile(file: Number, data: Any, options: String?, callback: NoParamCallback)
 
@@ -1275,23 +1296,23 @@ external fun appendFile(file: URL, data: Any, callback: NoParamCallback)
 
 external fun appendFile(file: Number, data: Any, callback: NoParamCallback)
 
-external fun appendFileSync(file: String, data: Any, options: `T$57`? = definedExternally)
+external fun appendFileSync(file: String, data: Any, options: `T$46`? = definedExternally)
 
 external fun appendFileSync(file: String, data: Any, options: String? = definedExternally)
 
-external fun appendFileSync(file: Buffer, data: Any, options: `T$57`? = definedExternally)
+external fun appendFileSync(file: Buffer, data: Any, options: `T$46`? = definedExternally)
 
 external fun appendFileSync(file: Buffer, data: Any, options: String? = definedExternally)
 
-external fun appendFileSync(file: URL, data: Any, options: `T$57`? = definedExternally)
+external fun appendFileSync(file: URL, data: Any, options: `T$46`? = definedExternally)
 
 external fun appendFileSync(file: URL, data: Any, options: String? = definedExternally)
 
-external fun appendFileSync(file: Number, data: Any, options: `T$57`? = definedExternally)
+external fun appendFileSync(file: Number, data: Any, options: `T$46`? = definedExternally)
 
 external fun appendFileSync(file: Number, data: Any, options: String? = definedExternally)
 
-external interface `T$46` {
+external interface `T$47` {
     var persistent: Boolean?
         get() = definedExternally
         set(value) = definedExternally
@@ -1300,11 +1321,11 @@ external interface `T$46` {
         set(value) = definedExternally
 }
 
-external fun watchFile(filename: String, options: `T$46`, listener: (curr: Stats, prev: Stats) -> Unit)
+external fun watchFile(filename: String, options: `T$47`, listener: (curr: Stats, prev: Stats) -> Unit)
 
-external fun watchFile(filename: Buffer, options: `T$46`, listener: (curr: Stats, prev: Stats) -> Unit)
+external fun watchFile(filename: Buffer, options: `T$47`, listener: (curr: Stats, prev: Stats) -> Unit)
 
-external fun watchFile(filename: URL, options: `T$46`, listener: (curr: Stats, prev: Stats) -> Unit)
+external fun watchFile(filename: URL, options: `T$47`, listener: (curr: Stats, prev: Stats) -> Unit)
 
 external fun watchFile(filename: String, listener: (curr: Stats, prev: Stats) -> Unit)
 
@@ -1318,7 +1339,7 @@ external fun unwatchFile(filename: Buffer, listener: (curr: Stats, prev: Stats) 
 
 external fun unwatchFile(filename: URL, listener: (curr: Stats, prev: Stats) -> Unit = definedExternally)
 
-external interface `T$47` {
+external interface `T$48` {
     var encoding: String? /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */
         get() = definedExternally
         set(value) = definedExternally
@@ -1330,19 +1351,19 @@ external interface `T$47` {
         set(value) = definedExternally
 }
 
-external fun watch(filename: String, options: `T$47`?, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: String, options: `T$48`?, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
 
-external fun watch(filename: Buffer, options: `T$47`?, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: Buffer, options: `T$48`?, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
 
-external fun watch(filename: URL, options: `T$47`?, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: URL, options: `T$48`?, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
 
-external interface `T$48` {
+external interface `T$49` {
     var encoding: String /* "buffer" */
     var persistent: Boolean?
         get() = definedExternally
@@ -1352,19 +1373,19 @@ external interface `T$48` {
         set(value) = definedExternally
 }
 
-external fun watch(filename: String, options: `T$48`, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: String, options: `T$49`, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: String, options: String /* "buffer" */, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
 
-external fun watch(filename: Buffer, options: `T$48`, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: Buffer, options: `T$49`, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: Buffer, options: String /* "buffer" */, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
 
-external fun watch(filename: URL, options: `T$48`, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: URL, options: `T$49`, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: URL, options: String /* "buffer" */, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
 
-external interface `T$49` {
+external interface `T$50` {
     var encoding: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -1376,15 +1397,15 @@ external interface `T$49` {
         set(value) = definedExternally
 }
 
-external fun watch(filename: String, options: `T$49`?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: String, options: `T$50`?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: String, options: String?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
 
-external fun watch(filename: Buffer, options: `T$49`?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: Buffer, options: `T$50`?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: Buffer, options: String?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
 
-external fun watch(filename: URL, options: `T$49`?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: URL, options: `T$50`?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: URL, options: String?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
 
@@ -1424,7 +1445,7 @@ external fun accessSync(path: Buffer, mode: Number = definedExternally)
 
 external fun accessSync(path: URL, mode: Number = definedExternally)
 
-external interface `T$50` {
+external interface `T$51` {
     var flags: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -1456,17 +1477,17 @@ external interface `T$50` {
 
 external fun createReadStream(path: String, options: String = definedExternally): ReadStream
 
-external fun createReadStream(path: String, options: `T$50` = definedExternally): ReadStream
+external fun createReadStream(path: String, options: `T$51` = definedExternally): ReadStream
 
 external fun createReadStream(path: Buffer, options: String = definedExternally): ReadStream
 
-external fun createReadStream(path: Buffer, options: `T$50` = definedExternally): ReadStream
+external fun createReadStream(path: Buffer, options: `T$51` = definedExternally): ReadStream
 
 external fun createReadStream(path: URL, options: String = definedExternally): ReadStream
 
-external fun createReadStream(path: URL, options: `T$50` = definedExternally): ReadStream
+external fun createReadStream(path: URL, options: `T$51` = definedExternally): ReadStream
 
-external interface `T$51` {
+external interface `T$52` {
     var flags: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -1495,15 +1516,15 @@ external interface `T$51` {
 
 external fun createWriteStream(path: String, options: String = definedExternally): WriteStream
 
-external fun createWriteStream(path: String, options: `T$51` = definedExternally): WriteStream
+external fun createWriteStream(path: String, options: `T$52` = definedExternally): WriteStream
 
 external fun createWriteStream(path: Buffer, options: String = definedExternally): WriteStream
 
-external fun createWriteStream(path: Buffer, options: `T$51` = definedExternally): WriteStream
+external fun createWriteStream(path: Buffer, options: `T$52` = definedExternally): WriteStream
 
 external fun createWriteStream(path: URL, options: String = definedExternally): WriteStream
 
-external fun createWriteStream(path: URL, options: `T$51` = definedExternally): WriteStream
+external fun createWriteStream(path: URL, options: `T$52` = definedExternally): WriteStream
 
 external fun fdatasync(fd: Number, callback: NoParamCallback)
 

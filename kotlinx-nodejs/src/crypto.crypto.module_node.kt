@@ -18,6 +18,8 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
+import NodeJS.WritableStream
+import NodeJS.`T$2`
 import stream.TransformOptions
 import stream.Transform
 import stream.WritableOptions
@@ -114,6 +116,7 @@ external open class Hash : Transform {
     open fun update(data: String, input_encoding: String /* "utf8" | "ascii" | "latin1" */): Hash
     open fun digest(): Buffer
     open fun digest(encoding: String /* "latin1" | "hex" | "base64" */): String
+    override fun <T : WritableStream> pipe(destination: T, options: `T$2`): T
 }
 
 external open class Hmac : Transform {
@@ -131,6 +134,7 @@ external open class Hmac : Transform {
     open fun update(data: String, input_encoding: String /* "utf8" | "ascii" | "latin1" */): Hmac
     open fun digest(): Buffer
     open fun digest(encoding: String /* "latin1" | "hex" | "base64" */): String
+    override fun <T : WritableStream> pipe(destination: T, options: `T$2`): T
 }
 
 external interface KeyExportOptions<T : String> {
@@ -147,7 +151,7 @@ external interface KeyExportOptions<T : String> {
 external open class KeyObject {
     open var asymmetricKeyType: String /* 'rsa' | 'dsa' | 'ec' */
     open var asymmetricKeySize: Number
-    open fun export(options: KeyExportOptions<String /* 'pem' */>): dynamic /* String | Buffer */
+    open fun export(options: KeyExportOptions<String /* 'pem' | 'der' */>): dynamic /* Buffer */
     open var symmetricKeySize: Number
     open var type: String /* 'secret' | 'public' | 'private' */
 }
@@ -327,6 +331,7 @@ external open class Cipher : Transform {
     open fun final(): Buffer
     open fun final(output_encoding: String): String
     open fun setAutoPadding(auto_padding: Boolean = definedExternally): Cipher /* this */
+    override fun <T : WritableStream> pipe(destination: T, options: `T$2`): T
 }
 
 external interface `T$22` {
@@ -507,6 +512,7 @@ external open class Decipher : Transform {
     open fun final(): Buffer
     open fun final(output_encoding: String): String
     open fun setAutoPadding(auto_padding: Boolean = definedExternally): Decipher /* this */
+    override fun <T : WritableStream> pipe(destination: T, options: `T$2`): T
 }
 
 external interface DecipherCCM : Decipher {
@@ -1145,9 +1151,15 @@ external interface KeyPairSyncResult<T1, T2> {
     var privateKey: T2
 }
 
+external fun generateKeyPairSync(type: String /* 'rsa' */, options: RSAKeyPairOptions<String /* 'der' */, String /* 'der' */>): KeyPairSyncResult<Buffer, Buffer>
+
 external fun generateKeyPairSync(type: String /* 'rsa' */, options: RSAKeyPairKeyObjectOptions): KeyPairKeyObjectResult
 
+external fun generateKeyPairSync(type: String /* 'dsa' */, options: DSAKeyPairOptions<String /* 'der' */, String /* 'der' */>): KeyPairSyncResult<Buffer, Buffer>
+
 external fun generateKeyPairSync(type: String /* 'dsa' */, options: DSAKeyPairKeyObjectOptions): KeyPairKeyObjectResult
+
+external fun generateKeyPairSync(type: String /* 'ec' */, options: ECKeyPairOptions<String /* 'der' */, String /* 'der' */>): KeyPairSyncResult<Buffer, Buffer>
 
 external fun generateKeyPairSync(type: String /* 'ec' */, options: ECKeyPairKeyObjectOptions): KeyPairKeyObjectResult
 
