@@ -97,28 +97,28 @@ external open class REPLServer : Interface {
     open fun clearBufferedCommand()
     open fun setupHistory(path: String, cb: (err: Error?, repl: REPLServer /* this */) -> Unit)
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): REPLServer /* this */
-    override fun addListener(event: String, listener: () -> Unit): REPLServer /* this */
+    override fun addListener(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" | "exit" */, listener: () -> Unit): REPLServer /* this */
     override fun addListener(event: String /* "line" */, listener: (input: String) -> Unit): REPLServer /* this */
     open fun addListener(event: String /* "reset" */, listener: (context: Context) -> Unit): REPLServer /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    override fun emit(event: String): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
+    override fun emit(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" | "exit" */): Boolean
     override fun emit(event: String /* "line" */, input: String): Boolean
     open fun emit(event: String /* "reset" */, context: Context): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): REPLServer /* this */
-    override fun on(event: String, listener: () -> Unit): REPLServer /* this */
+    override fun on(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" | "exit" */, listener: () -> Unit): REPLServer /* this */
     override fun on(event: String /* "line" */, listener: (input: String) -> Unit): REPLServer /* this */
     open fun on(event: String /* "reset" */, listener: (context: Context) -> Unit): REPLServer /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): REPLServer /* this */
-    override fun once(event: String, listener: () -> Unit): REPLServer /* this */
+    override fun once(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" | "exit" */, listener: () -> Unit): REPLServer /* this */
     override fun once(event: String /* "line" */, listener: (input: String) -> Unit): REPLServer /* this */
     open fun once(event: String /* "reset" */, listener: (context: Context) -> Unit): REPLServer /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): REPLServer /* this */
-    override fun prependListener(event: String, listener: () -> Unit): REPLServer /* this */
+    override fun prependListener(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" | "exit" */, listener: () -> Unit): REPLServer /* this */
     override fun prependListener(event: String /* "line" */, listener: (input: String) -> Unit): REPLServer /* this */
     open fun prependListener(event: String /* "reset" */, listener: (context: Context) -> Unit): REPLServer /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): REPLServer /* this */
-    override fun prependOnceListener(event: String, listener: () -> Unit): REPLServer /* this */
+    override fun prependOnceListener(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" | "exit" */, listener: () -> Unit): REPLServer /* this */
     override fun prependOnceListener(event: String /* "line" */, listener: (input: String) -> Unit): REPLServer /* this */
     open fun prependOnceListener(event: String /* "reset" */, listener: (context: Context) -> Unit): REPLServer /* this */
 }

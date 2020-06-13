@@ -41,7 +41,8 @@ external open class WriteStream(fd: Number) : Socket {
     override fun prependListener(event: String /* "resize" */, listener: () -> Unit): WriteStream /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): WriteStream /* this */
     override fun prependOnceListener(event: String /* "resize" */, listener: () -> Unit): WriteStream /* this */
-    open fun clearLine(dir: String /* -1 | 0 | 1 */, callback: () -> Unit = definedExternally): Boolean
+    open fun clearLine(dir: String /* -1 */, callback: () -> Unit = definedExternally): Boolean
+    open fun clearLine(dir: Number /* 0 | 1 */, callback: () -> Unit = definedExternally): Boolean
     open fun clearScreenDown(callback: () -> Unit = definedExternally): Boolean
     open fun cursorTo(x: Number, y: Number = definedExternally, callback: () -> Unit = definedExternally): Boolean
     open fun cursorTo(x: Number, callback: () -> Unit): Boolean

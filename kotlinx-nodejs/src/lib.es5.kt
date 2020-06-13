@@ -92,8 +92,7 @@ external interface ObjectConstructor {
     fun defineProperties(o: Any, properties: PropertyDescriptorMap /* PropertyDescriptorMap & ThisType<Any> */): Any
     fun <T> seal(o: T): T
     fun <T> freeze(a: Array<T>): Array<T>
-    fun <T : Function<*>> freeze(f: T): T
-    fun <T> freeze(o: T): Readonly<T>
+    fun <T : Function<*>> freeze(f: T): dynamic
     fun <T> preventExtensions(o: T): T
     fun isSealed(o: Any): Boolean
     fun isFrozen(o: Any): Boolean
@@ -223,9 +222,9 @@ external interface ConcatArray<T> {
 
 external interface ArrayConstructor {
     fun <T> from(iterable: Iterable<T>): Array<T>
+    fun <T> from(iterable: ArrayLike<T>): Array<T>
     fun <T, U> from(iterable: Iterable<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
-    fun <T> from(arrayLike: ArrayLike<T>): Array<T>
-    fun <T, U> from(arrayLike: ArrayLike<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
+    fun <T, U> from(iterable: ArrayLike<T>, mapfn: (v: T, k: Number) -> U, thisArg: Any = definedExternally): Array<U>
     fun <T> of(vararg items: T): Array<T>
     @nativeInvoke
     operator fun invoke(arrayLength: Number = definedExternally): Array<Any>

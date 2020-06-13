@@ -18,19 +18,19 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
 
-external fun __promisify__(path: String, data: Any, options: fs.`T$57`? = definedExternally): Promise<Unit>
+external fun __promisify__(path: String, data: Any, options: fs.`T$46`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: String, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun __promisify__(path: Buffer, data: Any, options: fs.`T$57`? = definedExternally): Promise<Unit>
+external fun __promisify__(path: Buffer, data: Any, options: fs.`T$46`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: Buffer, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun __promisify__(path: URL, data: Any, options: fs.`T$57`? = definedExternally): Promise<Unit>
+external fun __promisify__(path: URL, data: Any, options: fs.`T$46`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: URL, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun __promisify__(path: Number, data: Any, options: fs.`T$57`? = definedExternally): Promise<Unit>
+external fun __promisify__(path: Number, data: Any, options: fs.`T$46`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: Number, data: Any, options: String? = definedExternally): Promise<Unit>
 

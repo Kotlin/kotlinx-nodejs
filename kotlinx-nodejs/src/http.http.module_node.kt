@@ -23,6 +23,8 @@ import stream.Writable
 import Buffer
 import stream.Readable
 import NodeJS.ReadOnlyDict
+import NodeJS.WritableStream
+import NodeJS.`T$2`
 import net.Server as NetServer
 
 external interface IncomingHttpHeaders : Dict<dynamic /* String | Array<String> */> {
@@ -248,49 +250,49 @@ external open class ClientRequest : OutgoingMessage {
     override fun setTimeout(timeout: Number, callback: () -> Unit): ClientRequest /* this */
     open fun setNoDelay(noDelay: Boolean = definedExternally)
     open fun setSocketKeepAlive(enable: Boolean = definedExternally, initialDelay: Number = definedExternally)
-    override fun addListener(event: String, listener: () -> Unit): ClientRequest /* this */
-    open fun addListener(event: String, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
+    override fun addListener(event: String /* 'abort' | 'continue' | 'timeout' | 'close' | 'drain' | 'finish' */, listener: () -> Unit): ClientRequest /* this */
+    open fun addListener(event: String /* 'connect' | 'upgrade' */, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
     open fun addListener(event: String /* 'information' */, listener: (info: InformationEvent) -> Unit): ClientRequest /* this */
     open fun addListener(event: String /* 'response' */, listener: (response: IncomingMessage) -> Unit): ClientRequest /* this */
     open fun addListener(event: String /* 'socket' */, listener: (socket: Socket) -> Unit): ClientRequest /* this */
     override fun addListener(event: String /* 'error' */, listener: (err: Error) -> Unit): ClientRequest /* this */
-    override fun addListener(event: String, listener: (src: Readable) -> Unit): ClientRequest /* this */
+    override fun addListener(event: String /* 'pipe' | 'unpipe' */, listener: (src: Readable) -> Unit): ClientRequest /* this */
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
     override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
-    override fun on(event: String, listener: () -> Unit): ClientRequest /* this */
-    open fun on(event: String, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
+    override fun on(event: String /* 'abort' | 'continue' | 'timeout' | 'close' | 'drain' | 'finish' */, listener: () -> Unit): ClientRequest /* this */
+    open fun on(event: String /* 'connect' | 'upgrade' */, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
     open fun on(event: String /* 'information' */, listener: (info: InformationEvent) -> Unit): ClientRequest /* this */
     open fun on(event: String /* 'response' */, listener: (response: IncomingMessage) -> Unit): ClientRequest /* this */
     open fun on(event: String /* 'socket' */, listener: (socket: Socket) -> Unit): ClientRequest /* this */
     override fun on(event: String /* 'error' */, listener: (err: Error) -> Unit): ClientRequest /* this */
-    override fun on(event: String, listener: (src: Readable) -> Unit): ClientRequest /* this */
+    override fun on(event: String /* 'pipe' | 'unpipe' */, listener: (src: Readable) -> Unit): ClientRequest /* this */
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
     override fun on(event: Any, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
-    override fun once(event: String, listener: () -> Unit): ClientRequest /* this */
-    open fun once(event: String, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
+    override fun once(event: String /* 'abort' | 'continue' | 'timeout' | 'close' | 'drain' | 'finish' */, listener: () -> Unit): ClientRequest /* this */
+    open fun once(event: String /* 'connect' | 'upgrade' */, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
     open fun once(event: String /* 'information' */, listener: (info: InformationEvent) -> Unit): ClientRequest /* this */
     open fun once(event: String /* 'response' */, listener: (response: IncomingMessage) -> Unit): ClientRequest /* this */
     open fun once(event: String /* 'socket' */, listener: (socket: Socket) -> Unit): ClientRequest /* this */
     override fun once(event: String /* 'error' */, listener: (err: Error) -> Unit): ClientRequest /* this */
-    override fun once(event: String, listener: (src: Readable) -> Unit): ClientRequest /* this */
+    override fun once(event: String /* 'pipe' | 'unpipe' */, listener: (src: Readable) -> Unit): ClientRequest /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
     override fun once(event: Any, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
-    override fun prependListener(event: String, listener: () -> Unit): ClientRequest /* this */
-    open fun prependListener(event: String, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
+    override fun prependListener(event: String /* 'abort' | 'continue' | 'timeout' | 'close' | 'drain' | 'finish' */, listener: () -> Unit): ClientRequest /* this */
+    open fun prependListener(event: String /* 'connect' | 'upgrade' */, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
     open fun prependListener(event: String /* 'information' */, listener: (info: InformationEvent) -> Unit): ClientRequest /* this */
     open fun prependListener(event: String /* 'response' */, listener: (response: IncomingMessage) -> Unit): ClientRequest /* this */
     open fun prependListener(event: String /* 'socket' */, listener: (socket: Socket) -> Unit): ClientRequest /* this */
     override fun prependListener(event: String /* 'error' */, listener: (err: Error) -> Unit): ClientRequest /* this */
-    override fun prependListener(event: String, listener: (src: Readable) -> Unit): ClientRequest /* this */
+    override fun prependListener(event: String /* 'pipe' | 'unpipe' */, listener: (src: Readable) -> Unit): ClientRequest /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
     override fun prependListener(event: Any, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
-    override fun prependOnceListener(event: String, listener: () -> Unit): ClientRequest /* this */
-    open fun prependOnceListener(event: String, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
+    override fun prependOnceListener(event: String /* 'abort' | 'continue' | 'timeout' | 'close' | 'drain' | 'finish' */, listener: () -> Unit): ClientRequest /* this */
+    open fun prependOnceListener(event: String /* 'connect' | 'upgrade' */, listener: (response: IncomingMessage, socket: Socket, head: Buffer) -> Unit): ClientRequest /* this */
     open fun prependOnceListener(event: String /* 'information' */, listener: (info: InformationEvent) -> Unit): ClientRequest /* this */
     open fun prependOnceListener(event: String /* 'response' */, listener: (response: IncomingMessage) -> Unit): ClientRequest /* this */
     open fun prependOnceListener(event: String /* 'socket' */, listener: (socket: Socket) -> Unit): ClientRequest /* this */
     override fun prependOnceListener(event: String /* 'error' */, listener: (err: Error) -> Unit): ClientRequest /* this */
-    override fun prependOnceListener(event: String, listener: (src: Readable) -> Unit): ClientRequest /* this */
+    override fun prependOnceListener(event: String /* 'pipe' | 'unpipe' */, listener: (src: Readable) -> Unit): ClientRequest /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
     override fun prependOnceListener(event: Any, listener: (args: Array<Any>) -> Unit): ClientRequest /* this */
 }
@@ -313,6 +315,7 @@ external open class IncomingMessage(socket: Socket) : Readable {
     open var statusCode: Number
     open var statusMessage: String
     override fun destroy(error: Error)
+    override fun <T : WritableStream> pipe(destination: T, options: `T$2`): T
 }
 
 external interface AgentOptions {

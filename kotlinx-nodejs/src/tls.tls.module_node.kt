@@ -120,7 +120,7 @@ external open class TLSSocket(socket: net.Socket, options: TLSSocketOptions = de
     open fun getCipher(): CipherNameAndProtocol
     open fun getEphemeralKeyInfo(): dynamic /* EphemeralKeyInfo? | Any?? */
     open fun getFinished(): Buffer?
-    open fun getPeerCertificate(detailed: Boolean): DetailedPeerCertificate
+    open fun getPeerCertificate(detailed: Boolean): dynamic /* DetailedPeerCertificate | PeerCertificate | PeerCertificate | DetailedPeerCertificate */
     open fun getPeerFinished(): Buffer?
     open fun getProtocol(): String?
     open fun getSession(): Buffer?
@@ -137,8 +137,8 @@ external open class TLSSocket(socket: net.Socket, options: TLSSocketOptions = de
     override fun addListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
+    override fun emit(event: String /* "OCSPResponse" | "session" | "keylog" */, response: Buffer): Boolean
     override fun emit(event: String /* "secureConnect" */): Boolean
-    override fun emit(event: String /* "keylog" */, line: Buffer): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun on(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
     override fun on(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
@@ -150,6 +150,7 @@ external open class TLSSocket(socket: net.Socket, options: TLSSocketOptions = de
     override fun prependListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
+    override fun prependOnceListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     open fun getPeerCertificate(): PeerCertificate
 }
 
@@ -246,12 +247,12 @@ external open class Server : net.Server {
     open fun addListener(event: String /* "secureConnection" */, listener: (tlsSocket: TLSSocket) -> Unit): Server /* this */
     open fun addListener(event: String /* "keylog" */, listener: (line: Buffer, tlsSocket: TLSSocket) -> Unit): Server /* this */
     override fun emit(event: String, vararg args: Any): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "tlsClientError" */, err: Error, tlsSocket: TLSSocket): Boolean
     open fun emit(event: String /* "newSession" */, sessionId: Buffer, sessionData: Buffer, callback: (err: Error, resp: Buffer) -> Unit): Boolean
     open fun emit(event: String /* "OCSPRequest" */, certificate: Buffer, issuer: Buffer, callback: (err: Error?, resp: Buffer) -> Unit): Boolean
     open fun emit(event: String /* "resumeSession" */, sessionId: Buffer, callback: (err: Error, sessionData: Buffer) -> Unit): Boolean
     open fun emit(event: String /* "secureConnection" */, tlsSocket: TLSSocket): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "keylog" */, line: Buffer, tlsSocket: TLSSocket): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Server /* this */
     open fun on(event: String /* "tlsClientError" */, listener: (err: Error, tlsSocket: TLSSocket) -> Unit): Server /* this */

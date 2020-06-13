@@ -39,6 +39,10 @@ external interface ChildProcess : EventEmitter {
     var killed: Boolean
     var pid: Number
     var connected: Boolean
+    var exitCode: Number?
+    var signalCode: Number?
+    var spawnargs: Array<String>
+    var spawnfile: String
     fun kill(signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */ = definedExternally): Boolean
     fun kill(signal: Number = definedExternally): Boolean
     fun send(message: String, callback: (error: Error?) -> Unit = definedExternally): Boolean
@@ -65,14 +69,14 @@ external interface ChildProcess : EventEmitter {
     fun unref()
     fun ref()
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
+    fun addListener(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
     fun addListener(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
-    fun addListener(event: String /* "message" */, listener: (message: dynamic /* String | Any? | Number | Boolean */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
     override fun emit(event: String, vararg args: Any): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "close" */, code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */): Boolean
     fun emit(event: String /* "disconnect" */): Boolean
     fun emit(event: String /* "error" */, err: Error): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "exit" */, code: Number?, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */): Boolean
     fun emit(event: String /* "message" */, message: String, sendHandle: Socket): Boolean
     fun emit(event: String /* "message" */, message: String, sendHandle: Server): Boolean
@@ -83,21 +87,21 @@ external interface ChildProcess : EventEmitter {
     fun emit(event: String /* "message" */, message: Boolean, sendHandle: Socket): Boolean
     fun emit(event: String /* "message" */, message: Boolean, sendHandle: Server): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
+    fun on(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
     fun on(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun on(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
-    fun on(event: String /* "message" */, listener: (message: dynamic /* String | Any? | Number | Boolean */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
+    fun once(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
     fun once(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun once(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
-    fun once(event: String /* "message" */, listener: (message: dynamic /* String | Any? | Number | Boolean */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
+    fun prependListener(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
     fun prependListener(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
-    fun prependListener(event: String /* "message" */, listener: (message: dynamic /* String | Any? | Number | Boolean */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
+    fun prependOnceListener(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
     fun prependOnceListener(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
-    fun prependOnceListener(event: String /* "message" */, listener: (message: dynamic /* String | Any? | Number | Boolean */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
     fun kill(): Boolean
 }
 
@@ -184,13 +188,9 @@ external interface SpawnOptionsWithStdioTuple<Stdin, Stdout, Stderr> : SpawnOpti
 
 external fun spawn(command: String, options: SpawnOptionsWithoutStdio = definedExternally): ChildProcessWithoutNullStreams
 
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, dynamic /* String | String | Stream */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Nothing?, Nothing?, Nothing?>
-
 external fun spawn(command: String, options: SpawnOptions): ChildProcess
 
 external fun spawn(command: String, args: Array<String> = definedExternally, options: SpawnOptionsWithoutStdio = definedExternally): ChildProcessWithoutNullStreams
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, dynamic /* String | String | Stream */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Nothing?, Nothing?, Nothing?>
 
 external fun spawn(command: String, args: Array<String>, options: SpawnOptions): ChildProcess
 

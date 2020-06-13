@@ -39,7 +39,7 @@ external open class Session : EventEmitter {
     open fun post(method: String /* "Runtime.getProperties" */, params: inspector.Runtime.GetPropertiesParameterType = definedExternally, callback: (err: Error?, params: inspector.Runtime.GetPropertiesReturnType) -> Unit = definedExternally)
     open fun post(method: String /* "Runtime.getProperties" */, callback: (err: Error?, params: inspector.Runtime.GetPropertiesReturnType) -> Unit = definedExternally)
     open fun post(method: String /* "Runtime.releaseObject" */, params: inspector.Runtime.ReleaseObjectParameterType = definedExternally, callback: (err: Error?) -> Unit = definedExternally)
-    open fun post(method: String, callback: (err: Error?) -> Unit = definedExternally)
+    open fun post(method: String /* "Runtime.releaseObject" | "Runtime.releaseObjectGroup" | "Runtime.runIfWaitingForDebugger" | "Runtime.enable" | "Runtime.disable" | "Runtime.discardConsoleEntries" | "Runtime.setCustomObjectFormatterEnabled" | "Debugger.disable" | "Debugger.setBreakpointsActive" | "Debugger.setSkipAllPauses" | "Debugger.removeBreakpoint" | "Debugger.continueToLocation" | "Debugger.pauseOnAsyncCall" | "Debugger.stepOver" | "Debugger.stepInto" | "Debugger.stepOut" | "Debugger.pause" | "Debugger.scheduleStepIntoAsync" | "Debugger.resume" | "Debugger.setPauseOnExceptions" | "Debugger.setVariableValue" | "Debugger.setReturnValue" | "Debugger.setAsyncCallStackDepth" | "Debugger.setBlackboxPatterns" | "Debugger.setBlackboxedRanges" | "Console.enable" | "Console.disable" | "Console.clearMessages" | "Profiler.enable" | "Profiler.disable" | "Profiler.setSamplingInterval" | "Profiler.start" | "Profiler.startPreciseCoverage" | "Profiler.stopPreciseCoverage" | "Profiler.startTypeProfile" | "Profiler.stopTypeProfile" | "HeapProfiler.enable" | "HeapProfiler.disable" | "HeapProfiler.startTrackingHeapObjects" | "HeapProfiler.stopTrackingHeapObjects" | "HeapProfiler.takeHeapSnapshot" | "HeapProfiler.collectGarbage" | "HeapProfiler.addInspectedHeapObject" | "HeapProfiler.startSampling" | "NodeTracing.start" | "NodeTracing.stop" | "NodeWorker.sendMessageToWorker" | "NodeWorker.enable" | "NodeWorker.disable" | "NodeWorker.detach" | "NodeRuntime.notifyWhenWaitingForDisconnect" */, callback: (err: Error?) -> Unit = definedExternally)
     open fun post(method: String /* "Runtime.releaseObjectGroup" */, params: inspector.Runtime.ReleaseObjectGroupParameterType = definedExternally, callback: (err: Error?) -> Unit = definedExternally)
     open fun post(method: String /* "Runtime.setCustomObjectFormatterEnabled" */, params: inspector.Runtime.SetCustomObjectFormatterEnabledParameterType = definedExternally, callback: (err: Error?) -> Unit = definedExternally)
     open fun post(method: String /* "Runtime.compileScript" */, params: inspector.Runtime.CompileScriptParameterType = definedExternally, callback: (err: Error?, params: inspector.Runtime.CompileScriptReturnType) -> Unit = definedExternally)
@@ -108,7 +108,7 @@ external open class Session : EventEmitter {
     open fun addListener(event: String /* "inspectorNotification" */, listener: (message: InspectorNotification<Any>) -> Unit): Session /* this */
     open fun addListener(event: String /* "Runtime.executionContextCreated" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextCreatedEventDataType>) -> Unit): Session /* this */
     open fun addListener(event: String /* "Runtime.executionContextDestroyed" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextDestroyedEventDataType>) -> Unit): Session /* this */
-    open fun addListener(event: String, listener: () -> Unit): Session /* this */
+    open fun addListener(event: String /* "Runtime.executionContextsCleared" | "Debugger.resumed" | "HeapProfiler.resetProfiles" | "NodeTracing.tracingComplete" | "NodeRuntime.waitingForDisconnect" */, listener: () -> Unit): Session /* this */
     open fun addListener(event: String /* "Runtime.exceptionThrown" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionThrownEventDataType>) -> Unit): Session /* this */
     open fun addListener(event: String /* "Runtime.exceptionRevoked" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionRevokedEventDataType>) -> Unit): Session /* this */
     open fun addListener(event: String /* "Runtime.consoleAPICalled" */, listener: (message: InspectorNotification<inspector.Runtime.ConsoleAPICalledEventDataType>) -> Unit): Session /* this */
@@ -129,10 +129,11 @@ external open class Session : EventEmitter {
     open fun addListener(event: String /* "NodeWorker.detachedFromWorker" */, listener: (message: InspectorNotification<inspector.NodeWorker.DetachedFromWorkerEventDataType>) -> Unit): Session /* this */
     open fun addListener(event: String /* "NodeWorker.receivedMessageFromWorker" */, listener: (message: InspectorNotification<inspector.NodeWorker.ReceivedMessageFromWorkerEventDataType>) -> Unit): Session /* this */
     override fun emit(event: String, vararg args: Any): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "inspectorNotification" */, message: InspectorNotification<Any>): Boolean
     open fun emit(event: String /* "Runtime.executionContextCreated" */, message: InspectorNotification<inspector.Runtime.ExecutionContextCreatedEventDataType>): Boolean
     open fun emit(event: String /* "Runtime.executionContextDestroyed" */, message: InspectorNotification<inspector.Runtime.ExecutionContextDestroyedEventDataType>): Boolean
-    open fun emit(event: String): Boolean
+    open fun emit(event: String /* "Runtime.executionContextsCleared" | "Debugger.resumed" | "HeapProfiler.resetProfiles" | "NodeTracing.tracingComplete" | "NodeRuntime.waitingForDisconnect" */): Boolean
     open fun emit(event: String /* "Runtime.exceptionThrown" */, message: InspectorNotification<inspector.Runtime.ExceptionThrownEventDataType>): Boolean
     open fun emit(event: String /* "Runtime.exceptionRevoked" */, message: InspectorNotification<inspector.Runtime.ExceptionRevokedEventDataType>): Boolean
     open fun emit(event: String /* "Runtime.consoleAPICalled" */, message: InspectorNotification<inspector.Runtime.ConsoleAPICalledEventDataType>): Boolean
@@ -152,12 +153,11 @@ external open class Session : EventEmitter {
     open fun emit(event: String /* "NodeWorker.attachedToWorker" */, message: InspectorNotification<inspector.NodeWorker.AttachedToWorkerEventDataType>): Boolean
     open fun emit(event: String /* "NodeWorker.detachedFromWorker" */, message: InspectorNotification<inspector.NodeWorker.DetachedFromWorkerEventDataType>): Boolean
     open fun emit(event: String /* "NodeWorker.receivedMessageFromWorker" */, message: InspectorNotification<inspector.NodeWorker.ReceivedMessageFromWorkerEventDataType>): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Session /* this */
     open fun on(event: String /* "inspectorNotification" */, listener: (message: InspectorNotification<Any>) -> Unit): Session /* this */
     open fun on(event: String /* "Runtime.executionContextCreated" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextCreatedEventDataType>) -> Unit): Session /* this */
     open fun on(event: String /* "Runtime.executionContextDestroyed" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextDestroyedEventDataType>) -> Unit): Session /* this */
-    open fun on(event: String, listener: () -> Unit): Session /* this */
+    open fun on(event: String /* "Runtime.executionContextsCleared" | "Debugger.resumed" | "HeapProfiler.resetProfiles" | "NodeTracing.tracingComplete" | "NodeRuntime.waitingForDisconnect" */, listener: () -> Unit): Session /* this */
     open fun on(event: String /* "Runtime.exceptionThrown" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionThrownEventDataType>) -> Unit): Session /* this */
     open fun on(event: String /* "Runtime.exceptionRevoked" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionRevokedEventDataType>) -> Unit): Session /* this */
     open fun on(event: String /* "Runtime.consoleAPICalled" */, listener: (message: InspectorNotification<inspector.Runtime.ConsoleAPICalledEventDataType>) -> Unit): Session /* this */
@@ -181,7 +181,7 @@ external open class Session : EventEmitter {
     open fun once(event: String /* "inspectorNotification" */, listener: (message: InspectorNotification<Any>) -> Unit): Session /* this */
     open fun once(event: String /* "Runtime.executionContextCreated" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextCreatedEventDataType>) -> Unit): Session /* this */
     open fun once(event: String /* "Runtime.executionContextDestroyed" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextDestroyedEventDataType>) -> Unit): Session /* this */
-    open fun once(event: String, listener: () -> Unit): Session /* this */
+    open fun once(event: String /* "Runtime.executionContextsCleared" | "Debugger.resumed" | "HeapProfiler.resetProfiles" | "NodeTracing.tracingComplete" | "NodeRuntime.waitingForDisconnect" */, listener: () -> Unit): Session /* this */
     open fun once(event: String /* "Runtime.exceptionThrown" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionThrownEventDataType>) -> Unit): Session /* this */
     open fun once(event: String /* "Runtime.exceptionRevoked" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionRevokedEventDataType>) -> Unit): Session /* this */
     open fun once(event: String /* "Runtime.consoleAPICalled" */, listener: (message: InspectorNotification<inspector.Runtime.ConsoleAPICalledEventDataType>) -> Unit): Session /* this */
@@ -205,7 +205,7 @@ external open class Session : EventEmitter {
     open fun prependListener(event: String /* "inspectorNotification" */, listener: (message: InspectorNotification<Any>) -> Unit): Session /* this */
     open fun prependListener(event: String /* "Runtime.executionContextCreated" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextCreatedEventDataType>) -> Unit): Session /* this */
     open fun prependListener(event: String /* "Runtime.executionContextDestroyed" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextDestroyedEventDataType>) -> Unit): Session /* this */
-    open fun prependListener(event: String, listener: () -> Unit): Session /* this */
+    open fun prependListener(event: String /* "Runtime.executionContextsCleared" | "Debugger.resumed" | "HeapProfiler.resetProfiles" | "NodeTracing.tracingComplete" | "NodeRuntime.waitingForDisconnect" */, listener: () -> Unit): Session /* this */
     open fun prependListener(event: String /* "Runtime.exceptionThrown" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionThrownEventDataType>) -> Unit): Session /* this */
     open fun prependListener(event: String /* "Runtime.exceptionRevoked" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionRevokedEventDataType>) -> Unit): Session /* this */
     open fun prependListener(event: String /* "Runtime.consoleAPICalled" */, listener: (message: InspectorNotification<inspector.Runtime.ConsoleAPICalledEventDataType>) -> Unit): Session /* this */
@@ -229,7 +229,7 @@ external open class Session : EventEmitter {
     open fun prependOnceListener(event: String /* "inspectorNotification" */, listener: (message: InspectorNotification<Any>) -> Unit): Session /* this */
     open fun prependOnceListener(event: String /* "Runtime.executionContextCreated" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextCreatedEventDataType>) -> Unit): Session /* this */
     open fun prependOnceListener(event: String /* "Runtime.executionContextDestroyed" */, listener: (message: InspectorNotification<inspector.Runtime.ExecutionContextDestroyedEventDataType>) -> Unit): Session /* this */
-    open fun prependOnceListener(event: String, listener: () -> Unit): Session /* this */
+    open fun prependOnceListener(event: String /* "Runtime.executionContextsCleared" | "Debugger.resumed" | "HeapProfiler.resetProfiles" | "NodeTracing.tracingComplete" | "NodeRuntime.waitingForDisconnect" */, listener: () -> Unit): Session /* this */
     open fun prependOnceListener(event: String /* "Runtime.exceptionThrown" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionThrownEventDataType>) -> Unit): Session /* this */
     open fun prependOnceListener(event: String /* "Runtime.exceptionRevoked" */, listener: (message: InspectorNotification<inspector.Runtime.ExceptionRevokedEventDataType>) -> Unit): Session /* this */
     open fun prependOnceListener(event: String /* "Runtime.consoleAPICalled" */, listener: (message: InspectorNotification<inspector.Runtime.ConsoleAPICalledEventDataType>) -> Unit): Session /* this */

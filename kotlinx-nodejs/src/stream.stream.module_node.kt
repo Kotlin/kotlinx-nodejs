@@ -18,17 +18,16 @@ import org.w3c.xhr.*
 import NodeJS.`T$2`
 import NodeJS.WritableStream
 import NodeJS.ReadableStream
+import tsstdlib.Iterable
+import AsyncIterable
 import events.EventEmitter.EventEmitter
 import NodeJS.ErrnoException
 import NodeJS.ReadWriteStream
 
 typealias TransformCallback = (error: Error?, data: Any) -> Unit
 
-
 @JsModule("stream")
 external open class internal : EventEmitter {
-    open fun <T : WritableStream> pipe(destination: T, options: `T$2` = definedExternally): T
-
     companion object {
         fun finished(stream: ReadableStream, options: FinishedOptions, callback: (err: ErrnoException?) -> Unit): () -> Unit
         fun finished(stream: WritableStream, options: FinishedOptions, callback: (err: ErrnoException?) -> Unit): () -> Unit
@@ -48,5 +47,4 @@ external open class internal : EventEmitter {
         fun pipeline(stream1: ReadableStream, stream2: WritableStream, vararg streams: WritableStream): WritableStream
         fun pipeline(stream1: ReadableStream, stream2: WritableStream, vararg streams: (err: ErrnoException?) -> Unit): WritableStream
     }
-
 }

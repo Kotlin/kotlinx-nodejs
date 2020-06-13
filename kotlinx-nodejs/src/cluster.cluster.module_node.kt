@@ -76,39 +76,39 @@ external open class Worker : EventEmitter {
     open fun isDead(): Boolean
     open var exitedAfterDisconnect: Boolean
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
-    open fun addListener(event: String, listener: () -> Unit): Worker /* this */
+    open fun addListener(event: String /* "disconnect" | "online" */, listener: () -> Unit): Worker /* this */
     open fun addListener(event: String /* "error" */, listener: (error: Error) -> Unit): Worker /* this */
     open fun addListener(event: String /* "exit" */, listener: (code: Number, signal: String) -> Unit): Worker /* this */
     open fun addListener(event: String /* "listening" */, listener: (address: Address) -> Unit): Worker /* this */
     open fun addListener(event: String /* "message" */, listener: (message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Worker /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    open fun emit(event: String): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
+    open fun emit(event: String /* "disconnect" | "online" */): Boolean
     open fun emit(event: String /* "error" */, error: Error): Boolean
     open fun emit(event: String /* "exit" */, code: Number, signal: String): Boolean
     open fun emit(event: String /* "listening" */, address: Address): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     open fun emit(event: String /* "message" */, message: Any, handle: Socket): Boolean
     open fun emit(event: String /* "message" */, message: Any, handle: Server): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
-    open fun on(event: String, listener: () -> Unit): Worker /* this */
+    open fun on(event: String /* "disconnect" | "online" */, listener: () -> Unit): Worker /* this */
     open fun on(event: String /* "error" */, listener: (error: Error) -> Unit): Worker /* this */
     open fun on(event: String /* "exit" */, listener: (code: Number, signal: String) -> Unit): Worker /* this */
     open fun on(event: String /* "listening" */, listener: (address: Address) -> Unit): Worker /* this */
     open fun on(event: String /* "message" */, listener: (message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Worker /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
-    open fun once(event: String, listener: () -> Unit): Worker /* this */
+    open fun once(event: String /* "disconnect" | "online" */, listener: () -> Unit): Worker /* this */
     open fun once(event: String /* "error" */, listener: (error: Error) -> Unit): Worker /* this */
     open fun once(event: String /* "exit" */, listener: (code: Number, signal: String) -> Unit): Worker /* this */
     open fun once(event: String /* "listening" */, listener: (address: Address) -> Unit): Worker /* this */
     open fun once(event: String /* "message" */, listener: (message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Worker /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
-    open fun prependListener(event: String, listener: () -> Unit): Worker /* this */
+    open fun prependListener(event: String /* "disconnect" | "online" */, listener: () -> Unit): Worker /* this */
     open fun prependListener(event: String /* "error" */, listener: (error: Error) -> Unit): Worker /* this */
     open fun prependListener(event: String /* "exit" */, listener: (code: Number, signal: String) -> Unit): Worker /* this */
     open fun prependListener(event: String /* "listening" */, listener: (address: Address) -> Unit): Worker /* this */
     open fun prependListener(event: String /* "message" */, listener: (message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Worker /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): Worker /* this */
-    open fun prependOnceListener(event: String, listener: () -> Unit): Worker /* this */
+    open fun prependOnceListener(event: String /* "disconnect" | "online" */, listener: () -> Unit): Worker /* this */
     open fun prependOnceListener(event: String /* "error" */, listener: (error: Error) -> Unit): Worker /* this */
     open fun prependOnceListener(event: String /* "exit" */, listener: (code: Number, signal: String) -> Unit): Worker /* this */
     open fun prependOnceListener(event: String /* "listening" */, listener: (address: Address) -> Unit): Worker /* this */
@@ -137,39 +137,39 @@ external interface Cluster : EventEmitter {
     var SCHED_NONE: Number
     var SCHED_RR: Number
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Cluster /* this */
-    fun addListener(event: String, listener: (worker: Worker) -> Unit): Cluster /* this */
+    fun addListener(event: String /* "disconnect" | "fork" | "online" */, listener: (worker: Worker) -> Unit): Cluster /* this */
     fun addListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster /* this */
     fun addListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster /* this */
     fun addListener(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster /* this */
     fun addListener(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    fun emit(event: String, worker: Worker): Boolean
+    override fun emit(event: Any, vararg args: Any): Boolean
+    fun emit(event: String /* "disconnect" | "fork" | "online" */, worker: Worker): Boolean
     fun emit(event: String /* "exit" */, worker: Worker, code: Number, signal: String): Boolean
     fun emit(event: String /* "listening" */, worker: Worker, address: Address): Boolean
     fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Socket): Boolean
     fun emit(event: String /* "message" */, worker: Worker, message: Any, handle: Server): Boolean
     fun emit(event: String /* "setup" */, settings: ClusterSettings): Boolean
-    override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Cluster /* this */
-    fun on(event: String, listener: (worker: Worker) -> Unit): Cluster /* this */
+    fun on(event: String /* "disconnect" | "fork" | "online" */, listener: (worker: Worker) -> Unit): Cluster /* this */
     fun on(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster /* this */
     fun on(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster /* this */
     fun on(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster /* this */
     fun on(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): Cluster /* this */
-    fun once(event: String, listener: (worker: Worker) -> Unit): Cluster /* this */
+    fun once(event: String /* "disconnect" | "fork" | "online" */, listener: (worker: Worker) -> Unit): Cluster /* this */
     fun once(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster /* this */
     fun once(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster /* this */
     fun once(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster /* this */
     fun once(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): Cluster /* this */
-    fun prependListener(event: String, listener: (worker: Worker) -> Unit): Cluster /* this */
+    fun prependListener(event: String /* "disconnect" | "fork" | "online" */, listener: (worker: Worker) -> Unit): Cluster /* this */
     fun prependListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster /* this */
     fun prependListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster /* this */
     fun prependListener(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster /* this */
     fun prependListener(event: String /* "setup" */, listener: (settings: ClusterSettings) -> Unit): Cluster /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): Cluster /* this */
-    fun prependOnceListener(event: String, listener: (worker: Worker) -> Unit): Cluster /* this */
+    fun prependOnceListener(event: String /* "disconnect" | "fork" | "online" */, listener: (worker: Worker) -> Unit): Cluster /* this */
     fun prependOnceListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster /* this */
     fun prependOnceListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster /* this */
     fun prependOnceListener(event: String /* "message" */, listener: (worker: Worker, message: Any, handle: dynamic /* net.Socket | net.Server */) -> Unit): Cluster /* this */

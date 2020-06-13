@@ -56,23 +56,23 @@ external open class Interface(options: ReadLineOptions) : EventEmitter {
     open fun write(data: Buffer, key: Key = definedExternally)
     open fun getCursorPos(): CursorPos
     override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Interface /* this */
-    open fun addListener(event: String, listener: () -> Unit): Interface /* this */
+    open fun addListener(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" */, listener: () -> Unit): Interface /* this */
     open fun addListener(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */
     override fun emit(event: String, vararg args: Any): Boolean
-    open fun emit(event: String): Boolean
-    open fun emit(event: String /* "line" */, input: String): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
+    open fun emit(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" */): Boolean
+    open fun emit(event: String /* "line" */, input: String): Boolean
     override fun on(event: String, listener: (args: Array<Any>) -> Unit): Interface /* this */
-    open fun on(event: String, listener: () -> Unit): Interface /* this */
+    open fun on(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" */, listener: () -> Unit): Interface /* this */
     open fun on(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */
     override fun once(event: String, listener: (args: Array<Any>) -> Unit): Interface /* this */
-    open fun once(event: String, listener: () -> Unit): Interface /* this */
+    open fun once(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" */, listener: () -> Unit): Interface /* this */
     open fun once(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */
     override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): Interface /* this */
-    open fun prependListener(event: String, listener: () -> Unit): Interface /* this */
+    open fun prependListener(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" */, listener: () -> Unit): Interface /* this */
     open fun prependListener(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */
     override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): Interface /* this */
-    open fun prependOnceListener(event: String, listener: () -> Unit): Interface /* this */
+    open fun prependOnceListener(event: String /* "close" | "pause" | "resume" | "SIGCONT" | "SIGINT" | "SIGTSTP" */, listener: () -> Unit): Interface /* this */
     open fun prependOnceListener(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */
 }
 
@@ -120,7 +120,9 @@ external interface CursorPos {
     var cols: Number
 }
 
-external fun clearLine(stream: WritableStream, dir: String /* -1 | 0 | 1 */, callback: () -> Unit = definedExternally): Boolean
+external fun clearLine(stream: WritableStream, dir: String /* -1 */, callback: () -> Unit = definedExternally): Boolean
+
+external fun clearLine(stream: WritableStream, dir: Number /* 1 */, callback: () -> Unit = definedExternally): Boolean
 
 external fun clearScreenDown(stream: WritableStream, callback: () -> Unit = definedExternally): Boolean
 

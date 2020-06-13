@@ -22,7 +22,7 @@ import fs.write.`T$40`
 import fs.write.`T$41`
 import child_process.`T$16`
 
-external interface `T$52` {
+external interface `T$53` {
     var encoding: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -34,7 +34,7 @@ external interface `T$52` {
         set(value) = definedExternally
 }
 
-external interface `T$53` {
+external interface `T$54` {
     var encoding: Any?
         get() = definedExternally
         set(value) = definedExternally
@@ -43,14 +43,14 @@ external interface `T$53` {
         set(value) = definedExternally
 }
 
-external interface `T$54` {
+external interface `T$55` {
     var encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */
     var flag: dynamic /* String? | Number? */
         get() = definedExternally
         set(value) = definedExternally
 }
 
-external interface `T$55` {
+external interface `T$56` {
     var encoding: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -61,7 +61,7 @@ external interface `T$55` {
 
 external interface FileHandle {
     var fd: Number
-    fun appendFile(data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+    fun appendFile(data: Any, options: `T$53`? = definedExternally): Promise<Unit>
     fun appendFile(data: Any, options: String? = definedExternally): Promise<Unit>
     fun chown(uid: Number, gid: Number): Promise<Unit>
     fun chmod(mode: String): Promise<Unit>
@@ -69,10 +69,10 @@ external interface FileHandle {
     fun datasync(): Promise<Unit>
     fun sync(): Promise<Unit>
     fun <TBuffer : Uint8Array> read(buffer: TBuffer, offset: Number? = definedExternally, length: Number? = definedExternally, position: Number? = definedExternally): Promise<`T$42`<TBuffer>>
-    fun readFile(options: `T$53` = definedExternally): Promise<Buffer>
-    fun readFile(options: `T$54`): Promise<String>
+    fun readFile(options: `T$54` = definedExternally): Promise<Buffer>
+    fun readFile(options: `T$55`): Promise<String>
     fun readFile(options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */): Promise<String>
-    fun readFile(options: `T$55`? = definedExternally): Promise<dynamic /* String | Buffer */>
+    fun readFile(options: `T$56`? = definedExternally): Promise<dynamic /* String | Buffer */>
     fun readFile(options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
     fun stat(): Promise<fs.Stats>
     fun truncate(len: Number = definedExternally): Promise<Unit>
@@ -87,7 +87,7 @@ external interface FileHandle {
     fun utimes(atime: Date, mtime: Date): Promise<Unit>
     fun <TBuffer : Uint8Array> write(buffer: TBuffer, offset: Number? = definedExternally, length: Number? = definedExternally, position: Number? = definedExternally): Promise<`T$40`<TBuffer>>
     fun write(data: Any, position: Number? = definedExternally, encoding: String? = definedExternally): Promise<`T$41`>
-    fun writeFile(data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+    fun writeFile(data: Any, options: `T$53`? = definedExternally): Promise<Unit>
     fun writeFile(data: Any, options: String? = definedExternally): Promise<Unit>
     fun writev(buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>, position: Number = definedExternally): Promise<fs.WriteVResult>
     fun readv(buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>, position: Number = definedExternally): Promise<fs.ReadVResult>
@@ -211,7 +211,7 @@ external fun mkdir(path: URL, options: String? = definedExternally): Promise<Str
 
 external fun mkdir(path: URL, options: fs.MakeDirectoryOptions? = definedExternally): Promise<String?>
 
-external interface `T$56` {
+external interface `T$57` {
     var encoding: String? /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */
         get() = definedExternally
         set(value) = definedExternally
@@ -220,11 +220,11 @@ external interface `T$56` {
         set(value) = definedExternally
 }
 
-external fun readdir(path: String, options: `T$56`? = definedExternally): Promise<Array<String>>
+external fun readdir(path: String, options: `T$57`? = definedExternally): Promise<Array<String>>
 
-external fun readdir(path: Buffer, options: `T$56`? = definedExternally): Promise<Array<String>>
+external fun readdir(path: Buffer, options: `T$57`? = definedExternally): Promise<Array<String>>
 
-external fun readdir(path: URL, options: `T$56`? = definedExternally): Promise<Array<String>>
+external fun readdir(path: URL, options: `T$57`? = definedExternally): Promise<Array<String>>
 
 external fun readdir(path: String, options: fs.`T$37`): Promise<Array<Buffer>>
 
@@ -271,6 +271,8 @@ external fun readlink(path: Buffer, options: fs.`T$33`): Promise<Buffer>
 external fun readlink(path: Buffer, options: String /* "buffer" */): Promise<Buffer>
 
 external fun readlink(path: URL, options: fs.`T$33`): Promise<Buffer>
+
+external fun readlink(path: URL, options: String /* "buffer" */): Promise<Buffer>
 
 external fun readlink(path: String, options: `T$16`? = definedExternally): Promise<dynamic /* String | Buffer */>
 
@@ -458,75 +460,75 @@ external fun mkdtemp(prefix: String, options: `T$16`? = definedExternally): Prom
 
 external fun mkdtemp(prefix: String, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
 
-external fun writeFile(path: String, data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+external fun writeFile(path: String, data: Any, options: `T$53`? = definedExternally): Promise<Unit>
 
 external fun writeFile(path: String, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun writeFile(path: Buffer, data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+external fun writeFile(path: Buffer, data: Any, options: `T$53`? = definedExternally): Promise<Unit>
 
 external fun writeFile(path: Buffer, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun writeFile(path: URL, data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+external fun writeFile(path: URL, data: Any, options: `T$53`? = definedExternally): Promise<Unit>
 
 external fun writeFile(path: URL, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun writeFile(path: FileHandle, data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+external fun writeFile(path: FileHandle, data: Any, options: `T$53`? = definedExternally): Promise<Unit>
 
 external fun writeFile(path: FileHandle, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun appendFile(path: String, data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+external fun appendFile(path: String, data: Any, options: `T$53`? = definedExternally): Promise<Unit>
 
 external fun appendFile(path: String, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun appendFile(path: Buffer, data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+external fun appendFile(path: Buffer, data: Any, options: `T$53`? = definedExternally): Promise<Unit>
 
 external fun appendFile(path: Buffer, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun appendFile(path: URL, data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+external fun appendFile(path: URL, data: Any, options: `T$53`? = definedExternally): Promise<Unit>
 
 external fun appendFile(path: URL, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun appendFile(path: FileHandle, data: Any, options: `T$52`? = definedExternally): Promise<Unit>
+external fun appendFile(path: FileHandle, data: Any, options: `T$53`? = definedExternally): Promise<Unit>
 
 external fun appendFile(path: FileHandle, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun readFile(path: String, options: `T$53` = definedExternally): Promise<Buffer>
+external fun readFile(path: String, options: `T$54` = definedExternally): Promise<Buffer>
 
-external fun readFile(path: Buffer, options: `T$53` = definedExternally): Promise<Buffer>
+external fun readFile(path: Buffer, options: `T$54` = definedExternally): Promise<Buffer>
 
-external fun readFile(path: URL, options: `T$53` = definedExternally): Promise<Buffer>
+external fun readFile(path: URL, options: `T$54` = definedExternally): Promise<Buffer>
 
-external fun readFile(path: FileHandle, options: `T$53` = definedExternally): Promise<Buffer>
+external fun readFile(path: FileHandle, options: `T$54` = definedExternally): Promise<Buffer>
 
-external fun readFile(path: String, options: `T$54`): Promise<String>
+external fun readFile(path: String, options: `T$55`): Promise<String>
 
 external fun readFile(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */): Promise<String>
 
-external fun readFile(path: Buffer, options: `T$54`): Promise<String>
+external fun readFile(path: Buffer, options: `T$55`): Promise<String>
 
 external fun readFile(path: Buffer, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */): Promise<String>
 
-external fun readFile(path: URL, options: `T$54`): Promise<String>
+external fun readFile(path: URL, options: `T$55`): Promise<String>
 
 external fun readFile(path: URL, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */): Promise<String>
 
-external fun readFile(path: FileHandle, options: `T$54`): Promise<String>
+external fun readFile(path: FileHandle, options: `T$55`): Promise<String>
 
 external fun readFile(path: FileHandle, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */): Promise<String>
 
-external fun readFile(path: String, options: `T$55`? = definedExternally): Promise<dynamic /* String | Buffer */>
+external fun readFile(path: String, options: `T$56`? = definedExternally): Promise<dynamic /* String | Buffer */>
 
 external fun readFile(path: String, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
 
-external fun readFile(path: Buffer, options: `T$55`? = definedExternally): Promise<dynamic /* String | Buffer */>
+external fun readFile(path: Buffer, options: `T$56`? = definedExternally): Promise<dynamic /* String | Buffer */>
 
 external fun readFile(path: Buffer, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
 
-external fun readFile(path: URL, options: `T$55`? = definedExternally): Promise<dynamic /* String | Buffer */>
+external fun readFile(path: URL, options: `T$56`? = definedExternally): Promise<dynamic /* String | Buffer */>
 
 external fun readFile(path: URL, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
 
-external fun readFile(path: FileHandle, options: `T$55`? = definedExternally): Promise<dynamic /* String | Buffer */>
+external fun readFile(path: FileHandle, options: `T$56`? = definedExternally): Promise<dynamic /* String | Buffer */>
 
 external fun readFile(path: FileHandle, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
 

@@ -23,6 +23,8 @@ external fun isArgumentsObject(obj: Any): Boolean
 
 external fun isArrayBuffer(obj: Any): Boolean
 
+external fun isArrayBufferView(obj: Any): Boolean
+
 external fun isAsyncFunction(obj: Any): Boolean
 
 external fun isBooleanObject(obj: Any): Boolean

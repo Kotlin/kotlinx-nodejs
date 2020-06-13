@@ -22,13 +22,13 @@ import NodeJS.ErrnoException
 
 external fun __promisify__(path: String, options: fs.`T$32`? = definedExternally): Promise<String>
 
-external fun __promisify__(path: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
-
 external fun __promisify__(path: Buffer, options: fs.`T$32`? = definedExternally): Promise<String>
 
 external fun __promisify__(path: URL, options: fs.`T$32`? = definedExternally): Promise<String>
 
 external fun __promisify__(path: String, options: fs.`T$33`): Promise<Buffer>
+
+external fun __promisify__(path: String, options: String /* "buffer" */): Promise<Buffer>
 
 external fun __promisify__(path: Buffer, options: fs.`T$33`): Promise<Buffer>
 

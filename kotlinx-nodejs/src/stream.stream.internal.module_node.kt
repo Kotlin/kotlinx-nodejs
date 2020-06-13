@@ -5,6 +5,7 @@ package stream
 import AsyncIterable
 import NodeJS.ReadableStream
 import NodeJS.WritableStream
+import NodeJS.`T$2`
 import events.EventEmitter.EventEmitter
 import org.khronos.webgl.Uint8Array
 import tsstdlib.Iterable
@@ -88,6 +89,7 @@ external open class Readable(opts: ReadableOptions = definedExternally) : Stream
     override fun removeAllListeners(event: String): EventEmitter
     override fun removeAllListeners(event: Any): EventEmitter
     override fun removeAllListeners(): EventEmitter
+    override fun <T : WritableStream> pipe(destination: T, options: `T$2`): T
 
     companion object {
         fun from(iterable: Iterable<Any>, options: ReadableOptions = definedExternally): Readable
