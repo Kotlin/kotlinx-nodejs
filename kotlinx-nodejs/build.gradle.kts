@@ -50,8 +50,8 @@ bintray {
     key = System.getenv("BINTRAY_API_KEY")
     publish = true
     setPublications("maven")
-    pkg(delegateClosureOf<com.jfrog.bintray.gradle.BintrayExtension.PackageConfig> {
-        repo = "kotlin-dev"
+    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
+        repo = "kotlinx"
         name = "kotlinx.nodejs"
         userOrg = "kotlin"
         setLicenses("Apache-2.0")
