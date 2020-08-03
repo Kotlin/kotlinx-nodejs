@@ -6,7 +6,7 @@
 
 `kotlinx-nodejs` provides Kotlin [external declarations](https://kotlinlang.org/docs/reference/js-interop.html) for using the [Node.js API](https://nodejs.org/docs/latest/api/) from Kotlin code targeting JavaScript. 
 
-## We're currently in preview!
+## We're currently [experimental](https://kotlinlang.org/docs/reference/evolution/components-stability.html)!
 **Right now the only thing we guarantee is that the provided source set is compiling.** There can be, unfortunately, 
 some inconsistent, missing, redundant, or even unusable declarations.
  
