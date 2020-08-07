@@ -1,4 +1,6 @@
 import com.jfrog.bintray.gradle.BintrayExtension
+import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
+import org.gradle.api.publish.maven.internal.artifact.FileBasedMavenArtifact
 
 plugins {
     id("org.jetbrains.kotlin.js")
@@ -42,6 +44,21 @@ publishing {
             from(components["kotlin"])
             artifact(sourcesJar.get())
         }
+    }
+}
+
+tasks.withType<BintrayUploadTask> {
+    doFirst {
+        publishing.publications
+                .filterIsInstance<MavenPublication>()
+                .forEach { publication ->
+                    val moduleFile = buildDir.resolve("publications/${publication.name}/module.json")
+                    if (moduleFile.exists()) {
+                        publication.artifact(object : FileBasedMavenArtifact(moduleFile) {
+                            override fun getDefaultExtension() = "module"
+                        })
+                    }
+                }
     }
 }
 
