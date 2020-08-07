@@ -66,7 +66,6 @@ bintray {
     user = System.getenv("BINTRAY_USER")
     key = System.getenv("BINTRAY_API_KEY")
     publish = true
-    override = true
     setPublications("maven")
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
         repo = "kotlinx"
