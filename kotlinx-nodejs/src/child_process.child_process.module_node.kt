@@ -1,6 +1,6 @@
 @file:JsModule("child_process")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package child_process
 
 import kotlin.js.*
@@ -17,9 +17,9 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import stream.Writable
-import stream.Readable
-import stream.Pipe
+import stream.internal.Writable
+import stream.internal.Readable
+import stream.internal.Pipe
 import net.Socket
 import net.Server
 import events.EventEmitter.EventEmitter
@@ -43,66 +43,64 @@ external interface ChildProcess : EventEmitter {
     var signalCode: Number?
     var spawnargs: Array<String>
     var spawnfile: String
-    fun kill(signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */ = definedExternally): Boolean
-    fun kill(signal: Number = definedExternally): Boolean
-    fun send(message: String, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun kill(signal: dynamic /* String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | Number */ = definedExternally): Boolean
+    fun send(message: String?, callback: (error: Error?) -> Unit = definedExternally): Boolean
     fun send(message: Any?, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Number, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Boolean, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: String, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: String, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Number?, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Boolean?, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: String?, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: String?, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
     fun send(message: Any?, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
     fun send(message: Any?, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Number, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Number, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Boolean, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Boolean, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: String, sendHandle: Socket = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: String, sendHandle: Server = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Number?, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Number?, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Boolean?, sendHandle: Socket = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Boolean?, sendHandle: Server = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: String?, sendHandle: Socket = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: String?, sendHandle: Server = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
     fun send(message: Any?, sendHandle: Socket = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
     fun send(message: Any?, sendHandle: Server = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Number, sendHandle: Socket = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Number, sendHandle: Server = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Boolean, sendHandle: Socket = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
-    fun send(message: Boolean, sendHandle: Server = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Number?, sendHandle: Socket = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Number?, sendHandle: Server = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Boolean?, sendHandle: Socket = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
+    fun send(message: Boolean?, sendHandle: Server = definedExternally, options: MessageOptions = definedExternally, callback: (error: Error?) -> Unit = definedExternally): Boolean
     fun disconnect()
     fun unref()
     fun ref()
-    override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
-    fun addListener(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
+    override fun addListener(event: String, listener: (args: Any) -> Unit): ChildProcess /* this */
     fun addListener(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
+    fun addListener(event: String /* "message" */, listener: (message: dynamic /* String? | Any? | Number? | Boolean? */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     fun emit(event: String /* "close" */, code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */): Boolean
     fun emit(event: String /* "disconnect" */): Boolean
     fun emit(event: String /* "error" */, err: Error): Boolean
     fun emit(event: String /* "exit" */, code: Number?, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */): Boolean
-    fun emit(event: String /* "message" */, message: String, sendHandle: Socket): Boolean
-    fun emit(event: String /* "message" */, message: String, sendHandle: Server): Boolean
+    fun emit(event: String /* "message" */, message: String?, sendHandle: Socket): Boolean
+    fun emit(event: String /* "message" */, message: String?, sendHandle: Server): Boolean
     fun emit(event: String /* "message" */, message: Any?, sendHandle: Socket): Boolean
     fun emit(event: String /* "message" */, message: Any?, sendHandle: Server): Boolean
-    fun emit(event: String /* "message" */, message: Number, sendHandle: Socket): Boolean
-    fun emit(event: String /* "message" */, message: Number, sendHandle: Server): Boolean
-    fun emit(event: String /* "message" */, message: Boolean, sendHandle: Socket): Boolean
-    fun emit(event: String /* "message" */, message: Boolean, sendHandle: Server): Boolean
-    override fun on(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
-    fun on(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
+    fun emit(event: String /* "message" */, message: Number?, sendHandle: Socket): Boolean
+    fun emit(event: String /* "message" */, message: Number?, sendHandle: Server): Boolean
+    fun emit(event: String /* "message" */, message: Boolean?, sendHandle: Socket): Boolean
+    fun emit(event: String /* "message" */, message: Boolean?, sendHandle: Server): Boolean
+    override fun on(event: String, listener: (args: Any) -> Unit): ChildProcess /* this */
     fun on(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun on(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
-    override fun once(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
-    fun once(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
+    fun on(event: String /* "message" */, listener: (message: dynamic /* String? | Any? | Number? | Boolean? */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
+    override fun once(event: String, listener: (args: Any) -> Unit): ChildProcess /* this */
     fun once(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun once(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
-    override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
-    fun prependListener(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
+    fun once(event: String /* "message" */, listener: (message: dynamic /* String? | Any? | Number? | Boolean? */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
+    override fun prependListener(event: String, listener: (args: Any) -> Unit): ChildProcess /* this */
     fun prependListener(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
-    override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): ChildProcess /* this */
-    fun prependOnceListener(event: String /* "close" */, listener: (code: Number, signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit): ChildProcess /* this */
+    fun prependListener(event: String /* "message" */, listener: (message: dynamic /* String? | Any? | Number? | Boolean? */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
+    override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): ChildProcess /* this */
     fun prependOnceListener(event: String /* "disconnect" */, listener: () -> Unit): ChildProcess /* this */
     fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): ChildProcess /* this */
-    fun kill(): Boolean
+    fun prependOnceListener(event: String /* "message" */, listener: (message: dynamic /* String? | Any? | Number? | Boolean? */, sendHandle: dynamic /* net.Socket | net.Server */) -> Unit): ChildProcess /* this */
 }
 
 external interface ChildProcessWithoutNullStreams : ChildProcess {
@@ -124,7 +122,7 @@ external interface MessageOptions {
 }
 
 external interface MessagingOptions {
-    var serialization: String? /* 'json' | 'advanced' */
+    var serialization: String? /* "json" | "advanced" */
         get() = definedExternally
         set(value) = definedExternally
 }
@@ -157,7 +155,7 @@ external interface CommonSpawnOptions : CommonOptions, MessagingOptions {
     var argv0: String?
         get() = definedExternally
         set(value) = definedExternally
-    var stdio: dynamic /* String | String | String | Array<dynamic /* String? | String? | String? | String? | Stream? | Number? */> */
+    var stdio: dynamic /* String | String | String | Array<dynamic /* String | String | String | String | Stream? | Number? */>? */
         get() = definedExternally
         set(value) = definedExternally
     var shell: dynamic /* Boolean? | String? */
@@ -175,7 +173,7 @@ external interface SpawnOptions : CommonSpawnOptions {
 }
 
 external interface SpawnOptionsWithoutStdio : SpawnOptions {
-    override var stdio: dynamic /* String? | Array<String /* 'pipe' */>? */
+    override var stdio: dynamic /* String | Array<String /* "pipe" */>? */
         get() = definedExternally
         set(value) = definedExternally
 }
@@ -188,9 +186,13 @@ external interface SpawnOptionsWithStdioTuple<Stdin, Stdout, Stderr> : SpawnOpti
 
 external fun spawn(command: String, options: SpawnOptionsWithoutStdio = definedExternally): ChildProcessWithoutNullStreams
 
+external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, dynamic /* String | String | Stream */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Nothing?, Nothing?, Nothing?>
+
 external fun spawn(command: String, options: SpawnOptions): ChildProcess
 
 external fun spawn(command: String, args: Array<String> = definedExternally, options: SpawnOptionsWithoutStdio = definedExternally): ChildProcessWithoutNullStreams
+
+external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* String | String | Stream */, dynamic /* String | String | Stream */, dynamic /* String | String | Stream */>): ChildProcessByStdio<Nothing?, Nothing?, Nothing?>
 
 external fun spawn(command: String, args: Array<String>, options: SpawnOptions): ChildProcess
 
@@ -201,7 +203,7 @@ external interface ExecOptions : CommonOptions {
     var maxBuffer: Number?
         get() = definedExternally
         set(value) = definedExternally
-    var killSignal: dynamic /* String? | Number? */
+    var killSignal: dynamic /* String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | Number? */
         get() = definedExternally
         set(value) = definedExternally
 }
@@ -252,7 +254,7 @@ external interface ExecFileOptions : CommonOptions {
     var maxBuffer: Number?
         get() = definedExternally
         set(value) = definedExternally
-    var killSignal: dynamic /* String? | Number? */
+    var killSignal: dynamic /* String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | Number? */
         get() = definedExternally
         set(value) = definedExternally
     var windowsVerbatimArguments: Boolean?
@@ -268,7 +270,7 @@ external interface ExecFileOptionsWithStringEncoding : ExecFileOptions {
 }
 
 external interface ExecFileOptionsWithBufferEncoding : ExecFileOptions {
-    var encoding: String /* 'buffer' */
+    var encoding: String /* "buffer" */
 }
 
 external interface ExecFileOptionsWithOtherEncoding : ExecFileOptions {
@@ -317,7 +319,7 @@ external interface ForkOptions : ProcessEnvOptions, MessagingOptions {
     var silent: Boolean?
         get() = definedExternally
         set(value) = definedExternally
-    var stdio: dynamic /* String | String | String | Array<dynamic /* String? | String? | String? | String? | Stream? | Number? */> */
+    var stdio: dynamic /* String | String | String | Array<dynamic /* String | String | String | String | Stream? | Number? */>? */
         get() = definedExternally
         set(value) = definedExternally
     var detached: Boolean?
@@ -334,7 +336,7 @@ external interface SpawnSyncOptions : CommonSpawnOptions {
     var input: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */
         get() = definedExternally
         set(value) = definedExternally
-    var killSignal: dynamic /* String? | Number? */
+    var killSignal: dynamic /* String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | Number? */
         get() = definedExternally
         set(value) = definedExternally
     var maxBuffer: Number?
@@ -379,13 +381,13 @@ external interface ExecSyncOptions : CommonOptions {
     var input: dynamic /* String? | Uint8Array? */
         get() = definedExternally
         set(value) = definedExternally
-    var stdio: dynamic /* String | String | String | Array<dynamic /* String? | String? | String? | String? | Stream? | Number? */> */
+    var stdio: dynamic /* String | String | String | Array<dynamic /* String | String | String | String | Stream? | Number? */>? */
         get() = definedExternally
         set(value) = definedExternally
     var shell: String?
         get() = definedExternally
         set(value) = definedExternally
-    var killSignal: dynamic /* String? | Number? */
+    var killSignal: dynamic /* String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | Number? */
         get() = definedExternally
         set(value) = definedExternally
     var maxBuffer: Number?
@@ -412,10 +414,10 @@ external interface ExecFileSyncOptions : CommonOptions {
     var input: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */
         get() = definedExternally
         set(value) = definedExternally
-    var stdio: dynamic /* String | String | String | Array<dynamic /* String? | String? | String? | String? | Stream? | Number? */> */
+    var stdio: dynamic /* String | String | String | Array<dynamic /* String | String | String | String | Stream? | Number? */>? */
         get() = definedExternally
         set(value) = definedExternally
-    var killSignal: dynamic /* String? | Number? */
+    var killSignal: dynamic /* String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | String | Number? */
         get() = definedExternally
         set(value) = definedExternally
     var maxBuffer: Number?

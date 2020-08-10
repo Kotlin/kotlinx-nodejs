@@ -1,6 +1,6 @@
 @file:JsModule("buffer")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package buffer
 
 import kotlin.js.*
@@ -32,7 +32,7 @@ external object constants {
 
 external var BuffType: Any
 
-external fun transcode(source: Uint8Array, fromEnc: String /* "ascii" | "utf8" | "utf16le" | "ucs2" | "latin1" | "binary" */, toEnc: String /* "ascii" | "utf8" | "utf16le" | "ucs2" | "latin1" | "binary" */): Buffer
+external fun transcode(source: Uint8Array, fromEnc: String /* "binary" */, toEnc: String /* "ascii" | "utf8" | "utf16le" | "ucs2" | "latin1" | "binary" */): Buffer
 
 external object SlowBuffer {
     var prototype: Buffer

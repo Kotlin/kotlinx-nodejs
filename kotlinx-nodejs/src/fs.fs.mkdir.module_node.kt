@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.mkdir")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package fs.mkdir
 
 import kotlin.js.*
@@ -16,34 +16,29 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import fs.MakeDirectoryOptions
 import Buffer
 
-external fun __promisify__(path: String, options: fs.MakeDirectoryOptions): Promise<String>
+external fun __promisify__(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally): Promise<Unit>
 
-external fun __promisify__(path: Buffer, options: fs.MakeDirectoryOptions): Promise<String>
+external fun __promisify__(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally): Promise<Unit>
 
-external fun __promisify__(path: URL, options: fs.MakeDirectoryOptions): Promise<String>
+external fun __promisify__(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: String, options: Number? = definedExternally): Promise<String?>
 
 external fun __promisify__(path: String, options: String? = definedExternally): Promise<String?>
 
-external fun __promisify__(path: String, options: fs.MakeDirectoryOptions? = definedExternally): Promise<String?>
+external fun __promisify__(path: String, options: MakeDirectoryOptions? = definedExternally): Promise<String?>
 
 external fun __promisify__(path: Buffer, options: Number? = definedExternally): Promise<String?>
 
 external fun __promisify__(path: Buffer, options: String? = definedExternally): Promise<String?>
 
-external fun __promisify__(path: Buffer, options: fs.MakeDirectoryOptions? = definedExternally): Promise<String?>
+external fun __promisify__(path: Buffer, options: MakeDirectoryOptions? = definedExternally): Promise<String?>
 
 external fun __promisify__(path: URL, options: Number? = definedExternally): Promise<String?>
 
 external fun __promisify__(path: URL, options: String? = definedExternally): Promise<String?>
 
-external fun __promisify__(path: URL, options: fs.MakeDirectoryOptions? = definedExternally): Promise<String?>
-
-external fun __promisify__(path: String): Promise<Unit>
-
-external fun __promisify__(path: Buffer): Promise<Unit>
-
-external fun __promisify__(path: URL): Promise<Unit>
+external fun __promisify__(path: URL, options: MakeDirectoryOptions? = definedExternally): Promise<String?>

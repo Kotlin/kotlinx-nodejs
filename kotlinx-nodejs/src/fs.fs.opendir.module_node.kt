@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.opendir")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package fs.opendir
 
 import kotlin.js.*
@@ -16,5 +16,7 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import fs.OpenDirOptions
+import fs.Dir
 
-external fun __promisify__(path: String, options: fs.OpenDirOptions = definedExternally): Promise<fs.Dir>
+external fun __promisify__(path: String, options: OpenDirOptions = definedExternally): Promise<Dir>

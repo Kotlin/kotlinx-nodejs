@@ -1,4 +1,4 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package NodeJS
 
 import kotlin.js.*
@@ -36,8 +36,8 @@ typealias MessageListener = (message: Any, sendHandle: Any) -> Unit
 
 typealias SignalsListener = (signal: String /* "SIGABRT" | "SIGALRM" | "SIGBUS" | "SIGCHLD" | "SIGCONT" | "SIGFPE" | "SIGHUP" | "SIGILL" | "SIGINT" | "SIGIO" | "SIGIOT" | "SIGKILL" | "SIGPIPE" | "SIGPOLL" | "SIGPROF" | "SIGPWR" | "SIGQUIT" | "SIGSEGV" | "SIGSTKFLT" | "SIGSTOP" | "SIGSYS" | "SIGTERM" | "SIGTRAP" | "SIGTSTP" | "SIGTTIN" | "SIGTTOU" | "SIGUNUSED" | "SIGURG" | "SIGUSR1" | "SIGUSR2" | "SIGVTALRM" | "SIGWINCH" | "SIGXCPU" | "SIGXFSZ" | "SIGBREAK" | "SIGLOST" | "SIGINFO" */) -> Unit
 
-typealias NewListenerListener = (type: dynamic /* String | Any */, listener: (args: Array<Any>) -> Unit) -> Unit
+typealias NewListenerListener = (type: dynamic /* String | Any */, listener: (args: Any) -> Unit) -> Unit
 
-typealias RemoveListenerListener = (type: dynamic /* String | Any */, listener: (args: Array<Any>) -> Unit) -> Unit
+typealias RemoveListenerListener = (type: dynamic /* String | Any */, listener: (args: Any) -> Unit) -> Unit
 
-typealias MultipleResolveListener = (type: String /* 'resolve' | 'reject' */, promise: Promise<Any>, value: Any) -> Unit
+typealias MultipleResolveListener = (type: String /* "resolve" | "reject" */, promise: Promise<Any>, value: Any) -> Unit

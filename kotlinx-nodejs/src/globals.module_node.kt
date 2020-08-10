@@ -1,4 +1,4 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 
 import kotlin.js.*
 import kotlin.js.Json
@@ -16,6 +16,9 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import NodeJS.Require
 import NodeJS.Module
+import NodeJS.Process
+import NodeJS.Timeout
+import NodeJS.Immediate
 import tsstdlib.IterableIterator
 
 external interface NodeRequire : Require
@@ -24,25 +27,27 @@ external interface RequireResolve : NodeJS.RequireResolve
 
 external interface NodeModule : Module
 
-external var process: NodeJS.Process
+@JsModule("process")
+external val process: Process
 
-external var console: Console
+@JsModule("console")
+external val console: Console
 
 external var __filename: String
 
 external var __dirname: String
 
-external fun setTimeout(callback: (args: Array<Any>) -> Unit, ms: Number, vararg args: Any): NodeJS.Timeout
+external fun setTimeout(callback: (args: Any) -> Unit, ms: Number, vararg args: Any): Timeout
 
-external fun clearTimeout(timeoutId: NodeJS.Timeout)
+external fun clearTimeout(timeoutId: Timeout)
 
-external fun setInterval(callback: (args: Array<Any>) -> Unit, ms: Number, vararg args: Any): NodeJS.Timeout
+external fun setInterval(callback: (args: Any) -> Unit, ms: Number, vararg args: Any): Timeout
 
-external fun clearInterval(intervalId: NodeJS.Timeout)
+external fun clearInterval(intervalId: Timeout)
 
-external fun setImmediate(callback: (args: Array<Any>) -> Unit, vararg args: Any): NodeJS.Immediate
+external fun setImmediate(callback: (args: Any) -> Unit, vararg args: Any): Immediate
 
-external fun clearImmediate(immediateId: NodeJS.Immediate)
+external fun clearImmediate(immediateId: Immediate)
 
 external fun queueMicrotask(callback: () -> Unit)
 
@@ -53,21 +58,22 @@ external var module: NodeModule
 external var exports: Any
 
 external interface `T$0` {
-    fun valueOf(): dynamic /* String | Any? */
+    fun valueOf(): dynamic /* String? | Any? */
 }
 
 external interface `T$1` {
-    var type: String /* 'Buffer' */
+    var type: String /* "Buffer" */
     var data: Array<Number>
 }
 
-external open class Buffer(str: String, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally) : Uint8Array {
+external open class Buffer : Uint8Array {
+    constructor(str: String, encoding: String = definedExternally)
     constructor(size: Number)
     constructor(array: Uint8Array)
-    constructor(array: Array<Any>)
-    constructor(buffer: Buffer)
     constructor(arrayBuffer: ArrayBuffer)
     constructor(arrayBuffer: SharedArrayBuffer)
+    constructor(array: Array<Any>)
+    constructor(buffer: Buffer)
     open fun write(string: String, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Number
     open fun write(string: String, offset: Number, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Number
     open fun write(string: String, offset: Number, length: Number, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Number
@@ -76,6 +82,8 @@ external open class Buffer(str: String, encoding: String /* "ascii" | "utf8" | "
     open fun equals(otherBuffer: Uint8Array): Boolean
     open fun compare(otherBuffer: Uint8Array, targetStart: Number = definedExternally, targetEnd: Number = definedExternally, sourceStart: Number = definedExternally, sourceEnd: Number = definedExternally): Number
     open fun copy(targetBuffer: Uint8Array, targetStart: Number = definedExternally, sourceStart: Number = definedExternally, sourceEnd: Number = definedExternally): Number
+    open fun slice(begin: Number = definedExternally, end: Number = definedExternally): Buffer
+    open fun subarray(begin: Number = definedExternally, end: Number = definedExternally): Buffer
     open fun writeUIntLE(value: Number, offset: Number, byteLength: Number): Number
     open fun writeUIntBE(value: Number, offset: Number, byteLength: Number): Number
     open fun writeIntLE(value: Number, offset: Number, byteLength: Number): Number
@@ -98,6 +106,7 @@ external open class Buffer(str: String, encoding: String /* "ascii" | "utf8" | "
     open fun readFloatBE(offset: Number = definedExternally): Number
     open fun readDoubleLE(offset: Number = definedExternally): Number
     open fun readDoubleBE(offset: Number = definedExternally): Number
+    open fun reverse(): Buffer /* this */
     open fun swap16(): Buffer
     open fun swap32(): Buffer
     open fun swap64(): Buffer
@@ -124,9 +133,12 @@ external open class Buffer(str: String, encoding: String /* "ascii" | "utf8" | "
     open fun lastIndexOf(value: String, byteOffset: Number = definedExternally, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Number
     open fun lastIndexOf(value: Number, byteOffset: Number = definedExternally, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Number
     open fun lastIndexOf(value: Uint8Array, byteOffset: Number = definedExternally, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Number
+    open fun entries(): IterableIterator<dynamic /* JsTuple<Number, Number> */>
     open fun includes(value: String, byteOffset: Number = definedExternally, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Boolean
     open fun includes(value: Number, byteOffset: Number = definedExternally, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Boolean
     open fun includes(value: Buffer, byteOffset: Number = definedExternally, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Boolean
+    open fun keys(): IterableIterator<Number>
+    open fun values(): IterableIterator<Number>
 
     companion object {
         fun from(arrayBuffer: ArrayBuffer, byteOffset: Number = definedExternally, length: Number = definedExternally): Buffer
@@ -135,7 +147,7 @@ external open class Buffer(str: String, encoding: String /* "ascii" | "utf8" | "
         fun from(data: Uint8Array): Buffer
         fun from(obj: `T$0`, byteOffset: Number = definedExternally, length: Number = definedExternally): Buffer
         fun from(obj: Any, byteOffset: Number = definedExternally, length: Number = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Buffer
+        fun from(str: String, encoding: String /* "hex" */ = definedExternally): Buffer
         fun of(vararg items: Number): Buffer
         fun isBuffer(obj: Any): Boolean
         fun isEncoding(encoding: String): Boolean
@@ -160,6 +172,5 @@ external open class Buffer(str: String, encoding: String /* "ascii" | "utf8" | "
         fun allocUnsafe(size: Number): Buffer
         fun allocUnsafeSlow(size: Number): Buffer
         var poolSize: Number
-        fun alloc(size: Number): Buffer
     }
 }

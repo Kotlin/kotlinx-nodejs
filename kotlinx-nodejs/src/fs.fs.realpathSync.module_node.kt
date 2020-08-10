@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.realpathSync")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package fs.realpathSync
 
 import kotlin.js.*
@@ -17,23 +17,24 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
+import os.`T$21`
 import child_process.`T$16`
 
-external fun native(path: String, options: fs.`T$32`? = definedExternally): String
+external fun native(path: String, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): String
 
-external fun native(path: Buffer, options: fs.`T$32`? = definedExternally): String
+external fun native(path: Buffer, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): String
 
-external fun native(path: URL, options: fs.`T$32`? = definedExternally): String
+external fun native(path: URL, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): String
 
-external fun native(path: String, options: fs.`T$33`): Buffer
+external fun native(path: String, options: `T$21`): Buffer
 
 external fun native(path: String, options: String /* "buffer" */): Buffer
 
-external fun native(path: Buffer, options: fs.`T$33`): Buffer
+external fun native(path: Buffer, options: `T$21`): Buffer
 
 external fun native(path: Buffer, options: String /* "buffer" */): Buffer
 
-external fun native(path: URL, options: fs.`T$33`): Buffer
+external fun native(path: URL, options: `T$21`): Buffer
 
 external fun native(path: URL, options: String /* "buffer" */): Buffer
 
@@ -48,9 +49,3 @@ external fun native(path: Buffer, options: String? = definedExternally): dynamic
 external fun native(path: URL, options: `T$16`? = definedExternally): dynamic /* String | Buffer */
 
 external fun native(path: URL, options: String? = definedExternally): dynamic /* String | Buffer */
-
-external fun native(path: String): String
-
-external fun native(path: Buffer): String
-
-external fun native(path: URL): String

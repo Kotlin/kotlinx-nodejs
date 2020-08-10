@@ -1,6 +1,6 @@
 @file:JsModule("dgram")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package dgram
 
 import kotlin.js.*
@@ -25,7 +25,7 @@ import events.EventEmitter.EventEmitter
 
 external interface RemoteInfo {
     var address: String
-    var family: String /* 'IPv4' | 'IPv6' */
+    var family: String /* "IPv4" | "IPv6" */
     var port: Number
     var size: Number
 }
@@ -64,7 +64,7 @@ external interface SocketOptions {
         set(value) = definedExternally
 }
 
-external fun createSocket(type: String /* "udp4" | "udp6" */, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
+external fun createSocket(type: String /* "udp6" */, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
 
 external fun createSocket(options: SocketOptions, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
 
@@ -109,7 +109,7 @@ external open class Socket : EventEmitter {
     open fun unref(): Socket /* this */
     open fun addSourceSpecificMembership(sourceAddress: String, groupAddress: String, multicastInterface: String = definedExternally)
     open fun dropSourceSpecificMembership(sourceAddress: String, groupAddress: String, multicastInterface: String = definedExternally)
-    override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
+    override fun addListener(event: String, listener: (args: Any) -> Unit): Socket /* this */
     open fun addListener(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun addListener(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
@@ -118,19 +118,19 @@ external open class Socket : EventEmitter {
     open fun emit(event: String /* "close" | "connect" | "listening" */): Boolean
     open fun emit(event: String /* "error" */, err: Error): Boolean
     open fun emit(event: String /* "message" */, msg: Buffer, rinfo: RemoteInfo): Boolean
-    override fun on(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
+    override fun on(event: String, listener: (args: Any) -> Unit): Socket /* this */
     open fun on(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun on(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
-    override fun once(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
+    override fun once(event: String, listener: (args: Any) -> Unit): Socket /* this */
     open fun once(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun once(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
-    override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
+    override fun prependListener(event: String, listener: (args: Any) -> Unit): Socket /* this */
     open fun prependListener(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun prependListener(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */
-    override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): Socket /* this */
+    override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): Socket /* this */
     open fun prependOnceListener(event: String /* "close" | "connect" | "listening" */, listener: () -> Unit): Socket /* this */
     open fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Socket /* this */
     open fun prependOnceListener(event: String /* "message" */, listener: (msg: Buffer, rinfo: RemoteInfo) -> Unit): Socket /* this */

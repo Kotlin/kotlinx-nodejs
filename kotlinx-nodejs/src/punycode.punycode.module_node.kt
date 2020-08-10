@@ -1,6 +1,6 @@
 @file:JsModule("punycode")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package punycode
 
 import kotlin.js.*
@@ -26,7 +26,7 @@ external fun toUnicode(domain: String): String
 
 external fun toASCII(domain: String): String
 
-@Suppress("NESTED_CLASS_IN_EXTERNAL_INTERFACE")
+@Suppress("EXTERNAL_DELEGATION", "NESTED_CLASS_IN_EXTERNAL_INTERFACE")
 external interface ucs2 {
     fun decode(string: String): Array<Number>
     fun encode(codePoints: Array<Number>): String

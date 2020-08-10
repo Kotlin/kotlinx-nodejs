@@ -1,5 +1,5 @@
 @file:JsQualifier("dns.resolve6")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package dns.resolve6
 
 import kotlin.js.*
@@ -16,9 +16,12 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import dns.ResolveWithTtlOptions
+import dns.RecordWithTtl
+import dns.ResolveOptions
 
 external fun __promisify__(hostname: String): Promise<Array<String>>
 
-external fun __promisify__(hostname: String, options: dns.ResolveWithTtlOptions): Promise<Array<dns.RecordWithTtl>>
+external fun __promisify__(hostname: String, options: ResolveWithTtlOptions): Promise<Array<RecordWithTtl>>
 
-external fun __promisify__(hostname: String, options: dns.ResolveOptions = definedExternally): Promise<dynamic /* Array<String> | Array<RecordWithTtl> */>
+external fun __promisify__(hostname: String, options: ResolveOptions = definedExternally): Promise<dynamic /* Array<String> | Array<RecordWithTtl> */>
