@@ -23,26 +23,6 @@ import child_process.`T$16`
 
 external fun __promisify__(prefix: String, options: `T$32`? = definedExternally): Promise<String>
 
-external fun __promisify__(prefix: String, options: String /* "ascii" */ = definedExternally): Promise<String>
-
-external fun __promisify__(prefix: String, options: String /* "utf8" */ = definedExternally): Promise<String>
-
-external fun __promisify__(prefix: String, options: String /* "utf-8" */ = definedExternally): Promise<String>
-
-external fun __promisify__(prefix: String, options: String /* "utf16le" */ = definedExternally): Promise<String>
-
-external fun __promisify__(prefix: String, options: String /* "ucs2" */ = definedExternally): Promise<String>
-
-external fun __promisify__(prefix: String, options: String /* "ucs-2" */ = definedExternally): Promise<String>
-
-external fun __promisify__(prefix: String, options: String /* "base64" */ = definedExternally): Promise<String>
-
-external fun __promisify__(prefix: String, options: String /* "latin1" */ = definedExternally): Promise<String>
-
-external fun __promisify__(prefix: String, options: String /* "binary" */ = definedExternally): Promise<String>
-
-external fun __promisify__(prefix: String, options: String /* "hex" */ = definedExternally): Promise<String>
-
 external fun __promisify__(prefix: String, options: `T$21`): Promise<Buffer>
 
 external fun __promisify__(prefix: String, options: String /* "buffer" */): Promise<Buffer>

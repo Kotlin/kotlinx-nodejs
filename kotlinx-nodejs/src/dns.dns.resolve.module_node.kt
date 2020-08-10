@@ -21,26 +21,4 @@ import dns.NaptrRecord
 import dns.SoaRecord
 import dns.SrvRecord
 
-external fun __promisify__(hostname: String, rrtype: String /* "A" */ = definedExternally): Promise<Array<String>>
-
-external fun __promisify__(hostname: String, rrtype: String /* "AAAA" */ = definedExternally): Promise<Array<String>>
-
-external fun __promisify__(hostname: String, rrtype: String /* "CNAME" */ = definedExternally): Promise<Array<String>>
-
-external fun __promisify__(hostname: String, rrtype: String /* "NS" */ = definedExternally): Promise<Array<String>>
-
-external fun __promisify__(hostname: String, rrtype: String /* "PTR" */ = definedExternally): Promise<Array<String>>
-
-external fun __promisify__(hostname: String, rrtype: String /* "ANY" */): Promise<Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */>>
-
-external fun __promisify__(hostname: String, rrtype: String /* "MX" */): Promise<Array<MxRecord>>
-
-external fun __promisify__(hostname: String, rrtype: String /* "NAPTR" */): Promise<Array<NaptrRecord>>
-
-external fun __promisify__(hostname: String, rrtype: String /* "SOA" */): Promise<SoaRecord>
-
-external fun __promisify__(hostname: String, rrtype: String /* "SRV" */): Promise<Array<SrvRecord>>
-
-external fun __promisify__(hostname: String, rrtype: String /* "TXT" */): Promise<Array<Array<String>>>
-
 external fun __promisify__(hostname: String, rrtype: String): Promise<dynamic /* Array<String> | Array<MxRecord> | Array<NaptrRecord> | SoaRecord | Array<SrvRecord> | Array<Array<String>> | Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */> */>

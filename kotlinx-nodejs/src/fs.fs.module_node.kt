@@ -132,31 +132,26 @@ external open class ReadStream : Readable {
     open var path: dynamic /* String | Buffer */
     open var pending: Boolean
     override fun addListener(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun addListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun addListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun addListener(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun addListener(event: Any, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun on(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun on(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun on(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun on(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun on(event: Any, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun once(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun once(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun once(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun once(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun once(event: Any, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun prependListener(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun prependListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun prependListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun prependListener(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun prependListener(event: Any, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun prependOnceListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun prependOnceListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
@@ -712,27 +707,9 @@ external fun mkdir(path: Buffer, callback: NoParamCallback)
 
 external fun mkdir(path: URL, callback: NoParamCallback)
 
-external fun mkdirSync(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` */): String
-
-external fun mkdirSync(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` */): String
-
-external fun mkdirSync(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` */): String
-
-external fun mkdirSync(path: String, options: Number? = definedExternally)
-
-external fun mkdirSync(path: String, options: String? = definedExternally)
-
 external fun mkdirSync(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally)
 
-external fun mkdirSync(path: Buffer, options: Number? = definedExternally)
-
-external fun mkdirSync(path: Buffer, options: String? = definedExternally)
-
 external fun mkdirSync(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally)
-
-external fun mkdirSync(path: URL, options: Number? = definedExternally)
-
-external fun mkdirSync(path: URL, options: String? = definedExternally)
 
 external fun mkdirSync(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally)
 
@@ -756,24 +733,6 @@ external fun mkdirSync(path: URL, options: MakeDirectoryOptions? = definedExtern
 
 external fun mkdtemp(prefix: String, options: `T$32`?, callback: (err: ErrnoException?, folder: String) -> Unit)
 
-external fun mkdtemp(prefix: String, options: String /* "ascii" */, callback: (err: ErrnoException?, folder: String) -> Unit)
-
-external fun mkdtemp(prefix: String, options: String /* "utf8" */, callback: (err: ErrnoException?, folder: String) -> Unit)
-
-external fun mkdtemp(prefix: String, options: String /* "utf-8" */, callback: (err: ErrnoException?, folder: String) -> Unit)
-
-external fun mkdtemp(prefix: String, options: String /* "utf16le" */, callback: (err: ErrnoException?, folder: String) -> Unit)
-
-external fun mkdtemp(prefix: String, options: String /* "ucs2" */, callback: (err: ErrnoException?, folder: String) -> Unit)
-
-external fun mkdtemp(prefix: String, options: String /* "ucs-2" */, callback: (err: ErrnoException?, folder: String) -> Unit)
-
-external fun mkdtemp(prefix: String, options: String /* "base64" */, callback: (err: ErrnoException?, folder: String) -> Unit)
-
-external fun mkdtemp(prefix: String, options: String /* "latin1" */, callback: (err: ErrnoException?, folder: String) -> Unit)
-
-external fun mkdtemp(prefix: String, options: String /* "binary" */, callback: (err: ErrnoException?, folder: String) -> Unit)
-
 external fun mkdtemp(prefix: String, options: String /* "hex" */, callback: (err: ErrnoException?, folder: String) -> Unit)
 
 external fun mkdtemp(prefix: String, options: String /* "buffer" */, callback: (err: ErrnoException?, folder: Buffer) -> Unit)
@@ -787,26 +746,6 @@ external fun mkdtemp(prefix: String, options: String?, callback: (err: ErrnoExce
 external fun mkdtemp(prefix: String, callback: (err: ErrnoException?, folder: String) -> Unit)
 
 external fun mkdtempSync(prefix: String, options: `T$32`? = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "ascii" */ = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "utf8" */ = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "utf-8" */ = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "utf16le" */ = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "ucs2" */ = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "ucs-2" */ = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "base64" */ = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "latin1" */ = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "binary" */ = definedExternally): String
-
-external fun mkdtempSync(prefix: String, options: String /* "hex" */ = definedExternally): String
 
 external fun mkdtempSync(prefix: String, options: `T$21`): Buffer
 

@@ -84,8 +84,6 @@ external fun parse(urlStr: String): UrlWithStringQuery
 
 external fun parse(urlStr: String, parseQueryString: Boolean?, slashesDenoteHost: Boolean = definedExternally): UrlWithStringQuery
 
-external fun parse(urlStr: String, parseQueryString: Boolean, slashesDenoteHost: Boolean = definedExternally): UrlWithParsedQuery
-
 external fun parse(urlStr: String, parseQueryString: Boolean, slashesDenoteHost: Boolean = definedExternally): Url
 
 external fun format(URL: URL, options: URLFormatOptions = definedExternally): String

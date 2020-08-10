@@ -44,7 +44,6 @@ external open class MessagePort : EventEmitter {
     open fun unref()
     open fun start()
     open fun addListener(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
-    override fun addListener(event: String /* "message" */, listener: (value: Any) -> Unit): MessagePort /* this */
     override fun addListener(event: String, listener: (args: Any) -> Unit): MessagePort /* this */
     override fun addListener(event: Any, listener: (args: Any) -> Unit): MessagePort /* this */
     open fun emit(event: String /* "close" */): Boolean
@@ -52,27 +51,21 @@ external open class MessagePort : EventEmitter {
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
-    override fun on(event: String /* "message" */, listener: (value: Any) -> Unit): MessagePort /* this */
     override fun on(event: String, listener: (args: Any) -> Unit): MessagePort /* this */
     override fun on(event: Any, listener: (args: Any) -> Unit): MessagePort /* this */
     open fun once(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
-    override fun once(event: String /* "message" */, listener: (value: Any) -> Unit): MessagePort /* this */
     override fun once(event: String, listener: (args: Any) -> Unit): MessagePort /* this */
     override fun once(event: Any, listener: (args: Any) -> Unit): MessagePort /* this */
     open fun prependListener(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
-    override fun prependListener(event: String /* "message" */, listener: (value: Any) -> Unit): MessagePort /* this */
     override fun prependListener(event: String, listener: (args: Any) -> Unit): MessagePort /* this */
     override fun prependListener(event: Any, listener: (args: Any) -> Unit): MessagePort /* this */
     open fun prependOnceListener(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
-    override fun prependOnceListener(event: String /* "message" */, listener: (value: Any) -> Unit): MessagePort /* this */
     override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): MessagePort /* this */
     override fun prependOnceListener(event: Any, listener: (args: Any) -> Unit): MessagePort /* this */
     open fun removeListener(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
-    override fun removeListener(event: String /* "message" */, listener: (value: Any) -> Unit): MessagePort /* this */
     override fun removeListener(event: String, listener: (args: Any) -> Unit): MessagePort /* this */
     override fun removeListener(event: Any, listener: (args: Any) -> Unit): MessagePort /* this */
     open fun off(event: String /* "close" */, listener: () -> Unit): MessagePort /* this */
-    override fun off(event: String /* "message" */, listener: (value: Any) -> Unit): MessagePort /* this */
     override fun off(event: String, listener: (args: Any) -> Unit): MessagePort /* this */
     override fun off(event: Any, listener: (args: Any) -> Unit): MessagePort /* this */
 }
@@ -137,7 +130,6 @@ external open class Worker : EventEmitter {
     open fun getHeapSnapshot(): Promise<Readable>
     open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun addListener(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
-    override fun addListener(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */
     open fun addListener(event: String /* "online" */, listener: () -> Unit): Worker /* this */
     override fun addListener(event: String, listener: (args: Any) -> Unit): Worker /* this */
     override fun addListener(event: Any, listener: (args: Any) -> Unit): Worker /* this */
@@ -149,37 +141,31 @@ external open class Worker : EventEmitter {
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun on(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
-    override fun on(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */
     open fun on(event: String /* "online" */, listener: () -> Unit): Worker /* this */
     override fun on(event: String, listener: (args: Any) -> Unit): Worker /* this */
     override fun on(event: Any, listener: (args: Any) -> Unit): Worker /* this */
     open fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun once(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
-    override fun once(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */
     open fun once(event: String /* "online" */, listener: () -> Unit): Worker /* this */
     override fun once(event: String, listener: (args: Any) -> Unit): Worker /* this */
     override fun once(event: Any, listener: (args: Any) -> Unit): Worker /* this */
     open fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun prependListener(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
-    override fun prependListener(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */
     open fun prependListener(event: String /* "online" */, listener: () -> Unit): Worker /* this */
     override fun prependListener(event: String, listener: (args: Any) -> Unit): Worker /* this */
     override fun prependListener(event: Any, listener: (args: Any) -> Unit): Worker /* this */
     open fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun prependOnceListener(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
-    override fun prependOnceListener(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */
     open fun prependOnceListener(event: String /* "online" */, listener: () -> Unit): Worker /* this */
     override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): Worker /* this */
     override fun prependOnceListener(event: Any, listener: (args: Any) -> Unit): Worker /* this */
     open fun removeListener(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun removeListener(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
-    override fun removeListener(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */
     open fun removeListener(event: String /* "online" */, listener: () -> Unit): Worker /* this */
     override fun removeListener(event: String, listener: (args: Any) -> Unit): Worker /* this */
     override fun removeListener(event: Any, listener: (args: Any) -> Unit): Worker /* this */
     open fun off(event: String /* "error" */, listener: (err: Error) -> Unit): Worker /* this */
     open fun off(event: String /* "exit" */, listener: (exitCode: Number) -> Unit): Worker /* this */
-    override fun off(event: String /* "message" */, listener: (value: Any) -> Unit): Worker /* this */
     open fun off(event: String /* "online" */, listener: () -> Unit): Worker /* this */
     override fun off(event: String, listener: (args: Any) -> Unit): Worker /* this */
     override fun off(event: Any, listener: (args: Any) -> Unit): Worker /* this */

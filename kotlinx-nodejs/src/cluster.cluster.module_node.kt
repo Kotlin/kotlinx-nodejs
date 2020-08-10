@@ -196,11 +196,7 @@ external var workers: Dict<Worker>
 
 external fun addListener(event: String, listener: (args: Any) -> Unit): Cluster
 
-external fun addListener(event: String /* "disconnect" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun addListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
-
-external fun addListener(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun addListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
@@ -214,11 +210,7 @@ external fun emit(event: String, vararg args: Any): Boolean
 
 external fun emit(event: Any, vararg args: Any): Boolean
 
-external fun emit(event: String /* "disconnect" */, worker: Worker): Boolean
-
 external fun emit(event: String /* "exit" */, worker: Worker, code: Number, signal: String): Boolean
-
-external fun emit(event: String /* "fork" */, worker: Worker): Boolean
 
 external fun emit(event: String /* "listening" */, worker: Worker, address: Address): Boolean
 
@@ -232,11 +224,7 @@ external fun emit(event: String /* "setup" */, settings: ClusterSettings): Boole
 
 external fun on(event: String, listener: (args: Any) -> Unit): Cluster
 
-external fun on(event: String /* "disconnect" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun on(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
-
-external fun on(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun on(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
@@ -248,11 +236,7 @@ external fun on(event: String /* "setup" */, listener: (settings: ClusterSetting
 
 external fun once(event: String, listener: (args: Any) -> Unit): Cluster
 
-external fun once(event: String /* "disconnect" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun once(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
-
-external fun once(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun once(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
@@ -276,11 +260,7 @@ external fun listenerCount(type: String): Number
 
 external fun prependListener(event: String, listener: (args: Any) -> Unit): Cluster
 
-external fun prependListener(event: String /* "disconnect" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun prependListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
-
-external fun prependListener(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun prependListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 
@@ -292,11 +272,7 @@ external fun prependListener(event: String /* "setup" */, listener: (settings: C
 
 external fun prependOnceListener(event: String, listener: (args: Any) -> Unit): Cluster
 
-external fun prependOnceListener(event: String /* "disconnect" */, listener: (worker: Worker) -> Unit): Cluster
-
 external fun prependOnceListener(event: String /* "exit" */, listener: (worker: Worker, code: Number, signal: String) -> Unit): Cluster
-
-external fun prependOnceListener(event: String /* "fork" */, listener: (worker: Worker) -> Unit): Cluster
 
 external fun prependOnceListener(event: String /* "listening" */, listener: (worker: Worker, address: Address) -> Unit): Cluster
 

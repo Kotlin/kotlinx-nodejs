@@ -147,15 +147,6 @@ external open class Buffer : Uint8Array {
         fun from(data: Uint8Array): Buffer
         fun from(obj: `T$0`, byteOffset: Number = definedExternally, length: Number = definedExternally): Buffer
         fun from(obj: Any, byteOffset: Number = definedExternally, length: Number = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "ascii" */ = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "utf8" */ = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "utf-8" */ = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "utf16le" */ = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "ucs2" */ = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "ucs-2" */ = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "base64" */ = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "latin1" */ = definedExternally): Buffer
-        fun from(str: String, encoding: String /* "binary" */ = definedExternally): Buffer
         fun from(str: String, encoding: String /* "hex" */ = definedExternally): Buffer
         fun of(vararg items: Number): Buffer
         fun isBuffer(obj: Any): Boolean

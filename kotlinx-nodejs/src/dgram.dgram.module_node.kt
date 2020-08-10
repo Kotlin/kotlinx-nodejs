@@ -64,8 +64,6 @@ external interface SocketOptions {
         set(value) = definedExternally
 }
 
-external fun createSocket(type: String /* "udp4" */, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
-
 external fun createSocket(type: String /* "udp6" */, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
 
 external fun createSocket(options: SocketOptions, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
