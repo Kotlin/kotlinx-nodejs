@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.readdir")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package fs.readdir
 
 import kotlin.js.*
@@ -17,45 +17,43 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
+import fs.`T$36`
+import fs.`T$37`
+import fs.`T$38`
+import fs.Dirent
 
-external fun __promisify__(path: String, options: fs.`T$36`? = definedExternally): Promise<Array<String>>
+external fun __promisify__(path: String, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<Array<String>>
 
-external fun __promisify__(path: Buffer, options: fs.`T$36`? = definedExternally): Promise<Array<String>>
+external fun __promisify__(path: Buffer, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<Array<String>>
 
-external fun __promisify__(path: URL, options: fs.`T$36`? = definedExternally): Promise<Array<String>>
+external fun __promisify__(path: URL, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<Array<String>>
 
 external fun __promisify__(path: String, options: String /* "buffer" */): Promise<Array<Buffer>>
 
-external fun __promisify__(path: String, options: fs.`T$37`): Promise<Array<Buffer>>
+external fun __promisify__(path: String, options: `T$36`): Promise<Array<Buffer>>
 
 external fun __promisify__(path: Buffer, options: String /* "buffer" */): Promise<Array<Buffer>>
 
-external fun __promisify__(path: Buffer, options: fs.`T$37`): Promise<Array<Buffer>>
+external fun __promisify__(path: Buffer, options: `T$36`): Promise<Array<Buffer>>
 
 external fun __promisify__(path: URL, options: String /* "buffer" */): Promise<Array<Buffer>>
 
-external fun __promisify__(path: URL, options: fs.`T$37`): Promise<Array<Buffer>>
+external fun __promisify__(path: URL, options: `T$36`): Promise<Array<Buffer>>
 
-external fun __promisify__(path: String, options: fs.`T$38`? = definedExternally): Promise<dynamic /* Array<String> | Array<Buffer> */>
+external fun __promisify__(path: String, options: `T$37`? = definedExternally): Promise<dynamic /* Array<String> | Array<Buffer> */>
 
 external fun __promisify__(path: String, options: String? = definedExternally): Promise<dynamic /* Array<String> | Array<Buffer> */>
 
-external fun __promisify__(path: Buffer, options: fs.`T$38`? = definedExternally): Promise<dynamic /* Array<String> | Array<Buffer> */>
+external fun __promisify__(path: Buffer, options: `T$37`? = definedExternally): Promise<dynamic /* Array<String> | Array<Buffer> */>
 
 external fun __promisify__(path: Buffer, options: String? = definedExternally): Promise<dynamic /* Array<String> | Array<Buffer> */>
 
-external fun __promisify__(path: URL, options: fs.`T$38`? = definedExternally): Promise<dynamic /* Array<String> | Array<Buffer> */>
+external fun __promisify__(path: URL, options: `T$37`? = definedExternally): Promise<dynamic /* Array<String> | Array<Buffer> */>
 
 external fun __promisify__(path: URL, options: String? = definedExternally): Promise<dynamic /* Array<String> | Array<Buffer> */>
 
-external fun __promisify__(path: String, options: fs.`T$39`): Promise<Array<fs.Dirent>>
+external fun __promisify__(path: String, options: `T$38`): Promise<Array<Dirent>>
 
-external fun __promisify__(path: Buffer, options: fs.`T$39`): Promise<Array<fs.Dirent>>
+external fun __promisify__(path: Buffer, options: `T$38`): Promise<Array<Dirent>>
 
-external fun __promisify__(path: URL, options: fs.`T$39`): Promise<Array<fs.Dirent>>
-
-external fun __promisify__(path: String): Promise<Array<String>>
-
-external fun __promisify__(path: Buffer): Promise<Array<String>>
-
-external fun __promisify__(path: URL): Promise<Array<String>>
+external fun __promisify__(path: URL, options: `T$38`): Promise<Array<Dirent>>

@@ -1,5 +1,5 @@
 @file:JsQualifier("tsstdlib.Intl")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package tsstdlib.Intl
 
 import kotlin.js.*
@@ -211,7 +211,6 @@ external interface DateTimeFormat {
     fun format(date: Date = definedExternally): String
     fun format(date: Number = definedExternally): String
     fun resolvedOptions(): ResolvedDateTimeFormatOptions
-    fun format(): String
 
     companion object {
         @nativeInvoke

@@ -1,6 +1,6 @@
 @file:JsModule("url")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package url
 
 import kotlin.js.*
@@ -84,6 +84,8 @@ external fun parse(urlStr: String): UrlWithStringQuery
 
 external fun parse(urlStr: String, parseQueryString: Boolean?, slashesDenoteHost: Boolean = definedExternally): UrlWithStringQuery
 
+external fun parse(urlStr: String, parseQueryString: Boolean, slashesDenoteHost: Boolean = definedExternally): UrlWithParsedQuery
+
 external fun parse(urlStr: String, parseQueryString: Boolean, slashesDenoteHost: Boolean = definedExternally): Url
 
 external fun format(URL: URL, options: URLFormatOptions = definedExternally): String
@@ -120,8 +122,8 @@ external interface URLFormatOptions {
 }
 
 external open class URL {
-    constructor(input: String, base: String)
-    constructor(input: String, base: URL)
+    constructor(input: String, base: String = definedExternally)
+    constructor(input: String, base: URL = definedExternally)
     open var hash: String
     open var host: String
     open var hostname: String
@@ -137,5 +139,3 @@ external open class URL {
     override fun toString(): String
     open fun toJSON(): String
 }
-
-external fun parse(urlStr: String, parseQueryString: Boolean): UrlWithParsedQuery
