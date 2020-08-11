@@ -1,6 +1,6 @@
 @file:JsModule("vm")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package vm
 
 import kotlin.js.*
@@ -76,7 +76,7 @@ external interface CompileFunctionOptions : BaseOptions {
         set(value) = definedExternally
 }
 
-external interface `T$63` {
+external interface `T$62` {
     var strings: Boolean?
         get() = definedExternally
         set(value) = definedExternally
@@ -92,13 +92,13 @@ external interface CreateContextOptions {
     var origin: String?
         get() = definedExternally
         set(value) = definedExternally
-    var codeGeneration: `T$63`?
+    var codeGeneration: `T$62`?
         get() = definedExternally
         set(value) = definedExternally
 }
 
 external interface MeasureMemoryOptions {
-    var mode: String? /* 'summary' | 'detailed' */
+    var mode: String? /* "summary" | "detailed" */
         get() = definedExternally
         set(value) = definedExternally
     var context: Context?
@@ -106,7 +106,7 @@ external interface MeasureMemoryOptions {
         set(value) = definedExternally
 }
 
-external interface `T$64` {
+external interface `T$63` {
     var jsMemoryEstimate: Number
     var jsMemoryRange: dynamic /* JsTuple<Number, Number> */
         get() = definedExternally
@@ -114,7 +114,7 @@ external interface `T$64` {
 }
 
 external interface MemoryMeasurement {
-    var total: `T$64`
+    var total: `T$63`
 }
 
 external open class Script(code: String, options: ScriptOptions = definedExternally) {
@@ -143,9 +143,3 @@ external fun runInThisContext(code: String, options: String = definedExternally)
 external fun compileFunction(code: String, params: Array<String> = definedExternally, options: CompileFunctionOptions = definedExternally): Function<*>
 
 external fun measureMemory(options: MeasureMemoryOptions = definedExternally): Promise<MemoryMeasurement>
-
-external fun runInContext(code: String, contextifiedSandbox: Context): Any
-
-external fun runInNewContext(code: String): Any
-
-external fun runInThisContext(code: String): Any

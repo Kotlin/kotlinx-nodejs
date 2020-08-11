@@ -1,6 +1,6 @@
 @file:JsModule("events")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package events.EventEmitter
 
 import kotlin.js.*
@@ -17,13 +17,16 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import events.NodeEventTarget
+import events.DOMEventTarget
 import AsyncIterableIterator
+import events.EventEmitterOptions
 
-external fun once(emitter: events.NodeEventTarget, event: String): Promise<Array<Any>>
+external fun once(emitter: NodeEventTarget, event: String): Promise<Array<Any>>
 
-external fun once(emitter: events.NodeEventTarget, event: Any): Promise<Array<Any>>
+external fun once(emitter: NodeEventTarget, event: Any): Promise<Array<Any>>
 
-external fun once(emitter: events.DOMEventTarget, event: String): Promise<Array<Any>>
+external fun once(emitter: DOMEventTarget, event: String): Promise<Array<Any>>
 
 external fun on(emitter: EventEmitter, event: String): AsyncIterableIterator<Any>
 
@@ -33,17 +36,17 @@ external var errorMonitor: Any
 
 external var captureRejections: Boolean
 
-external open class EventEmitter(options: events.EventEmitterOptions = definedExternally) : NodeJS.EventEmitter {
-    override fun addListener(event: String, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun addListener(event: Any, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun on(event: String, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun on(event: Any, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun once(event: String, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun once(event: Any, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun removeListener(event: String, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun removeListener(event: Any, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun off(event: String, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun off(event: Any, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
+external open class EventEmitter(options: EventEmitterOptions = definedExternally) : NodeJS.EventEmitter {
+    override fun addListener(event: String, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun addListener(event: Any, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun on(event: String, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun on(event: Any, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun once(event: String, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun once(event: Any, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun removeListener(event: String, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun removeListener(event: Any, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun off(event: String, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun off(event: Any, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
     override fun removeAllListeners(event: String): dynamic /* EventEmitter | EventEmitter */
     override fun removeAllListeners(event: Any): dynamic /* EventEmitter | EventEmitter */
     override fun setMaxListeners(n: Number): EventEmitter /* this */
@@ -56,12 +59,11 @@ external open class EventEmitter(options: events.EventEmitterOptions = definedEx
     override fun emit(event: Any, vararg args: Any): Boolean
     override fun listenerCount(type: String): Number
     override fun listenerCount(type: Any): Number
-    override fun prependListener(event: String, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun prependListener(event: Any, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun prependOnceListener(event: String, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
-    override fun prependOnceListener(event: Any, listener: (args: Array<Any>) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun prependListener(event: String, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun prependListener(event: Any, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
+    override fun prependOnceListener(event: Any, listener: (args: Any) -> Unit): dynamic /* EventEmitter | EventEmitter */
     override fun eventNames(): Array<dynamic /* String | Any */>
-    override fun removeAllListeners(): dynamic /* EventEmitter | EventEmitter */
 
     companion object {
         fun listenerCount(emitter: EventEmitter, event: String): Number

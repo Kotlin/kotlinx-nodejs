@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.writeFile")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package fs.writeFile
 
 import kotlin.js.*
@@ -16,28 +16,21 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import fs.`T$45`
 import Buffer
 
-external fun __promisify__(path: String, data: Any, options: fs.`T$46`? = definedExternally): Promise<Unit>
+external fun __promisify__(path: String, data: Any, options: `T$45`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: String, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun __promisify__(path: Buffer, data: Any, options: fs.`T$46`? = definedExternally): Promise<Unit>
+external fun __promisify__(path: Buffer, data: Any, options: `T$45`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: Buffer, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun __promisify__(path: URL, data: Any, options: fs.`T$46`? = definedExternally): Promise<Unit>
+external fun __promisify__(path: URL, data: Any, options: `T$45`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: URL, data: Any, options: String? = definedExternally): Promise<Unit>
 
-external fun __promisify__(path: Number, data: Any, options: fs.`T$46`? = definedExternally): Promise<Unit>
+external fun __promisify__(path: Number, data: Any, options: `T$45`? = definedExternally): Promise<Unit>
 
 external fun __promisify__(path: Number, data: Any, options: String? = definedExternally): Promise<Unit>
-
-external fun __promisify__(path: String, data: Any): Promise<Unit>
-
-external fun __promisify__(path: Buffer, data: Any): Promise<Unit>
-
-external fun __promisify__(path: URL, data: Any): Promise<Unit>
-
-external fun __promisify__(path: Number, data: Any): Promise<Unit>

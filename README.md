@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     // . . .
-    implementation("org.jetbrains.kotlinx:kotlinx-nodejs:0.0.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-nodejs:0.0.5")
 }
 ```
 

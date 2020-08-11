@@ -1,6 +1,6 @@
 @file:JsModule("util")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package util
 
 import kotlin.js.*
@@ -22,7 +22,7 @@ import NodeJS.ErrnoException
 external interface InspectOptions : NodeJS.InspectOptions
 
 external interface InspectOptionsStylized : InspectOptions {
-    fun stylize(text: String, styleType: String /* 'special' | 'number' | 'bigint' | 'boolean' | 'undefined' | 'null' | 'string' | 'symbol' | 'date' | 'regexp' | 'module' */): String
+    fun stylize(text: String, styleType: String /* "special" | "number" | "bigint" | "boolean" | "undefined" | "null" | "string" | "symbol" | "date" | "regexp" | "module" */): String
 }
 
 external fun format(format: Any, vararg param: Any): String
@@ -45,7 +45,7 @@ external fun isError(obj: Any): Boolean
 
 external fun inherits(constructor: Any, superConstructor: Any)
 
-external fun debuglog(key: String): (msg: String, param: Array<Any>) -> Unit
+external fun debuglog(key: String): (msg: String, param: Any) -> Unit
 
 external fun isBoolean(obj: Any): Boolean
 
@@ -129,7 +129,7 @@ external fun <T1, T2, T3, T4, T5> promisify(fn: (arg1: T1, arg2: T2, arg3: T3, a
 
 external fun promisify(fn: Function<*>): Function<*>
 
-external interface `T$65` {
+external interface `T$64` {
     var fatal: Boolean?
         get() = definedExternally
         set(value) = definedExternally
@@ -138,28 +138,27 @@ external interface `T$65` {
         set(value) = definedExternally
 }
 
-external interface `T$66` {
+external interface `T$65` {
     var stream: Boolean?
         get() = definedExternally
         set(value) = definedExternally
 }
 
-external open class TextDecoder(encoding: String = definedExternally, options: `T$65` = definedExternally) {
+external open class TextDecoder(encoding: String = definedExternally, options: `T$64` = definedExternally) {
     open var encoding: String
     open var fatal: Boolean
     open var ignoreBOM: Boolean
-    open fun decode(input: Uint8Array? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: Uint8ClampedArray? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: Uint16Array? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: Uint32Array? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: Int8Array? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: Int16Array? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: Int32Array? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: Float32Array? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: Float64Array? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: DataView? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(input: ArrayBuffer? = definedExternally, options: `T$66` = definedExternally): String
-    open fun decode(): String
+    open fun decode(input: Uint8Array? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: Uint8ClampedArray? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: Uint16Array? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: Uint32Array? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: Int8Array? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: Int16Array? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: Int32Array? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: Float32Array? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: Float64Array? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: DataView? = definedExternally, options: `T$65` = definedExternally): String
+    open fun decode(input: ArrayBuffer? = definedExternally, options: `T$65` = definedExternally): String
 }
 
 external interface EncodeIntoResult {

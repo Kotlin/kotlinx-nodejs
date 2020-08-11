@@ -1,5 +1,5 @@
 @file:JsQualifier("dns.resolveMx")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package dns.resolveMx
 
 import kotlin.js.*
@@ -16,5 +16,6 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import dns.MxRecord
 
-external fun __promisify__(hostname: String): Promise<Array<dns.MxRecord>>
+external fun __promisify__(hostname: String): Promise<Array<MxRecord>>

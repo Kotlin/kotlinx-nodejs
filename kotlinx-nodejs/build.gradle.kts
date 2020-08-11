@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.0.4"
+version = "0.0.5"
 
 kotlin {
     js {
