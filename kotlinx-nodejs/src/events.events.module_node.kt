@@ -1,6 +1,6 @@
 @file:JsModule("events")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package events
 
 import kotlin.js.*
@@ -25,8 +25,8 @@ external interface EventEmitterOptions {
 }
 
 external interface NodeEventTarget {
-    fun once(event: String, listener: (args: Array<Any>) -> Unit): NodeEventTarget /* this */
-    fun once(event: Any, listener: (args: Array<Any>) -> Unit): NodeEventTarget /* this */
+    fun once(event: String, listener: (args: Any) -> Unit): NodeEventTarget /* this */
+    fun once(event: Any, listener: (args: Any) -> Unit): NodeEventTarget /* this */
 }
 
 external interface `T$11` {
@@ -34,5 +34,5 @@ external interface `T$11` {
 }
 
 external interface DOMEventTarget {
-    fun addEventListener(event: String, listener: (args: Array<Any>) -> Unit, opts: `T$11` = definedExternally): Any
+    fun addEventListener(event: String, listener: (args: Any) -> Unit, opts: `T$11` = definedExternally): Any
 }

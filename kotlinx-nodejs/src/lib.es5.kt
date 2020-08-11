@@ -1,4 +1,4 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package tsstdlib
 
 import kotlin.js.*
@@ -17,7 +17,7 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import NodeJS.CallSite
 
-@Suppress("NESTED_CLASS_IN_EXTERNAL_INTERFACE")
+@Suppress("EXTERNAL_DELEGATION", "NESTED_CLASS_IN_EXTERNAL_INTERFACE")
 external interface Symbol {
     override fun toString(): String
     fun valueOf(): Any
@@ -132,10 +132,10 @@ external interface BooleanConstructor {
 
 external interface NumberConstructor {
     var EPSILON: Number
-    fun isFinite(number: Number): Boolean
-    fun isInteger(number: Number): Boolean
-    fun isNaN(number: Number): Boolean
-    fun isSafeInteger(number: Number): Boolean
+    fun isFinite(number: Any): Boolean
+    fun isInteger(number: Any): Boolean
+    fun isNaN(number: Any): Boolean
+    fun isSafeInteger(number: Any): Boolean
     var MAX_SAFE_INTEGER: Number
     var MIN_SAFE_INTEGER: Number
     fun parseFloat(string: String): Number
@@ -173,11 +173,11 @@ external interface RegExpConstructor {
     @nativeInvoke
     operator fun invoke(pattern: RegExp, flags: String = definedExternally): RegExp
     @nativeInvoke
+    operator fun invoke(pattern: String, flags: String = definedExternally): RegExp
+    @nativeInvoke
     operator fun invoke(pattern: RegExp): RegExp
     @nativeInvoke
     operator fun invoke(pattern: String): RegExp
-    @nativeInvoke
-    operator fun invoke(pattern: String, flags: String = definedExternally): RegExp
     var prototype: RegExp
     var `$1`: String
     var `$2`: String
@@ -204,10 +204,10 @@ external interface ErrorConstructor {
 
 typealias SyntaxError = Error
 
-external interface SyntaxErrorConstructor {
+external interface SyntaxErrorConstructor : ErrorConstructor {
     @nativeInvoke
-    operator fun invoke(message: String = definedExternally): SyntaxError
-    var prototype: SyntaxError
+    override operator fun invoke(message: String): SyntaxError
+    override var prototype: SyntaxError
 }
 
 external interface ConcatArray<T> {
@@ -234,11 +234,10 @@ external interface ArrayConstructor {
     operator fun <T> invoke(vararg items: T): Array<T>
     fun isArray(arg: Any): Boolean
     var prototype: Array<Any>
-    fun <T, U> from(iterable: ArrayLike<T>, mapfn: (v: T, k: Number) -> U): Array<U>
 }
 
 external interface PromiseLike<T> {
-    fun <TResult1, TResult2> then(onfulfilled: ((value: T) -> dynamic)? = definedExternally, onrejected: ((reason: Any) -> dynamic)? = definedExternally): PromiseLike<dynamic /* TResult1 | TResult2 */>
+    fun then(onfulfilled: ((value: T) -> dynamic)? = definedExternally, onrejected: ((reason: Any) -> dynamic)? = definedExternally): PromiseLike<dynamic /* TResult1 | TResult2 */>
 }
 
 external interface ArrayLike<T> {
@@ -256,8 +255,6 @@ external interface ThisType<T>
 external interface ArrayBufferTypes {
     var ArrayBuffer: ArrayBuffer
 }
-
-typealias ArrayBufferLike = Any
 
 external interface ArrayBufferConstructor {
     var prototype: ArrayBuffer

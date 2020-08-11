@@ -1,4 +1,4 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package module
 
 import kotlin.js.*
@@ -29,6 +29,7 @@ external open class Module(id: String, parent: Module = definedExternally) : Nod
     override var id: String
     override var filename: String
     override var loaded: Boolean
+    override var path: String
     override var parent: NodeJS.Module?
     override var children: Array<NodeJS.Module>
     override var paths: Array<String>

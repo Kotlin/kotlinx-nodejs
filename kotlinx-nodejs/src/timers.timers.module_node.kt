@@ -1,6 +1,6 @@
 @file:JsModule("timers")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package timers
 
 import kotlin.js.*
@@ -20,14 +20,14 @@ import org.w3c.xhr.*
 import NodeJS.Timeout
 import NodeJS.Immediate
 
-external fun setTimeout(callback: (args: Array<Any>) -> Unit, ms: Number, vararg args: Any): Timeout
+external fun setTimeout(callback: (args: Any) -> Unit, ms: Number, vararg args: Any): Timeout
 
 external fun clearTimeout(timeoutId: Timeout)
 
-external fun setInterval(callback: (args: Array<Any>) -> Unit, ms: Number, vararg args: Any): Timeout
+external fun setInterval(callback: (args: Any) -> Unit, ms: Number, vararg args: Any): Timeout
 
 external fun clearInterval(intervalId: Timeout)
 
-external fun setImmediate(callback: (args: Array<Any>) -> Unit, vararg args: Any): Immediate
+external fun setImmediate(callback: (args: Any) -> Unit, vararg args: Any): Immediate
 
 external fun clearImmediate(immediateId: Immediate)

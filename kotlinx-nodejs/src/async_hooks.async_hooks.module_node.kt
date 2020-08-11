@@ -1,6 +1,6 @@
 @file:JsModule("async_hooks")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package async_hooks
 
 import kotlin.js.*
@@ -54,9 +54,9 @@ external interface AsyncResourceOptions {
 }
 
 external open class AsyncResource {
-    constructor(type: String, triggerAsyncId: Number)
-    constructor(type: String, triggerAsyncId: AsyncResourceOptions)
-    open fun <This, Result> runInAsyncScope(fn: (self: This, args: Array<Any>) -> Result, thisArg: This = definedExternally, vararg args: Any): Result
+    constructor(type: String, triggerAsyncId: Number = definedExternally)
+    constructor(type: String, triggerAsyncId: AsyncResourceOptions = definedExternally)
+    open fun <This, Result> runInAsyncScope(fn: (self: This, args: Any) -> Result, thisArg: This = definedExternally, vararg args: Any): Result
     open fun emitDestroy()
     open fun asyncId(): Number
     open fun triggerAsyncId(): Number
@@ -65,9 +65,9 @@ external open class AsyncResource {
 external open class AsyncLocalStorage<T> {
     open fun disable()
     open fun getStore(): T?
-    open fun run(store: T, callback: (args: Array<Any>) -> Unit, vararg args: Any)
-    open fun exit(callback: (args: Array<Any>) -> Unit, vararg args: Any)
-    open fun <R> runSyncAndReturn(store: T, callback: (args: Array<Any>) -> R, vararg args: Any): R
-    open fun <R> exitSyncAndReturn(callback: (args: Array<Any>) -> R, vararg args: Any): R
+    open fun run(store: T, callback: (args: Any) -> Unit, vararg args: Any)
+    open fun exit(callback: (args: Any) -> Unit, vararg args: Any)
+    open fun <R> runSyncAndReturn(store: T, callback: (args: Any) -> R, vararg args: Any): R
+    open fun <R> exitSyncAndReturn(callback: (args: Any) -> R, vararg args: Any): R
     open fun enterWith(store: T)
 }

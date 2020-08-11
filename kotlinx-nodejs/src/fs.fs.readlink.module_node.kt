@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.readlink")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package fs.readlink
 
 import kotlin.js.*
@@ -17,23 +17,24 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import Buffer
+import os.`T$21`
 import child_process.`T$16`
 
-external fun __promisify__(path: String, options: fs.`T$32`? = definedExternally): Promise<String>
+external fun __promisify__(path: String, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<String>
 
-external fun __promisify__(path: Buffer, options: fs.`T$32`? = definedExternally): Promise<String>
+external fun __promisify__(path: Buffer, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<String>
 
-external fun __promisify__(path: URL, options: fs.`T$32`? = definedExternally): Promise<String>
+external fun __promisify__(path: URL, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<String>
 
-external fun __promisify__(path: String, options: fs.`T$33`): Promise<Buffer>
+external fun __promisify__(path: String, options: `T$21`): Promise<Buffer>
 
 external fun __promisify__(path: String, options: String /* "buffer" */): Promise<Buffer>
 
-external fun __promisify__(path: Buffer, options: fs.`T$33`): Promise<Buffer>
+external fun __promisify__(path: Buffer, options: `T$21`): Promise<Buffer>
 
 external fun __promisify__(path: Buffer, options: String /* "buffer" */): Promise<Buffer>
 
-external fun __promisify__(path: URL, options: fs.`T$33`): Promise<Buffer>
+external fun __promisify__(path: URL, options: `T$21`): Promise<Buffer>
 
 external fun __promisify__(path: URL, options: String /* "buffer" */): Promise<Buffer>
 
@@ -48,9 +49,3 @@ external fun __promisify__(path: Buffer, options: String? = definedExternally): 
 external fun __promisify__(path: URL, options: `T$16`? = definedExternally): Promise<dynamic /* String | Buffer */>
 
 external fun __promisify__(path: URL, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
-
-external fun __promisify__(path: String): Promise<String>
-
-external fun __promisify__(path: Buffer): Promise<String>
-
-external fun __promisify__(path: URL): Promise<String>

@@ -1,6 +1,6 @@
 @file:JsModule("os")
 @file:JsNonModule
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package os
 
 import kotlin.js.*
@@ -81,7 +81,7 @@ external fun networkInterfaces(): Dict<Array<dynamic /* NetworkInterfaceInfoIPv4
 external fun homedir(): String
 
 external interface `T$21` {
-    var encoding: String /* 'buffer' */
+    var encoding: String /* "buffer" */
 }
 
 external fun userInfo(options: `T$21`): UserInfo<Buffer>
@@ -92,7 +92,7 @@ external fun arch(): String
 
 external fun version(): String
 
-external fun platform(): String /* 'aix' | 'android' | 'darwin' | 'freebsd' | 'linux' | 'openbsd' | 'sunos' | 'win32' | 'cygwin' | 'netbsd' */
+external fun platform(): String /* "aix" | "android" | "darwin" | "freebsd" | "linux" | "openbsd" | "sunos" | "win32" | "cygwin" | "netbsd" */
 
 external fun tmpdir(): String
 

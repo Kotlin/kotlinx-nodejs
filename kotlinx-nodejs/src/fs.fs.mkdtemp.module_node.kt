@@ -1,5 +1,5 @@
 @file:JsQualifier("fs.mkdtemp")
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "EXTERNAL_DELEGATION")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 package fs.mkdtemp
 
 import kotlin.js.*
@@ -16,17 +16,37 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import fs.`T$32`
+import os.`T$21`
 import Buffer
 import child_process.`T$16`
 
-external fun __promisify__(prefix: String, options: fs.`T$32`? = definedExternally): Promise<String>
+external fun __promisify__(prefix: String, options: `T$32`? = definedExternally): Promise<String>
 
-external fun __promisify__(prefix: String, options: fs.`T$33`): Promise<Buffer>
+external fun __promisify__(prefix: String, options: String /* "ascii" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: String /* "utf8" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: String /* "utf-8" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: String /* "utf16le" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: String /* "ucs2" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: String /* "ucs-2" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: String /* "base64" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: String /* "latin1" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: String /* "binary" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: String /* "hex" */ = definedExternally): Promise<String>
+
+external fun __promisify__(prefix: String, options: `T$21`): Promise<Buffer>
 
 external fun __promisify__(prefix: String, options: String /* "buffer" */): Promise<Buffer>
 
 external fun __promisify__(prefix: String, options: `T$16`? = definedExternally): Promise<dynamic /* String | Buffer */>
 
 external fun __promisify__(prefix: String, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
-
-external fun __promisify__(prefix: String): Promise<String>
