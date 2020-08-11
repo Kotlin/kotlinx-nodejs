@@ -1,4 +1,4 @@
-val SOURCE_TARGET_DIR = "${project.buildDir}/tests/sources"
+val SOURCE_TARGET_DIR = "${project.buildDir}/sources"
 
 task<Copy>("prepareSources") {
     from("package.template.json")
@@ -11,6 +11,8 @@ task<Copy>("prepareSources") {
 }
 
 task<Exec>("installSources") {
+    dependsOn("prepareSources")
+
     workingDir(SOURCE_TARGET_DIR)
     commandLine(listOf("npm", "ci", "package.json"))
 }
