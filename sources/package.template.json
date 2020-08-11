@@ -1,0 +1,13 @@
+{
+  "name": "kotlinx-nodejs-sources",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kotlin/dukat.git"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@types/node": "^13.13.5"
+  }
+}

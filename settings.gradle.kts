@@ -21,4 +21,5 @@ pluginManagement {
 }
 
 include(":kotlinx-nodejs")
+include(":sources")
 
