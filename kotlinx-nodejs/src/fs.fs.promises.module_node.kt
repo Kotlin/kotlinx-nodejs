@@ -197,27 +197,9 @@ external fun fdatasync(handle: FileHandle): Promise<Unit>
 
 external fun fsync(handle: FileHandle): Promise<Unit>
 
-external fun mkdir(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` */): Promise<String>
-
-external fun mkdir(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` */): Promise<String>
-
-external fun mkdir(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` */): Promise<String>
-
-external fun mkdir(path: String, options: Number? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: String, options: String? = definedExternally): Promise<Unit>
-
 external fun mkdir(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally): Promise<Unit>
 
-external fun mkdir(path: Buffer, options: Number? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: Buffer, options: String? = definedExternally): Promise<Unit>
-
 external fun mkdir(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally): Promise<Unit>
-
-external fun mkdir(path: URL, options: Number? = definedExternally): Promise<Unit>
-
-external fun mkdir(path: URL, options: String? = definedExternally): Promise<Unit>
 
 external fun mkdir(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally): Promise<Unit>
 
@@ -479,26 +461,6 @@ external fun realpath(path: URL, options: `T$16`? = definedExternally): Promise<
 external fun realpath(path: URL, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
 
 external fun mkdtemp(prefix: String, options: `T$32`? = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "ascii" */ = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "utf8" */ = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "utf-8" */ = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "utf16le" */ = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "ucs2" */ = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "ucs-2" */ = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "base64" */ = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "latin1" */ = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "binary" */ = definedExternally): Promise<String>
-
-external fun mkdtemp(prefix: String, options: String /* "hex" */ = definedExternally): Promise<String>
 
 external fun mkdtemp(prefix: String, options: `T$21`): Promise<Buffer>
 

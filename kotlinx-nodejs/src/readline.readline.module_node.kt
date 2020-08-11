@@ -123,8 +123,6 @@ external interface CursorPos {
 
 external fun clearLine(stream: WritableStream, dir: String /* "-1" */, callback: () -> Unit = definedExternally): Boolean
 
-external fun clearLine(stream: WritableStream, dir: Number /* 0 */, callback: () -> Unit = definedExternally): Boolean
-
 external fun clearLine(stream: WritableStream, dir: Number /* 1 */, callback: () -> Unit = definedExternally): Boolean
 
 external fun clearScreenDown(stream: WritableStream, callback: () -> Unit = definedExternally): Boolean

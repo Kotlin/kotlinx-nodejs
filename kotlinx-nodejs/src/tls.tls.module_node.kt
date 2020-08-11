@@ -133,33 +133,23 @@ external open class TLSSocket(socket: Socket, options: TLSSocketOptions = define
     open fun enableTrace()
     open fun exportKeyingMaterial(length: Number, label: String, context: Buffer): Buffer
     override fun addListener(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
-    override fun addListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun addListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun addListener(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
     override fun addListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "OCSPResponse" | "session" | "keylog" */, response: Buffer): Boolean
     override fun emit(event: String /* "secureConnect" */): Boolean
     override fun on(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
-    override fun on(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun on(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun on(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
     override fun on(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun once(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
-    override fun once(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun once(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun once(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
     override fun once(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
-    override fun prependListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun prependListener(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
-    override fun prependOnceListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun prependOnceListener(event: String /* "session" */, listener: (session: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
 }
 

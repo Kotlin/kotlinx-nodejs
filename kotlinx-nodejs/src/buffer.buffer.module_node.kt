@@ -32,16 +32,6 @@ external object constants {
 
 external var BuffType: Any
 
-external fun transcode(source: Uint8Array, fromEnc: String /* "ascii" */, toEnc: String /* "ascii" | "utf8" | "utf16le" | "ucs2" | "latin1" | "binary" */): Buffer
-
-external fun transcode(source: Uint8Array, fromEnc: String /* "utf8" */, toEnc: String /* "ascii" | "utf8" | "utf16le" | "ucs2" | "latin1" | "binary" */): Buffer
-
-external fun transcode(source: Uint8Array, fromEnc: String /* "utf16le" */, toEnc: String /* "ascii" | "utf8" | "utf16le" | "ucs2" | "latin1" | "binary" */): Buffer
-
-external fun transcode(source: Uint8Array, fromEnc: String /* "ucs2" */, toEnc: String /* "ascii" | "utf8" | "utf16le" | "ucs2" | "latin1" | "binary" */): Buffer
-
-external fun transcode(source: Uint8Array, fromEnc: String /* "latin1" */, toEnc: String /* "ascii" | "utf8" | "utf16le" | "ucs2" | "latin1" | "binary" */): Buffer
-
 external fun transcode(source: Uint8Array, fromEnc: String /* "binary" */, toEnc: String /* "ascii" | "utf8" | "utf16le" | "ucs2" | "latin1" | "binary" */): Buffer
 
 external object SlowBuffer {

@@ -76,44 +76,36 @@ external open class internal : EventEmitter {
         override fun isPaused(): Boolean
         override fun unpipe(destination: WritableStream): Readable /* this */
         open fun unshift(chunk: Any, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally)
-        override fun unshift(chunk: String, encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */)
         override fun wrap(oldStream: ReadableStream): Readable /* this */
         open fun push(chunk: Any, encoding: String = definedExternally): Boolean
         open fun _destroy(error: Error?, callback: (error: Error?) -> Unit)
         open fun destroy(error: Error = definedExternally)
         open fun addListener(event: String /* "close" | "end" | "pause" | "readable" | "resume" */, listener: () -> Unit): Readable /* this */
-        override fun addListener(event: String /* "data" */, listener: (chunk: Any) -> Unit): Readable /* this */
         open fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Readable /* this */
         override fun addListener(event: String, listener: (args: Any) -> Unit): Readable /* this */
         override fun addListener(event: Any, listener: (args: Any) -> Unit): Readable /* this */
         open fun emit(event: String /* "close" | "end" | "pause" | "readable" | "resume" */): Boolean
         open fun emit(event: String /* "data" */, chunk: Any): Boolean
-        override fun emit(event: String, vararg args: Any): Boolean
         open fun emit(event: String /* "error" */, err: Error): Boolean
         override fun emit(event: String, vararg args: Any): Boolean
         override fun emit(event: Any, vararg args: Any): Boolean
         open fun on(event: String /* "close" | "end" | "pause" | "readable" | "resume" */, listener: () -> Unit): Readable /* this */
-        override fun on(event: String /* "data" */, listener: (chunk: Any) -> Unit): Readable /* this */
         open fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Readable /* this */
         override fun on(event: String, listener: (args: Any) -> Unit): Readable /* this */
         override fun on(event: Any, listener: (args: Any) -> Unit): Readable /* this */
         open fun once(event: String /* "close" | "end" | "pause" | "readable" | "resume" */, listener: () -> Unit): Readable /* this */
-        override fun once(event: String /* "data" */, listener: (chunk: Any) -> Unit): Readable /* this */
         open fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Readable /* this */
         override fun once(event: String, listener: (args: Any) -> Unit): Readable /* this */
         override fun once(event: Any, listener: (args: Any) -> Unit): Readable /* this */
         open fun prependListener(event: String /* "close" | "end" | "pause" | "readable" | "resume" */, listener: () -> Unit): Readable /* this */
-        override fun prependListener(event: String /* "data" */, listener: (chunk: Any) -> Unit): Readable /* this */
         open fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Readable /* this */
         override fun prependListener(event: String, listener: (args: Any) -> Unit): Readable /* this */
         override fun prependListener(event: Any, listener: (args: Any) -> Unit): Readable /* this */
         open fun prependOnceListener(event: String /* "close" | "end" | "pause" | "readable" | "resume" */, listener: () -> Unit): Readable /* this */
-        override fun prependOnceListener(event: String /* "data" */, listener: (chunk: Any) -> Unit): Readable /* this */
         open fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Readable /* this */
         override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): Readable /* this */
         override fun prependOnceListener(event: Any, listener: (args: Any) -> Unit): Readable /* this */
         open fun removeListener(event: String /* "close" | "end" | "pause" | "readable" | "resume" */, listener: () -> Unit): Readable /* this */
-        override fun removeListener(event: String /* "data" */, listener: (chunk: Any) -> Unit): Readable /* this */
         open fun removeListener(event: String /* "error" */, listener: (err: Error) -> Unit): Readable /* this */
         override fun removeListener(event: String, listener: (args: Any) -> Unit): Readable /* this */
         override fun removeListener(event: Any, listener: (args: Any) -> Unit): Readable /* this */
@@ -171,13 +163,11 @@ external open class internal : EventEmitter {
         open fun _destroy(error: Error?, callback: (error: Error?) -> Unit)
         open fun _final(callback: (error: Error?) -> Unit)
         open fun write(chunk: Any, cb: (error: Error?) -> Unit = definedExternally): Boolean
-        override fun write(buffer: Uint8Array, cb: (err: Error?) -> Unit): Boolean
         open fun write(chunk: Any, encoding: String, cb: (error: Error?) -> Unit = definedExternally): Boolean
         override fun write(str: String, encoding: String, cb: (err: Error?) -> Unit): Boolean
         open fun setDefaultEncoding(encoding: String): Writable /* this */
         override fun end(cb: () -> Unit)
         open fun end(chunk: Any, cb: () -> Unit = definedExternally)
-        override fun end(data: String, cb: () -> Unit)
         open fun end(chunk: Any, encoding: String, cb: () -> Unit = definedExternally)
         override fun end(str: String, encoding: String, cb: () -> Unit)
         open fun cork()
@@ -190,9 +180,7 @@ external open class internal : EventEmitter {
         override fun addListener(event: Any, listener: (args: Any) -> Unit): Writable /* this */
         open fun emit(event: String /* "close" | "drain" | "finish" */): Boolean
         open fun emit(event: String /* "error" */, err: Error): Boolean
-        override fun emit(event: String, vararg args: Any): Boolean
         open fun emit(event: String /* "pipe" | "unpipe" */, src: Readable): Boolean
-        override fun emit(event: String, vararg args: Any): Boolean
         override fun emit(event: String, vararg args: Any): Boolean
         override fun emit(event: Any, vararg args: Any): Boolean
         open fun on(event: String /* "close" | "drain" | "finish" */, listener: () -> Unit): Writable /* this */
