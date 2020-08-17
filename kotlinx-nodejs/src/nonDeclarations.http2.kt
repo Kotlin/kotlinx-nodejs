@@ -137,7 +137,6 @@ external interface Http2Stream : Duplex {
     fun setTimeout(msecs: Number, callback: () -> Unit = definedExternally)
     fun sendTrailers(headers: OutgoingHttpHeaders)
     override fun addListener(event: String /* "aborted" | "close" | "drain" | "end" | "finish" | "timeout" | "wantTrailers" */, listener: () -> Unit): Http2Stream /* this */
-    override fun addListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun addListener(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun addListener(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): Http2Stream /* this */
@@ -157,7 +156,6 @@ external interface Http2Stream : Duplex {
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     override fun on(event: String /* "aborted" | "close" | "drain" | "end" | "finish" | "timeout" | "wantTrailers" */, listener: () -> Unit): Http2Stream /* this */
-    override fun on(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun on(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun on(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): Http2Stream /* this */
@@ -166,7 +164,6 @@ external interface Http2Stream : Duplex {
     override fun on(event: String, listener: (args: Any) -> Unit): Http2Stream /* this */
     override fun on(event: Any, listener: (args: Any) -> Unit): Http2Stream /* this */
     override fun once(event: String /* "aborted" | "close" | "drain" | "end" | "finish" | "timeout" | "wantTrailers" */, listener: () -> Unit): Http2Stream /* this */
-    override fun once(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun once(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun once(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): Http2Stream /* this */
@@ -175,7 +172,6 @@ external interface Http2Stream : Duplex {
     override fun once(event: String, listener: (args: Any) -> Unit): Http2Stream /* this */
     override fun once(event: Any, listener: (args: Any) -> Unit): Http2Stream /* this */
     override fun prependListener(event: String /* "aborted" | "close" | "drain" | "end" | "finish" | "timeout" | "wantTrailers" */, listener: () -> Unit): Http2Stream /* this */
-    override fun prependListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun prependListener(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun prependListener(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): Http2Stream /* this */
@@ -184,7 +180,6 @@ external interface Http2Stream : Duplex {
     override fun prependListener(event: String, listener: (args: Any) -> Unit): Http2Stream /* this */
     override fun prependListener(event: Any, listener: (args: Any) -> Unit): Http2Stream /* this */
     override fun prependOnceListener(event: String /* "aborted" | "close" | "drain" | "end" | "finish" | "timeout" | "wantTrailers" */, listener: () -> Unit): Http2Stream /* this */
-    override fun prependOnceListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2Stream /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2Stream /* this */
     fun prependOnceListener(event: String /* "frameError" */, listener: (frameType: Number, errorCode: Number) -> Unit): Http2Stream /* this */
     fun prependOnceListener(event: String /* "pipe" | "unpipe" */, listener: (src: Readable) -> Unit): Http2Stream /* this */

@@ -41,7 +41,6 @@ external open class Http2ServerRequest(stream: ServerHttp2Stream, headers: Incom
     override fun read(size: Number): dynamic /* Buffer? | String? */
     open fun addListener(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun addListener(event: String /* "close" | "end" | "readable" */, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun addListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun addListener(event: String, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
     override fun addListener(event: Any, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
@@ -55,25 +54,21 @@ external open class Http2ServerRequest(stream: ServerHttp2Stream, headers: Incom
     override fun emit(event: Any, vararg args: Any): Boolean
     open fun on(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun on(event: String /* "close" | "end" | "readable" */, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun on(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun on(event: String, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
     override fun on(event: Any, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
     open fun once(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun once(event: String /* "close" | "end" | "readable" */, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun once(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun once(event: String, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
     override fun once(event: Any, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
     open fun prependListener(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun prependListener(event: String /* "close" | "end" | "readable" */, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun prependListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun prependListener(event: String, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
     override fun prependListener(event: Any, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
     open fun prependOnceListener(event: String /* "aborted" */, listener: (hadError: Boolean, code: Number) -> Unit): Http2ServerRequest /* this */
     override fun prependOnceListener(event: String /* "close" | "end" | "readable" */, listener: () -> Unit): Http2ServerRequest /* this */
-    override fun prependOnceListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): Http2ServerRequest /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Http2ServerRequest /* this */
     override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
     override fun prependOnceListener(event: Any, listener: (args: Any) -> Unit): Http2ServerRequest /* this */
