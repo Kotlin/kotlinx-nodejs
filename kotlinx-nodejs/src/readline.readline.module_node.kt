@@ -22,24 +22,6 @@ import NodeJS.WritableStream
 import Buffer
 import events.EventEmitter.EventEmitter
 
-external interface Key {
-    var sequence: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var name: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var ctrl: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var meta: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var shift: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external open class Interface : EventEmitter {
     open var terminal: Boolean
     open var line: String
@@ -77,37 +59,6 @@ external open class Interface : EventEmitter {
     open fun prependOnceListener(event: String /* "line" */, listener: (input: String) -> Unit): Interface /* this */
 }
 
-external interface ReadLineOptions {
-    var input: ReadableStream
-    var output: WritableStream?
-        get() = definedExternally
-        set(value) = definedExternally
-    var completer: dynamic /* Completer? | AsyncCompleter? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var terminal: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var historySize: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var prompt: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var crlfDelay: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var removeHistoryDuplicates: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var escapeCodeTimeout: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var tabSize: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external fun createInterface(input: ReadableStream, output: WritableStream = definedExternally, completer: Completer = definedExternally, terminal: Boolean = definedExternally): Interface
 
 external fun createInterface(input: ReadableStream, output: WritableStream = definedExternally, completer: AsyncCompleter = definedExternally, terminal: Boolean = definedExternally): Interface
@@ -116,14 +67,9 @@ external fun createInterface(options: ReadLineOptions): Interface
 
 external fun emitKeypressEvents(stream: ReadableStream, readlineInterface: Interface = definedExternally)
 
-external interface CursorPos {
-    var rows: Number
-    var cols: Number
-}
-
 external fun clearLine(stream: WritableStream, dir: String /* "-1" */, callback: () -> Unit = definedExternally): Boolean
 
-external fun clearLine(stream: WritableStream, dir: Number /* 1 */, callback: () -> Unit = definedExternally): Boolean
+external fun clearLine(stream: WritableStream, dir: Number /* 0 | 1 */, callback: () -> Unit = definedExternally): Boolean
 
 external fun clearScreenDown(stream: WritableStream, callback: () -> Unit = definedExternally): Boolean
 

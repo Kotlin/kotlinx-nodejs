@@ -19,26 +19,26 @@ import org.w3c.xhr.*
 import fs.MakeDirectoryOptions
 import Buffer
 
-external fun __promisify__(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally): Promise<Unit>
+external fun __promisify__(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` | MakeDirectoryOptions & `T$34` */): dynamic /* Promise | Promise */
 
-external fun __promisify__(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally): Promise<Unit>
+external fun __promisify__(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` | MakeDirectoryOptions & `T$34` */): dynamic /* Promise | Promise */
 
-external fun __promisify__(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally): Promise<Unit>
+external fun __promisify__(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` | MakeDirectoryOptions & `T$34` */): dynamic /* Promise | Promise */
 
-external fun __promisify__(path: String, options: Number? = definedExternally): Promise<String?>
+external fun __promisify__(path: String, options: Number? = definedExternally): dynamic /* Promise | Promise */
 
-external fun __promisify__(path: String, options: String? = definedExternally): Promise<String?>
+external fun __promisify__(path: String, options: String? = definedExternally): dynamic /* Promise | Promise */
+
+external fun __promisify__(path: Buffer, options: Number? = definedExternally): dynamic /* Promise | Promise */
+
+external fun __promisify__(path: Buffer, options: String? = definedExternally): dynamic /* Promise | Promise */
+
+external fun __promisify__(path: URL, options: Number? = definedExternally): dynamic /* Promise | Promise */
+
+external fun __promisify__(path: URL, options: String? = definedExternally): dynamic /* Promise | Promise */
 
 external fun __promisify__(path: String, options: MakeDirectoryOptions? = definedExternally): Promise<String?>
 
-external fun __promisify__(path: Buffer, options: Number? = definedExternally): Promise<String?>
-
-external fun __promisify__(path: Buffer, options: String? = definedExternally): Promise<String?>
-
 external fun __promisify__(path: Buffer, options: MakeDirectoryOptions? = definedExternally): Promise<String?>
-
-external fun __promisify__(path: URL, options: Number? = definedExternally): Promise<String?>
-
-external fun __promisify__(path: URL, options: String? = definedExternally): Promise<String?>
 
 external fun __promisify__(path: URL, options: MakeDirectoryOptions? = definedExternally): Promise<String?>

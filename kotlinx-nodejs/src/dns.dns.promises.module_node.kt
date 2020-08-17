@@ -21,13 +21,13 @@ import dns.LookupOneOptions
 import dns.LookupAllOptions
 import dns.LookupOptions
 import dns.lookupService.`T$12`
+import dns.ResolveWithTtlOptions
+import dns.RecordWithTtl
+import dns.ResolveOptions
 import dns.MxRecord
 import dns.NaptrRecord
 import dns.SoaRecord
 import dns.SrvRecord
-import dns.ResolveWithTtlOptions
-import dns.RecordWithTtl
-import dns.ResolveOptions
 
 external fun getServers(): Array<String>
 
@@ -45,7 +45,7 @@ external fun lookupService(address: String, port: Number): Promise<`T$12`>
 
 external fun resolve(hostname: String): Promise<Array<String>>
 
-external fun resolve(hostname: String, rrtype: String): Promise<dynamic /* Array<String> | Array<MxRecord> | Array<NaptrRecord> | SoaRecord | Array<SrvRecord> | Array<Array<String>> | Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */> */>
+external fun resolve(hostname: String, rrtype: String /* "A" | "AAAA" | "ANY" | "CNAME" | "MX" | "NAPTR" | "NS" | "PTR" | "SOA" | "SRV" | "TXT" */): dynamic /* Promise */
 
 external fun resolve4(hostname: String): Promise<Array<String>>
 

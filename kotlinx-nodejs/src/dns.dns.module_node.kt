@@ -25,34 +25,6 @@ external var V4MAPPED: Number
 
 external var ALL: Number
 
-external interface LookupOptions {
-    var family: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var hints: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var all: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var verbatim: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface LookupOneOptions : LookupOptions {
-    override var all: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface LookupAllOptions : LookupOptions
-
-external interface LookupAddress {
-    var address: String
-    var family: Number
-}
-
 external fun lookup(hostname: String, family: Number, callback: (err: ErrnoException?, address: String, family: Number) -> Unit)
 
 external fun lookup(hostname: String, options: LookupOneOptions, callback: (err: ErrnoException?, address: String, family: Number) -> Unit)
@@ -65,95 +37,21 @@ external fun lookup(hostname: String, callback: (err: ErrnoException?, address: 
 
 external fun lookupService(address: String, port: Number, callback: (err: ErrnoException?, hostname: String, service: String) -> Unit)
 
-external interface ResolveOptions {
-    var ttl: Boolean
-}
-
-external interface ResolveWithTtlOptions : ResolveOptions {
-    override var ttl: Boolean
-}
-
-external interface RecordWithTtl {
-    var address: String
-    var ttl: Number
-}
-
-external interface AnyARecord : RecordWithTtl {
-    var type: String /* "A" */
-}
-
-external interface AnyAaaaRecord : RecordWithTtl {
-    var type: String /* "AAAA" */
-}
-
-external interface MxRecord {
-    var priority: Number
-    var exchange: String
-}
-
-external interface AnyMxRecord : MxRecord {
-    var type: String /* "MX" */
-}
-
-external interface NaptrRecord {
-    var flags: String
-    var service: String
-    var regexp: String
-    var replacement: String
-    var order: Number
-    var preference: Number
-}
-
-external interface AnyNaptrRecord : NaptrRecord {
-    var type: String /* "NAPTR" */
-}
-
-external interface SoaRecord {
-    var nsname: String
-    var hostmaster: String
-    var serial: Number
-    var refresh: Number
-    var retry: Number
-    var expire: Number
-    var minttl: Number
-}
-
-external interface AnySoaRecord : SoaRecord {
-    var type: String /* "SOA" */
-}
-
-external interface SrvRecord {
-    var priority: Number
-    var weight: Number
-    var port: Number
-    var name: String
-}
-
-external interface AnySrvRecord : SrvRecord {
-    var type: String /* "SRV" */
-}
-
-external interface AnyTxtRecord {
-    var type: String /* "TXT" */
-    var entries: Array<String>
-}
-
-external interface AnyNsRecord {
-    var type: String /* "NS" */
-    var value: String
-}
-
-external interface AnyPtrRecord {
-    var type: String /* "PTR" */
-    var value: String
-}
-
-external interface AnyCnameRecord {
-    var type: String /* "CNAME" */
-    var value: String
-}
-
 external fun resolve(hostname: String, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)
+
+external fun resolve(hostname: String, rrtype: String /* "A" | "AAAA" | "CNAME" | "NS" | "PTR" */, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)
+
+external fun resolve(hostname: String, rrtype: String /* "ANY" */, callback: (err: ErrnoException?, addresses: Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */>) -> Unit)
+
+external fun resolve(hostname: String, rrtype: String /* "MX" */, callback: (err: ErrnoException?, addresses: Array<MxRecord>) -> Unit)
+
+external fun resolve(hostname: String, rrtype: String /* "NAPTR" */, callback: (err: ErrnoException?, addresses: Array<NaptrRecord>) -> Unit)
+
+external fun resolve(hostname: String, rrtype: String /* "SOA" */, callback: (err: ErrnoException?, addresses: SoaRecord) -> Unit)
+
+external fun resolve(hostname: String, rrtype: String /* "SRV" */, callback: (err: ErrnoException?, addresses: Array<SrvRecord>) -> Unit)
+
+external fun resolve(hostname: String, rrtype: String /* "TXT" */, callback: (err: ErrnoException?, addresses: Array<Array<String>>) -> Unit)
 
 external fun resolve(hostname: String, rrtype: String, callback: (err: ErrnoException?, addresses: dynamic /* Array<String> | Array<MxRecord> | Array<NaptrRecord> | SoaRecord | Array<SrvRecord> | Array<Array<String>> | Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */> */) -> Unit)
 

@@ -17,34 +17,12 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import tls.ConnectionOptions
 import http.RequestListener
 import tls.SecureContextOptions
 import http.HttpBase
 import http.RequestOptions
 import http.IncomingMessage
 import http.ClientRequest
-
-external interface `T$59` {
-    var rejectUnauthorized: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var servername: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface AgentOptions : http.AgentOptions, ConnectionOptions {
-    override var rejectUnauthorized: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var maxCachedSessions: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    override var timeout: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external open class Agent(options: AgentOptions = definedExternally) : http.Agent {
     open var options: AgentOptions

@@ -74,5 +74,6 @@ external interface PromiseConstructor {
     fun <T> resolve(value: PromiseLike<T>): Promise<T>
     fun resolve(): Promise<Unit>
     fun <T> all(values: Iterable<dynamic /* T | PromiseLike<T> */>): Promise<Array<T>>
+    fun <T> race(values: Iterable<T>): Promise<Any>
     fun <T> race(values: Iterable<dynamic /* T | PromiseLike<T> */>): Promise<T>
 }

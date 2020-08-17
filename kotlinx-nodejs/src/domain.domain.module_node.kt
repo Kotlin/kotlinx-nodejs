@@ -25,15 +25,15 @@ external open class Domain : EventEmitter, NodeJS.Domain {
     override fun <T> run(fn: (args: Any) -> T, vararg args: Any): T
     open fun add(emitter: EventEmitter)
     override fun add(emitter: _NodeJS_EventEmitter)
+    override fun add(emitter: Timer)
     open fun remove(emitter: EventEmitter)
     override fun remove(emitter: _NodeJS_EventEmitter)
+    override fun remove(emitter: Timer)
     override fun <T : Function<*>> bind(cb: T): T
     override fun <T : Function<*>> intercept(cb: T): T
     open var members: Array<dynamic /* EventEmitter | NodeJS.Timer */>
     open fun enter()
     open fun exit()
-    override fun add(emitter: Timer)
-    override fun remove(emitter: Timer)
 }
 
 external fun create(): Domain

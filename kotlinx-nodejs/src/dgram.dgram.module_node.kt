@@ -17,54 +17,11 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import dns.LookupOneOptions
-import NodeJS.ErrnoException
 import Buffer
 import net.AddressInfo
 import events.EventEmitter.EventEmitter
 
-external interface RemoteInfo {
-    var address: String
-    var family: String /* "IPv4" | "IPv6" */
-    var port: Number
-    var size: Number
-}
-
-external interface BindOptions {
-    var port: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var address: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var exclusive: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var fd: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface SocketOptions {
-    var type: String /* "udp4" | "udp6" */
-    var reuseAddr: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var ipv6Only: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var recvBufferSize: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var sendBufferSize: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var lookup: ((hostname: String, options: LookupOneOptions, callback: (err: ErrnoException?, address: String, family: Number) -> Unit) -> Unit)?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external fun createSocket(type: String /* "udp6" */, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
+external fun createSocket(type: String /* "udp4" | "udp6" */, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
 
 external fun createSocket(options: SocketOptions, callback: (msg: Buffer, rinfo: RemoteInfo) -> Unit = definedExternally): Socket
 

@@ -21,45 +21,6 @@ import NodeJS.Dict
 import Buffer
 import child_process.`T$15`
 
-external interface `T$20` {
-    var user: Number
-    var nice: Number
-    var sys: Number
-    var idle: Number
-    var irq: Number
-}
-
-external interface CpuInfo {
-    var model: String
-    var speed: Number
-    var times: `T$20`
-}
-
-external interface NetworkInterfaceBase {
-    var address: String
-    var netmask: String
-    var mac: String
-    var internal: Boolean
-    var cidr: String?
-}
-
-external interface NetworkInterfaceInfoIPv4 : NetworkInterfaceBase {
-    var family: String /* "IPv4" */
-}
-
-external interface NetworkInterfaceInfoIPv6 : NetworkInterfaceBase {
-    var family: String /* "IPv6" */
-    var scopeid: Number
-}
-
-external interface UserInfo<T> {
-    var username: T
-    var uid: Number
-    var gid: Number
-    var shell: T
-    var homedir: T
-}
-
 external fun hostname(): String
 
 external fun loadavg(): Array<Number>
@@ -79,10 +40,6 @@ external fun release(): String
 external fun networkInterfaces(): Dict<Array<dynamic /* NetworkInterfaceInfoIPv4 | NetworkInterfaceInfoIPv6 */>>
 
 external fun homedir(): String
-
-external interface `T$21` {
-    var encoding: String /* "buffer" */
-}
 
 external fun userInfo(options: `T$21`): UserInfo<Buffer>
 
