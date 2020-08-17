@@ -17,26 +17,6 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import NodeJS.Dict
-
-external interface StringifyOptions {
-    var encodeURIComponent: ((str: String) -> String)?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface ParseOptions {
-    var maxKeys: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var decodeURIComponent: ((str: String) -> String)?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface ParsedUrlQuery : Dict<dynamic /* String | Array<String> */>
-
-external interface ParsedUrlQueryInput : Dict<dynamic /* String? | Number? | Boolean? | Array<String>? | Array<Number>? | Array<Boolean>? */>
 
 external fun stringify(obj: ParsedUrlQueryInput = definedExternally, sep: String = definedExternally, eq: String = definedExternally, options: StringifyOptions = definedExternally): String
 

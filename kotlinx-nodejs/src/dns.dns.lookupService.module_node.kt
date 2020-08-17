@@ -17,9 +17,4 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 
-external interface `T$12` {
-    var hostname: String
-    var service: String
-}
-
 external fun __promisify__(address: String, port: Number): Promise<`T$12`>

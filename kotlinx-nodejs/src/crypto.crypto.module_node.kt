@@ -17,58 +17,11 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import Buffer
 import stream.internal.TransformOptions
+import Buffer
 import stream.internal.Transform
 import stream.internal.WritableOptions
 import stream.internal.Writable
-
-@Suppress("NESTED_CLASS_IN_EXTERNAL_INTERFACE")
-external interface Certificate {
-    fun exportChallenge(spkac: String): Buffer
-    fun exportChallenge(spkac: Uint8Array): Buffer
-    fun exportChallenge(spkac: Uint8ClampedArray): Buffer
-    fun exportChallenge(spkac: Uint16Array): Buffer
-    fun exportChallenge(spkac: Uint32Array): Buffer
-    fun exportChallenge(spkac: Int8Array): Buffer
-    fun exportChallenge(spkac: Int16Array): Buffer
-    fun exportChallenge(spkac: Int32Array): Buffer
-    fun exportChallenge(spkac: Float32Array): Buffer
-    fun exportChallenge(spkac: Float64Array): Buffer
-    fun exportChallenge(spkac: DataView): Buffer
-    fun exportPublicKey(spkac: String): Buffer
-    fun exportPublicKey(spkac: Uint8Array): Buffer
-    fun exportPublicKey(spkac: Uint8ClampedArray): Buffer
-    fun exportPublicKey(spkac: Uint16Array): Buffer
-    fun exportPublicKey(spkac: Uint32Array): Buffer
-    fun exportPublicKey(spkac: Int8Array): Buffer
-    fun exportPublicKey(spkac: Int16Array): Buffer
-    fun exportPublicKey(spkac: Int32Array): Buffer
-    fun exportPublicKey(spkac: Float32Array): Buffer
-    fun exportPublicKey(spkac: Float64Array): Buffer
-    fun exportPublicKey(spkac: DataView): Buffer
-    fun verifySpkac(spkac: Uint8Array): Boolean
-    fun verifySpkac(spkac: Uint8ClampedArray): Boolean
-    fun verifySpkac(spkac: Uint16Array): Boolean
-    fun verifySpkac(spkac: Uint32Array): Boolean
-    fun verifySpkac(spkac: Int8Array): Boolean
-    fun verifySpkac(spkac: Int16Array): Boolean
-    fun verifySpkac(spkac: Int32Array): Boolean
-    fun verifySpkac(spkac: Float32Array): Boolean
-    fun verifySpkac(spkac: Float64Array): Boolean
-    fun verifySpkac(spkac: DataView): Boolean
-
-    companion object {
-        @nativeInvoke
-        operator fun invoke(): Certificate
-    }
-}
-
-external interface HashOptions : TransformOptions {
-    var outputLength: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external var fips: Boolean
 
@@ -133,17 +86,6 @@ external open class Hmac : Transform {
     open fun digest(encoding: String /* "latin1" | "hex" | "base64" */): String
 }
 
-external interface KeyExportOptions<T : String> {
-    var type: String /* "pkcs1" | "spki" | "pkcs8" | "sec1" */
-    var format: T
-    var cipher: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var passphrase: dynamic /* String? | Buffer? */
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external open class KeyObject {
     open var asymmetricKeyType: String /* "rsa" | "dsa" | "ec" */
     open var asymmetricKeySize: Number
@@ -152,17 +94,9 @@ external open class KeyObject {
     open var type: String /* "secret" | "public" | "private" */
 }
 
-external interface CipherCCMOptions : TransformOptions {
-    var authTagLength: Number
-}
+external fun createCipher(algorithm: String /* "aes-128-ccm" | "aes-192-ccm" | "aes-256-ccm" | "chacha20-poly1305" */, password: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, options: CipherCCMOptions): CipherCCM
 
-external interface CipherGCMOptions : TransformOptions {
-    var authTagLength: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external fun createCipher(algorithm: String /* "aes-256-gcm" */, password: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, options: CipherGCMOptions = definedExternally): CipherGCM
+external fun createCipher(algorithm: String /* "aes-128-gcm" | "aes-192-gcm" | "aes-256-gcm" */, password: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, options: CipherGCMOptions = definedExternally): CipherGCM
 
 external fun createCipher(algorithm: String, password: String, options: TransformOptions = definedExternally): Cipher
 
@@ -186,9 +120,9 @@ external fun createCipher(algorithm: String, password: Float64Array, options: Tr
 
 external fun createCipher(algorithm: String, password: DataView, options: TransformOptions = definedExternally): Cipher
 
-external fun createCipheriv(algorithm: String /* "chacha20-poly1305" */, key: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView | KeyObject */, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: CipherCCMOptions): CipherCCM
+external fun createCipheriv(algorithm: String /* "aes-128-ccm" | "aes-192-ccm" | "aes-256-ccm" | "chacha20-poly1305" */, key: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView | KeyObject */, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: CipherCCMOptions): CipherCCM
 
-external fun createCipheriv(algorithm: String /* "aes-256-gcm" */, key: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView | KeyObject */, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: CipherGCMOptions = definedExternally): CipherGCM
+external fun createCipheriv(algorithm: String /* "aes-128-gcm" | "aes-192-gcm" | "aes-256-gcm" */, key: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView | KeyObject */, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: CipherGCMOptions = definedExternally): CipherGCM
 
 external fun createCipheriv(algorithm: String, key: String, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: TransformOptions = definedExternally): Cipher
 
@@ -243,23 +177,9 @@ external open class Cipher : Transform {
     open fun setAutoPadding(auto_padding: Boolean = definedExternally): Cipher /* this */
 }
 
-external interface `T$22` {
-    var plaintextLength: Number
-}
+external fun createDecipher(algorithm: String /* "aes-128-ccm" | "aes-192-ccm" | "aes-256-ccm" | "chacha20-poly1305" */, password: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, options: CipherCCMOptions): DecipherCCM
 
-external interface CipherCCM : Cipher {
-    fun setAAD(buffer: Buffer, options: `T$22`): CipherCCM /* this */
-    fun getAuthTag(): Buffer
-}
-
-external interface CipherGCM : Cipher {
-    fun setAAD(buffer: Buffer, options: `T$22` = definedExternally): CipherGCM /* this */
-    fun getAuthTag(): Buffer
-}
-
-external fun createDecipher(algorithm: String /* "chacha20-poly1305" */, password: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, options: CipherCCMOptions): DecipherCCM
-
-external fun createDecipher(algorithm: String /* "aes-256-gcm" */, password: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, options: CipherGCMOptions = definedExternally): DecipherGCM
+external fun createDecipher(algorithm: String /* "aes-128-gcm" | "aes-192-gcm" | "aes-256-gcm" */, password: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, options: CipherGCMOptions = definedExternally): DecipherGCM
 
 external fun createDecipher(algorithm: String, password: String, options: TransformOptions = definedExternally): Decipher
 
@@ -283,9 +203,9 @@ external fun createDecipher(algorithm: String, password: Float64Array, options: 
 
 external fun createDecipher(algorithm: String, password: DataView, options: TransformOptions = definedExternally): Decipher
 
-external fun createDecipheriv(algorithm: String /* "chacha20-poly1305" */, key: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView | KeyObject */, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: CipherCCMOptions): DecipherCCM
+external fun createDecipheriv(algorithm: String /* "aes-128-ccm" | "aes-192-ccm" | "aes-256-ccm" | "chacha20-poly1305" */, key: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView | KeyObject */, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: CipherCCMOptions): DecipherCCM
 
-external fun createDecipheriv(algorithm: String /* "aes-256-gcm" */, key: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView | KeyObject */, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: CipherGCMOptions = definedExternally): DecipherGCM
+external fun createDecipheriv(algorithm: String /* "aes-128-gcm" | "aes-192-gcm" | "aes-256-gcm" */, key: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView | KeyObject */, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: CipherGCMOptions = definedExternally): DecipherGCM
 
 external fun createDecipheriv(algorithm: String, key: String, iv: dynamic /* String? | Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? | DataView? */, options: TransformOptions = definedExternally): Decipher
 
@@ -339,79 +259,6 @@ external open class Decipher : Transform {
     open fun setAutoPadding(auto_padding: Boolean = definedExternally): Decipher /* this */
 }
 
-external interface DecipherCCM : Decipher {
-    fun setAuthTag(buffer: Uint8Array): DecipherCCM /* this */
-    fun setAuthTag(buffer: Uint8ClampedArray): DecipherCCM /* this */
-    fun setAuthTag(buffer: Uint16Array): DecipherCCM /* this */
-    fun setAuthTag(buffer: Uint32Array): DecipherCCM /* this */
-    fun setAuthTag(buffer: Int8Array): DecipherCCM /* this */
-    fun setAuthTag(buffer: Int16Array): DecipherCCM /* this */
-    fun setAuthTag(buffer: Int32Array): DecipherCCM /* this */
-    fun setAuthTag(buffer: Float32Array): DecipherCCM /* this */
-    fun setAuthTag(buffer: Float64Array): DecipherCCM /* this */
-    fun setAuthTag(buffer: DataView): DecipherCCM /* this */
-    fun setAAD(buffer: Uint8Array, options: `T$22`): DecipherCCM /* this */
-    fun setAAD(buffer: Uint8ClampedArray, options: `T$22`): DecipherCCM /* this */
-    fun setAAD(buffer: Uint16Array, options: `T$22`): DecipherCCM /* this */
-    fun setAAD(buffer: Uint32Array, options: `T$22`): DecipherCCM /* this */
-    fun setAAD(buffer: Int8Array, options: `T$22`): DecipherCCM /* this */
-    fun setAAD(buffer: Int16Array, options: `T$22`): DecipherCCM /* this */
-    fun setAAD(buffer: Int32Array, options: `T$22`): DecipherCCM /* this */
-    fun setAAD(buffer: Float32Array, options: `T$22`): DecipherCCM /* this */
-    fun setAAD(buffer: Float64Array, options: `T$22`): DecipherCCM /* this */
-    fun setAAD(buffer: DataView, options: `T$22`): DecipherCCM /* this */
-}
-
-external interface DecipherGCM : Decipher {
-    fun setAuthTag(buffer: Uint8Array): DecipherGCM /* this */
-    fun setAuthTag(buffer: Uint8ClampedArray): DecipherGCM /* this */
-    fun setAuthTag(buffer: Uint16Array): DecipherGCM /* this */
-    fun setAuthTag(buffer: Uint32Array): DecipherGCM /* this */
-    fun setAuthTag(buffer: Int8Array): DecipherGCM /* this */
-    fun setAuthTag(buffer: Int16Array): DecipherGCM /* this */
-    fun setAuthTag(buffer: Int32Array): DecipherGCM /* this */
-    fun setAuthTag(buffer: Float32Array): DecipherGCM /* this */
-    fun setAuthTag(buffer: Float64Array): DecipherGCM /* this */
-    fun setAuthTag(buffer: DataView): DecipherGCM /* this */
-    fun setAAD(buffer: Uint8Array, options: `T$22` = definedExternally): DecipherGCM /* this */
-    fun setAAD(buffer: Uint8ClampedArray, options: `T$22` = definedExternally): DecipherGCM /* this */
-    fun setAAD(buffer: Uint16Array, options: `T$22` = definedExternally): DecipherGCM /* this */
-    fun setAAD(buffer: Uint32Array, options: `T$22` = definedExternally): DecipherGCM /* this */
-    fun setAAD(buffer: Int8Array, options: `T$22` = definedExternally): DecipherGCM /* this */
-    fun setAAD(buffer: Int16Array, options: `T$22` = definedExternally): DecipherGCM /* this */
-    fun setAAD(buffer: Int32Array, options: `T$22` = definedExternally): DecipherGCM /* this */
-    fun setAAD(buffer: Float32Array, options: `T$22` = definedExternally): DecipherGCM /* this */
-    fun setAAD(buffer: Float64Array, options: `T$22` = definedExternally): DecipherGCM /* this */
-    fun setAAD(buffer: DataView, options: `T$22` = definedExternally): DecipherGCM /* this */
-}
-
-external interface PrivateKeyInput {
-    var key: dynamic /* String | Buffer */
-        get() = definedExternally
-        set(value) = definedExternally
-    var format: String? /* "pem" | "der" */
-        get() = definedExternally
-        set(value) = definedExternally
-    var type: String? /* "pkcs1" | "pkcs8" | "sec1" */
-        get() = definedExternally
-        set(value) = definedExternally
-    var passphrase: dynamic /* String? | Buffer? */
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface PublicKeyInput {
-    var key: dynamic /* String | Buffer */
-        get() = definedExternally
-        set(value) = definedExternally
-    var format: String? /* "pem" | "der" */
-        get() = definedExternally
-        set(value) = definedExternally
-    var type: String? /* "pkcs1" | "spki" */
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external fun createPrivateKey(key: PrivateKeyInput): KeyObject
 
 external fun createPrivateKey(key: String): KeyObject
@@ -429,17 +276,6 @@ external fun createPublicKey(key: KeyObject): KeyObject
 external fun createSecretKey(key: Buffer): KeyObject
 
 external fun createSign(algorithm: String, options: WritableOptions = definedExternally): Signer
-
-external interface SigningOptions {
-    var padding: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var saltLength: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface SignPrivateKeyInput : PrivateKeyInput, SigningOptions
 
 external open class Signer : Writable {
     open fun update(data: String): Signer
@@ -531,11 +367,11 @@ external fun createDiffieHellman(prime: Float64Array): DiffieHellman
 
 external fun createDiffieHellman(prime: DataView): DiffieHellman
 
-external fun createDiffieHellman(prime: String, prime_encoding: String /* "base64" */): DiffieHellman
+external fun createDiffieHellman(prime: String, prime_encoding: String /* "latin1" | "hex" | "base64" */): DiffieHellman
 
-external fun createDiffieHellman(prime: String, prime_encoding: String /* "base64" */, generator: dynamic /* Number | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */): DiffieHellman
+external fun createDiffieHellman(prime: String, prime_encoding: String /* "latin1" | "hex" | "base64" */, generator: dynamic /* Number | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */): DiffieHellman
 
-external fun createDiffieHellman(prime: String, prime_encoding: String /* "base64" */, generator: String, generator_encoding: String /* "base64" */): DiffieHellman
+external fun createDiffieHellman(prime: String, prime_encoding: String /* "latin1" | "hex" | "hex" | "hex" | "base64" | "base64" | "base64" */, generator: String, generator_encoding: String /* "latin1" | "hex" | "base64" | "latin1" | "hex" | "base64" | "latin1" | "hex" | "base64" */): DiffieHellman
 
 external open class DiffieHellman {
     open fun generateKeys(): Buffer
@@ -657,21 +493,6 @@ external fun <T> randomFill(buffer: T, offset: Number, callback: (err: Error?, b
 
 external fun <T> randomFill(buffer: T, offset: Number, size: Number, callback: (err: Error?, buf: T) -> Unit)
 
-external interface ScryptOptions {
-    var N: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var r: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var p: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var maxmem: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external fun scrypt(password: String, salt: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, keylen: Number, callback: (err: Error?, derivedKey: Buffer) -> Unit)
 
 external fun scrypt(password: Uint8Array, salt: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, keylen: Number, callback: (err: Error?, derivedKey: Buffer) -> Unit)
@@ -737,33 +558,6 @@ external fun scryptSync(password: Float32Array, salt: dynamic /* String | Uint8A
 external fun scryptSync(password: Float64Array, salt: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, keylen: Number, options: ScryptOptions = definedExternally): Buffer
 
 external fun scryptSync(password: DataView, salt: dynamic /* String | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */, keylen: Number, options: ScryptOptions = definedExternally): Buffer
-
-external interface RsaPublicKey {
-    var key: dynamic /* String | Buffer | KeyObject */
-        get() = definedExternally
-        set(value) = definedExternally
-    var padding: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface RsaPrivateKey {
-    var key: dynamic /* String | Buffer | KeyObject */
-        get() = definedExternally
-        set(value) = definedExternally
-    var passphrase: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var oaepHash: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var oaepLabel: dynamic /* Uint8Array? | Uint8ClampedArray? | Uint16Array? | Uint32Array? | Int8Array? | Int16Array? | Int32Array? | Float32Array? | Float64Array? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var padding: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external fun publicEncrypt(key: RsaPublicKey, buffer: dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */): Buffer
 
@@ -887,95 +681,15 @@ external fun timingSafeEqual(a: DataView, b: dynamic /* Uint8Array | Uint8Clampe
 
 external var DEFAULT_ENCODING: String
 
-external interface BasePrivateKeyEncodingOptions<T : String> {
-    var format: T
-    var cipher: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var passphrase: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface KeyPairKeyObjectResult {
-    var publicKey: KeyObject
-    var privateKey: KeyObject
-}
-
-external interface ECKeyPairKeyObjectOptions {
-    var namedCurve: String
-}
-
-external interface RSAKeyPairKeyObjectOptions {
-    var modulusLength: Number
-    var publicExponent: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface DSAKeyPairKeyObjectOptions {
-    var modulusLength: Number
-    var divisorLength: Number
-}
-
-external interface `T$23`<PubF> {
-    var type: String /* "pkcs1" | "spki" */
-    var format: PubF
-}
-
-external interface `T$24` {
-    var type: String /* "pkcs1" | "pkcs8" */
-}
-
-external interface RSAKeyPairOptions<PubF : String, PrivF : String> {
-    var modulusLength: Number
-    var publicExponent: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var publicKeyEncoding: `T$23`<Any?>
-    var privateKeyEncoding: BasePrivateKeyEncodingOptions<PrivF> /* BasePrivateKeyEncodingOptions<PrivF> & `T$24` */
-}
-
-external interface `T$25`<PubF> {
-    var type: String /* "spki" */
-    var format: PubF
-}
-
-external interface `T$26` {
-    var type: String /* "pkcs8" */
-}
-
-external interface DSAKeyPairOptions<PubF : String, PrivF : String> {
-    var modulusLength: Number
-    var divisorLength: Number
-    var publicKeyEncoding: `T$25`<Any?>
-    var privateKeyEncoding: BasePrivateKeyEncodingOptions<PrivF> /* BasePrivateKeyEncodingOptions<PrivF> & `T$26` */
-}
-
-external interface `T$27` {
-    var type: String /* "sec1" | "pkcs8" */
-}
-
-external interface ECKeyPairOptions<PubF : String, PrivF : String> {
-    var namedCurve: String
-    var publicKeyEncoding: `T$23`<Any?>
-    var privateKeyEncoding: BasePrivateKeyEncodingOptions<PrivF> /* BasePrivateKeyEncodingOptions<PrivF> & `T$27` */
-}
-
-external interface KeyPairSyncResult<T1, T2> {
-    var publicKey: T1
-    var privateKey: T2
-}
-
-external fun generateKeyPairSync(type: String /* "rsa" */, options: RSAKeyPairOptions<String /* "der" */, String /* "der" */>): KeyPairSyncResult<Buffer, Buffer>
+external fun generateKeyPairSync(type: String /* "rsa" */, options: RSAKeyPairOptions<String /* "pem" | "der" | "der" */, String /* "pem" | "der" | "pem" | "der" */>): dynamic /* KeyPairSyncResult */
 
 external fun generateKeyPairSync(type: String /* "rsa" */, options: RSAKeyPairKeyObjectOptions): KeyPairKeyObjectResult
 
-external fun generateKeyPairSync(type: String /* "dsa" */, options: DSAKeyPairOptions<String /* "der" */, String /* "der" */>): KeyPairSyncResult<Buffer, Buffer>
+external fun generateKeyPairSync(type: String /* "dsa" */, options: DSAKeyPairOptions<String /* "pem" | "der" | "der" */, String /* "pem" | "der" | "pem" | "der" */>): dynamic /* KeyPairSyncResult */
 
 external fun generateKeyPairSync(type: String /* "dsa" */, options: DSAKeyPairKeyObjectOptions): KeyPairKeyObjectResult
 
-external fun generateKeyPairSync(type: String /* "ec" */, options: ECKeyPairOptions<String /* "der" */, String /* "der" */>): KeyPairSyncResult<Buffer, Buffer>
+external fun generateKeyPairSync(type: String /* "ec" */, options: ECKeyPairOptions<String /* "pem" | "der" | "der" */, String /* "pem" | "der" | "pem" | "der" */>): dynamic /* KeyPairSyncResult */
 
 external fun generateKeyPairSync(type: String /* "ec" */, options: ECKeyPairKeyObjectOptions): KeyPairKeyObjectResult
 
@@ -1028,8 +742,6 @@ external fun sign(algorithm: String?, data: Float32Array, key: dynamic /* String
 external fun sign(algorithm: String?, data: Float64Array, key: dynamic /* String | Buffer | KeyObject | SignPrivateKeyInput */): Buffer
 
 external fun sign(algorithm: String?, data: DataView, key: dynamic /* String | Buffer | KeyObject | SignPrivateKeyInput */): Buffer
-
-external interface VerifyKeyWithOptions : KeyObject, SigningOptions
 
 external fun verify(algorithm: String?, data: Uint8Array, key: dynamic /* String | Buffer | KeyObject | VerifyKeyWithOptions */, signature: dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */): Boolean
 

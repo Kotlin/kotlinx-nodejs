@@ -44,12 +44,11 @@ external interface PropertyDescriptor {
         get() = definedExternally
 }
 
-external interface PropertyDescriptorMap {
-    @nativeGetter
-    operator fun get(s: String): PropertyDescriptor?
-    @nativeSetter
-    operator fun set(s: String, value: PropertyDescriptor)
-}
+external interface PropertyDescriptorMap
+
+public inline operator fun tsstdlib.PropertyDescriptorMap.get(s: String): PropertyDescriptor? = this.asDynamic()[s]
+
+public inline operator fun tsstdlib.PropertyDescriptorMap.set(s: String, value: PropertyDescriptor) { this.asDynamic()[s] = value }
 
 external interface Object {
     var constructor: Function<*>
@@ -107,13 +106,13 @@ external interface FunctionConstructor {
 }
 
 external interface IArguments {
-    @nativeGetter
-    operator fun get(index: Number): Any?
-    @nativeSetter
-    operator fun set(index: Number, value: Any)
     var length: Number
     var callee: Function<*>
 }
+
+public inline operator fun tsstdlib.IArguments.get(index: Number): Any? = this.asDynamic()[index]
+
+public inline operator fun tsstdlib.IArguments.set(index: Number, value: Any) { this.asDynamic()[index] = value }
 
 external interface StringConstructor {
     fun fromCodePoint(vararg codePoints: Number): String
@@ -212,13 +211,13 @@ external interface SyntaxErrorConstructor : ErrorConstructor {
 
 external interface ConcatArray<T> {
     var length: Number
-    @nativeGetter
-    operator fun get(n: Number): T?
-    @nativeSetter
-    operator fun set(n: Number, value: T)
     fun join(separator: String = definedExternally): String
     fun slice(start: Number = definedExternally, end: Number = definedExternally): Array<T>
 }
+
+public inline operator fun <T> tsstdlib.ConcatArray<T>.get(n: Number): T? = this.asDynamic()[n]
+
+public inline operator fun <T> tsstdlib.ConcatArray<T>.set(n: Number, value: T) { this.asDynamic()[n] = value }
 
 external interface ArrayConstructor {
     fun <T> from(iterable: Iterable<T>): Array<T>
@@ -242,11 +241,11 @@ external interface PromiseLike<T> {
 
 external interface ArrayLike<T> {
     var length: Number
-    @nativeGetter
-    operator fun get(n: Number): T?
-    @nativeSetter
-    operator fun set(n: Number, value: T)
 }
+
+public inline operator fun <T> tsstdlib.ArrayLike<T>.get(n: Number): T? = this.asDynamic()[n]
+
+public inline operator fun <T> tsstdlib.ArrayLike<T>.set(n: Number, value: T) { this.asDynamic()[n] = value }
 
 typealias Readonly<T> = Any
 

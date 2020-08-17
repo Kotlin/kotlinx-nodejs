@@ -18,17 +18,6 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 
-external interface Tracing {
-    var categories: String
-    fun disable()
-    fun enable()
-    var enabled: Boolean
-}
-
-external interface CreateTracingOptions {
-    var categories: Array<String>
-}
-
 external fun createTracing(options: CreateTracingOptions): Tracing
 
 external fun getEnabledCategories(): String?

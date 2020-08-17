@@ -17,9 +17,4 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 
-external interface `T$41`<TBuffer> {
-    var bytesRead: Number
-    var buffer: TBuffer
-}
-
 external fun <TBuffer> __promisify__(fd: Number, buffer: TBuffer, offset: Number, length: Number, position: Number?): Promise<`T$41`<TBuffer>>

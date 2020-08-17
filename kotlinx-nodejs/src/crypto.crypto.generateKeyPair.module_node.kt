@@ -17,7 +17,6 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import crypto.RSAKeyPairOptions
-import Buffer
 import crypto.RSAKeyPairKeyObjectOptions
 import crypto.KeyPairKeyObjectResult
 import crypto.DSAKeyPairOptions
@@ -25,34 +24,14 @@ import crypto.DSAKeyPairKeyObjectOptions
 import crypto.ECKeyPairOptions
 import crypto.ECKeyPairKeyObjectOptions
 
-external interface `T$28` {
-    var publicKey: String
-    var privateKey: String
-}
-
-external interface `T$29` {
-    var publicKey: String
-    var privateKey: Buffer
-}
-
-external interface `T$30` {
-    var publicKey: Buffer
-    var privateKey: String
-}
-
-external interface `T$31` {
-    var publicKey: Buffer
-    var privateKey: Buffer
-}
-
-external fun __promisify__(type: String /* "rsa" */, options: RSAKeyPairOptions<String /* "der" */, String /* "der" */>): Promise<`T$31`>
+external fun __promisify__(type: String /* "rsa" */, options: RSAKeyPairOptions<String /* "pem" | "der" | "der" */, String /* "pem" | "der" | "pem" | "der" */>): dynamic /* Promise */
 
 external fun __promisify__(type: String /* "rsa" */, options: RSAKeyPairKeyObjectOptions): Promise<KeyPairKeyObjectResult>
 
-external fun __promisify__(type: String /* "dsa" */, options: DSAKeyPairOptions<String /* "der" */, String /* "der" */>): Promise<`T$31`>
+external fun __promisify__(type: String /* "dsa" */, options: DSAKeyPairOptions<String /* "pem" | "der" | "der" */, String /* "pem" | "der" | "pem" | "der" */>): dynamic /* Promise */
 
 external fun __promisify__(type: String /* "dsa" */, options: DSAKeyPairKeyObjectOptions): Promise<KeyPairKeyObjectResult>
 
-external fun __promisify__(type: String /* "ec" */, options: ECKeyPairOptions<String /* "der" */, String /* "der" */>): Promise<`T$31`>
+external fun __promisify__(type: String /* "ec" */, options: ECKeyPairOptions<String /* "pem" | "der" | "der" */, String /* "pem" | "der" | "pem" | "der" */>): dynamic /* Promise */
 
 external fun __promisify__(type: String /* "ec" */, options: ECKeyPairKeyObjectOptions): Promise<KeyPairKeyObjectResult>

@@ -24,34 +24,7 @@ external fun executionAsyncResource(): Any?
 
 external fun triggerAsyncId(): Number
 
-external interface HookCallbacks {
-    val init: ((asyncId: Number, type: String, triggerAsyncId: Number, resource: Any?) -> Unit)?
-        get() = definedExternally
-    val before: ((asyncId: Number) -> Unit)?
-        get() = definedExternally
-    val after: ((asyncId: Number) -> Unit)?
-        get() = definedExternally
-    val promiseResolve: ((asyncId: Number) -> Unit)?
-        get() = definedExternally
-    val destroy: ((asyncId: Number) -> Unit)?
-        get() = definedExternally
-}
-
-external interface AsyncHook {
-    fun enable(): AsyncHook /* this */
-    fun disable(): AsyncHook /* this */
-}
-
 external fun createHook(options: HookCallbacks): AsyncHook
-
-external interface AsyncResourceOptions {
-    var triggerAsyncId: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var requireManualDestroy: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external open class AsyncResource {
     constructor(type: String, triggerAsyncId: Number = definedExternally)
