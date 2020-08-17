@@ -39,20 +39,6 @@ external fun lookupService(address: String, port: Number, callback: (err: ErrnoE
 
 external fun resolve(hostname: String, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)
 
-external fun resolve(hostname: String, rrtype: String /* "A" | "AAAA" | "CNAME" | "NS" | "PTR" */, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)
-
-external fun resolve(hostname: String, rrtype: String /* "ANY" */, callback: (err: ErrnoException?, addresses: Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */>) -> Unit)
-
-external fun resolve(hostname: String, rrtype: String /* "MX" */, callback: (err: ErrnoException?, addresses: Array<MxRecord>) -> Unit)
-
-external fun resolve(hostname: String, rrtype: String /* "NAPTR" */, callback: (err: ErrnoException?, addresses: Array<NaptrRecord>) -> Unit)
-
-external fun resolve(hostname: String, rrtype: String /* "SOA" */, callback: (err: ErrnoException?, addresses: SoaRecord) -> Unit)
-
-external fun resolve(hostname: String, rrtype: String /* "SRV" */, callback: (err: ErrnoException?, addresses: Array<SrvRecord>) -> Unit)
-
-external fun resolve(hostname: String, rrtype: String /* "TXT" */, callback: (err: ErrnoException?, addresses: Array<Array<String>>) -> Unit)
-
 external fun resolve(hostname: String, rrtype: String, callback: (err: ErrnoException?, addresses: dynamic /* Array<String> | Array<MxRecord> | Array<NaptrRecord> | SoaRecord | Array<SrvRecord> | Array<Array<String>> | Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */> */) -> Unit)
 
 external fun resolve4(hostname: String, callback: (err: ErrnoException?, addresses: Array<String>) -> Unit)

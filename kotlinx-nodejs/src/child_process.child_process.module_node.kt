@@ -23,39 +23,11 @@ import Buffer
 
 external fun spawn(command: String, options: SpawnOptionsWithoutStdio = definedExternally): ChildProcessWithoutNullStreams
 
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<String /* "pipe" */, String /* "pipe" */, String /* "pipe" */>): ChildProcessByStdio<Writable, Readable, Readable>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<String /* "pipe" */, String /* "pipe" */, dynamic /* "inherit" | "ignore" | Stream */>): ChildProcessByStdio<Writable, Readable, Nothing?>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<String /* "pipe" */, dynamic /* "inherit" | "ignore" | Stream */, String /* "pipe" */>): ChildProcessByStdio<Writable, Nothing?, Readable>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* "inherit" | "ignore" | Stream */, String /* "pipe" */, String /* "pipe" */>): ChildProcessByStdio<Nothing?, Readable, Readable>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<String /* "pipe" */, dynamic /* "inherit" | "ignore" | Stream */, dynamic /* "inherit" | "ignore" | Stream */>): ChildProcessByStdio<Writable, Nothing?, Nothing?>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* "inherit" | "ignore" | Stream */, String /* "pipe" */, dynamic /* "inherit" | "ignore" | Stream */>): ChildProcessByStdio<Nothing?, Readable, Nothing?>
-
-external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* "inherit" | "ignore" | Stream */, dynamic /* "inherit" | "ignore" | Stream */, String /* "pipe" */>): ChildProcessByStdio<Nothing?, Nothing?, Readable>
-
 external fun spawn(command: String, options: SpawnOptionsWithStdioTuple<dynamic /* "inherit" | "ignore" | Stream */, dynamic /* "inherit" | "ignore" | Stream */, dynamic /* "inherit" | "ignore" | Stream */>): ChildProcessByStdio<Nothing?, Nothing?, Nothing?>
 
 external fun spawn(command: String, options: SpawnOptions): ChildProcess
 
 external fun spawn(command: String, args: Array<String> = definedExternally, options: SpawnOptionsWithoutStdio = definedExternally): ChildProcessWithoutNullStreams
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<String /* "pipe" */, String /* "pipe" */, String /* "pipe" */>): ChildProcessByStdio<Writable, Readable, Readable>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<String /* "pipe" */, String /* "pipe" */, dynamic /* "inherit" | "ignore" | Stream */>): ChildProcessByStdio<Writable, Readable, Nothing?>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<String /* "pipe" */, dynamic /* "inherit" | "ignore" | Stream */, String /* "pipe" */>): ChildProcessByStdio<Writable, Nothing?, Readable>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* "inherit" | "ignore" | Stream */, String /* "pipe" */, String /* "pipe" */>): ChildProcessByStdio<Nothing?, Readable, Readable>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<String /* "pipe" */, dynamic /* "inherit" | "ignore" | Stream */, dynamic /* "inherit" | "ignore" | Stream */>): ChildProcessByStdio<Writable, Nothing?, Nothing?>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* "inherit" | "ignore" | Stream */, String /* "pipe" */, dynamic /* "inherit" | "ignore" | Stream */>): ChildProcessByStdio<Nothing?, Readable, Nothing?>
-
-external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* "inherit" | "ignore" | Stream */, dynamic /* "inherit" | "ignore" | Stream */, String /* "pipe" */>): ChildProcessByStdio<Nothing?, Nothing?, Readable>
 
 external fun spawn(command: String, args: Array<String>, options: SpawnOptionsWithStdioTuple<dynamic /* "inherit" | "ignore" | Stream */, dynamic /* "inherit" | "ignore" | Stream */, dynamic /* "inherit" | "ignore" | Stream */>): ChildProcessByStdio<Nothing?, Nothing?, Nothing?>
 

@@ -79,31 +79,26 @@ external open class ReadStream : Readable {
     open var path: dynamic /* String | Buffer */
     open var pending: Boolean
     override fun addListener(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun addListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun addListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun addListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun addListener(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun addListener(event: Any, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun on(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun on(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun on(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun on(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun on(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun on(event: Any, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun once(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun once(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun once(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun once(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun once(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun once(event: Any, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun prependListener(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun prependListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun prependListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun prependListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun prependListener(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun prependListener(event: Any, listener: (args: Any) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String /* "close" | "end" | "pause" | "readable" | "ready" | "resume" */, listener: () -> Unit): ReadStream /* this */
-    override fun prependOnceListener(event: String /* "data" */, listener: (chunk: dynamic /* Buffer | String */) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): ReadStream /* this */
     open fun prependOnceListener(event: String /* "open" */, listener: (fd: Number) -> Unit): ReadStream /* this */
     override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): ReadStream /* this */
