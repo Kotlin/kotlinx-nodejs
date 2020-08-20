@@ -16,7 +16,7 @@ Feel free to submit [issues and bug reports](https://github.com/Kotlin/kotlinx-n
 Keep in mind that these sources are generated with [Dukat](https://github.com/Kotlin/dukat) and **are not supposed to be edited manually**. Please do not send pull requests to this repository directly. Instead, please file an issue about the improvements you have in mind – we can then adjust the generator tool accordingly.
 
 ## Setup
-To add `kotlinx-nodejs` to your project, make sure you have bintray added to your repositories. You can then add a dependency:
+To add `kotlinx-nodejs` to your project, make sure you have jcenter added to your repositories. You can then add a dependency:
 
 ```kotlin
 repositories {
