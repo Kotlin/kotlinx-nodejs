@@ -114,11 +114,6 @@ import inspector.NodeWorker.DetachedFromWorkerEventDataType
 import inspector.NodeWorker.ReceivedMessageFromWorkerEventDataType
 import events.EventEmitter.EventEmitter
 
-external interface InspectorNotification<T> {
-    var method: String
-    var params: T
-}
-
 external open class Session : EventEmitter {
     open fun connect()
     open fun disconnect()

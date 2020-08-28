@@ -19,12 +19,6 @@ import org.w3c.workers.*
 import org.w3c.xhr.*
 import NodeJS.ErrnoException
 
-external interface InspectOptions : NodeJS.InspectOptions
-
-external interface InspectOptionsStylized : InspectOptions {
-    fun stylize(text: String, styleType: String /* "special" | "number" | "bigint" | "boolean" | "undefined" | "null" | "string" | "symbol" | "date" | "regexp" | "module" */): String
-}
-
 external fun format(format: Any, vararg param: Any): String
 
 external fun formatWithOptions(inspectOptions: InspectOptions, format: String, vararg param: Any): String
@@ -129,21 +123,6 @@ external fun <T1, T2, T3, T4, T5> promisify(fn: (arg1: T1, arg2: T2, arg3: T3, a
 
 external fun promisify(fn: Function<*>): Function<*>
 
-external interface `T$64` {
-    var fatal: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var ignoreBOM: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface `T$65` {
-    var stream: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external open class TextDecoder(encoding: String = definedExternally, options: `T$64` = definedExternally) {
     open var encoding: String
     open var fatal: Boolean
@@ -159,11 +138,6 @@ external open class TextDecoder(encoding: String = definedExternally, options: `
     open fun decode(input: Float64Array? = definedExternally, options: `T$65` = definedExternally): String
     open fun decode(input: DataView? = definedExternally, options: `T$65` = definedExternally): String
     open fun decode(input: ArrayBuffer? = definedExternally, options: `T$65` = definedExternally): String
-}
-
-external interface EncodeIntoResult {
-    var read: Number
-    var written: Number
 }
 
 external open class TextEncoder {

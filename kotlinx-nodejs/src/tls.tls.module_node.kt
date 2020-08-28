@@ -17,99 +17,12 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import NodeJS.Dict
-import Buffer
 import net.Socket
-import net.LookupFunction
+import Buffer
 
 external var CLIENT_RENEG_LIMIT: Number
 
 external var CLIENT_RENEG_WINDOW: Number
-
-external interface Certificate {
-    var C: String
-    var ST: String
-    var L: String
-    var O: String
-    var OU: String
-    var CN: String
-}
-
-external interface PeerCertificate {
-    var subject: Certificate
-    var issuer: Certificate
-    var subjectaltname: String
-    var infoAccess: Dict<Array<String>>
-    var modulus: String
-    var exponent: String
-    var valid_from: String
-    var valid_to: String
-    var fingerprint: String
-    var fingerprint256: String
-    var ext_key_usage: Array<String>
-    var serialNumber: String
-    var raw: Buffer
-}
-
-external interface DetailedPeerCertificate : PeerCertificate {
-    var issuerCertificate: DetailedPeerCertificate
-}
-
-external interface CipherNameAndProtocol {
-    var name: String
-    var version: String
-    var standardName: String
-}
-
-external interface EphemeralKeyInfo {
-    var type: String
-    var name: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var size: Number
-}
-
-external interface KeyObject {
-    var pem: dynamic /* String | Buffer */
-        get() = definedExternally
-        set(value) = definedExternally
-    var passphrase: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface PxfObject {
-    var buf: dynamic /* String | Buffer */
-        get() = definedExternally
-        set(value) = definedExternally
-    var passphrase: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface TLSSocketOptions : SecureContextOptions, CommonConnectionOptions {
-    var isServer: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var server: net.Server?
-        get() = definedExternally
-        set(value) = definedExternally
-    var session: Buffer?
-        get() = definedExternally
-        set(value) = definedExternally
-    var requestOCSP: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface `T$58` {
-    var rejectUnauthorized: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var requestCert: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external open class TLSSocket(socket: Socket, options: TLSSocketOptions = definedExternally) : Socket {
     open var authorized: Boolean
@@ -133,104 +46,24 @@ external open class TLSSocket(socket: Socket, options: TLSSocketOptions = define
     open fun enableTrace()
     open fun exportKeyingMaterial(length: Number, label: String, context: Buffer): Buffer
     override fun addListener(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
+    override fun addListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun addListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun addListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun emit(event: String, vararg args: Any): Boolean
     override fun emit(event: Any, vararg args: Any): Boolean
     override fun emit(event: String /* "OCSPResponse" | "session" | "keylog" */, response: Buffer): Boolean
     override fun emit(event: String /* "secureConnect" */): Boolean
     override fun on(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
+    override fun on(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun on(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun on(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun once(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
+    override fun once(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun once(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun once(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
+    override fun prependListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun prependListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun prependListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): TLSSocket /* this */
+    override fun prependOnceListener(event: String /* "OCSPResponse" */, listener: (response: Buffer) -> Unit): TLSSocket /* this */
     override fun prependOnceListener(event: String /* "secureConnect" */, listener: () -> Unit): TLSSocket /* this */
-    override fun prependOnceListener(event: String /* "keylog" */, listener: (line: Buffer) -> Unit): TLSSocket /* this */
-}
-
-external interface CommonConnectionOptions {
-    var secureContext: SecureContext?
-        get() = definedExternally
-        set(value) = definedExternally
-    var enableTrace: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var requestCert: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var ALPNProtocols: dynamic /* Array<String>? | Array<Uint8Array>? | Uint8Array? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var SNICallback: ((servername: String, cb: (err: Error?, ctx: SecureContext) -> Unit) -> Unit)?
-        get() = definedExternally
-        set(value) = definedExternally
-    var rejectUnauthorized: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface TlsOptions : SecureContextOptions, CommonConnectionOptions {
-    var handshakeTimeout: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var sessionTimeout: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var ticketKeys: Buffer?
-        get() = definedExternally
-        set(value) = definedExternally
-    val pskCallback: ((socket: TLSSocket, identity: String) -> dynamic)?
-        get() = definedExternally
-    var pskIdentityHint: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface PSKCallbackNegotation {
-    var psk: dynamic /* DataView | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array */
-        get() = definedExternally
-        set(value) = definedExternally
-    var identitty: String
-}
-
-external interface ConnectionOptions : SecureContextOptions, CommonConnectionOptions {
-    var host: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var port: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var path: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var socket: Socket?
-        get() = definedExternally
-        set(value) = definedExternally
-    var checkServerIdentity: Any?
-        get() = definedExternally
-        set(value) = definedExternally
-    var servername: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var session: Buffer?
-        get() = definedExternally
-        set(value) = definedExternally
-    var minDHSize: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var lookup: LookupFunction?
-        get() = definedExternally
-        set(value) = definedExternally
-    var timeout: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    val pskCallback: ((hint: String?) -> PSKCallbackNegotation?)?
-        get() = definedExternally
 }
 
 external open class Server : net.Server {
@@ -281,75 +114,6 @@ external open class Server : net.Server {
     open fun prependOnceListener(event: String /* "resumeSession" */, listener: (sessionId: Buffer, callback: (err: Error, sessionData: Buffer) -> Unit) -> Unit): Server /* this */
     open fun prependOnceListener(event: String /* "secureConnection" */, listener: (tlsSocket: TLSSocket) -> Unit): Server /* this */
     open fun prependOnceListener(event: String /* "keylog" */, listener: (line: Buffer, tlsSocket: TLSSocket) -> Unit): Server /* this */
-}
-
-external interface SecurePair {
-    var encrypted: TLSSocket
-    var cleartext: TLSSocket
-}
-
-external interface SecureContextOptions {
-    var ca: dynamic /* String? | Buffer? | Array<dynamic /* String | Buffer */>? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var cert: dynamic /* String? | Buffer? | Array<dynamic /* String | Buffer */>? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var sigalgs: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var ciphers: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var clientCertEngine: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var crl: dynamic /* String? | Buffer? | Array<dynamic /* String | Buffer */>? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var dhparam: dynamic /* String? | Buffer? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var ecdhCurve: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var honorCipherOrder: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var key: dynamic /* String? | Buffer? | Array<dynamic /* Buffer | KeyObject */>? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var privateKeyEngine: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var privateKeyIdentifier: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var maxVersion: String? /* "TLSv1.3" | "TLSv1.2" | "TLSv1.1" | "TLSv1" */
-        get() = definedExternally
-        set(value) = definedExternally
-    var minVersion: String? /* "TLSv1.3" | "TLSv1.2" | "TLSv1.1" | "TLSv1" */
-        get() = definedExternally
-        set(value) = definedExternally
-    var passphrase: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var pfx: dynamic /* String? | Buffer? | Array<dynamic /* String | Buffer | PxfObject */>? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var secureOptions: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var secureProtocol: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var sessionIdContext: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface SecureContext {
-    var context: Any
 }
 
 external fun checkServerIdentity(host: String, cert: PeerCertificate): Error?

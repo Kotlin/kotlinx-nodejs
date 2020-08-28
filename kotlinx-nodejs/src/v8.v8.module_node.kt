@@ -20,34 +20,6 @@ import org.w3c.xhr.*
 import stream.internal.Readable
 import Buffer
 
-external interface HeapSpaceInfo {
-    var space_name: String
-    var space_size: Number
-    var space_used_size: Number
-    var space_available_size: Number
-    var physical_space_size: Number
-}
-
-external interface HeapInfo {
-    var total_heap_size: Number
-    var total_heap_size_executable: Number
-    var total_physical_size: Number
-    var total_available_size: Number
-    var used_heap_size: Number
-    var heap_size_limit: Number
-    var malloced_memory: Number
-    var peak_malloced_memory: Number
-    var does_zap_garbage: Number /* 0 | 1 */
-    var number_of_native_contexts: Number
-    var number_of_detached_contexts: Number
-}
-
-external interface HeapCodeStatistics {
-    var code_and_metadata_size: Number
-    var bytecode_and_metadata_size: Number
-    var external_script_source_size: Number
-}
-
 external fun cachedDataVersionTag(): Number
 
 external fun getHeapStatistics(): HeapInfo

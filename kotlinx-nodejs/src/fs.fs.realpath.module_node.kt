@@ -21,11 +21,11 @@ import os.`T$21`
 import child_process.`T$16`
 import NodeJS.ErrnoException
 
-external fun __promisify__(path: String, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<String>
+external fun __promisify__(path: String, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
-external fun __promisify__(path: Buffer, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<String>
+external fun __promisify__(path: Buffer, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
-external fun __promisify__(path: URL, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<String>
+external fun __promisify__(path: URL, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
 external fun __promisify__(path: String, options: `T$21`): Promise<Buffer>
 
@@ -51,11 +51,11 @@ external fun __promisify__(path: URL, options: `T$16`? = definedExternally): Pro
 
 external fun __promisify__(path: URL, options: String? = definedExternally): Promise<dynamic /* String | Buffer */>
 
-external fun native(path: String, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
+external fun native(path: String, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
-external fun native(path: Buffer, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
+external fun native(path: Buffer, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
-external fun native(path: URL, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
+external fun native(path: URL, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
 external fun native(path: String, options: `T$21`, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
 

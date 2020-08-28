@@ -18,40 +18,11 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 import NodeJS.ErrnoException
-import events.EventEmitter.EventEmitter
 import stream.internal.Readable
 import stream.internal.Writable
 import Buffer
 import os.`T$21`
 import child_process.`T$16`
-
-external interface StatsBase<T> {
-    fun isFile(): Boolean
-    fun isDirectory(): Boolean
-    fun isBlockDevice(): Boolean
-    fun isCharacterDevice(): Boolean
-    fun isSymbolicLink(): Boolean
-    fun isFIFO(): Boolean
-    fun isSocket(): Boolean
-    var dev: T
-    var ino: T
-    var mode: T
-    var nlink: T
-    var uid: T
-    var gid: T
-    var rdev: T
-    var size: T
-    var blksize: T
-    var blocks: T
-    var atimeMs: T
-    var mtimeMs: T
-    var ctimeMs: T
-    var birthtimeMs: T
-    var atime: Date
-    var mtime: Date
-    var ctime: Date
-    var birthtime: Date
-}
 
 external open class Stats : StatsBase<Number> {
     override fun isFile(): Boolean
@@ -100,30 +71,6 @@ external open class Dir {
     open fun read(): Promise<Dirent?>
     open fun read(cb: (err: ErrnoException?, dirEnt: Dirent?) -> Unit)
     open fun readSync(): Dirent
-}
-
-external interface FSWatcher : EventEmitter {
-    fun close()
-    override fun addListener(event: String, listener: (args: Any) -> Unit): FSWatcher /* this */
-    fun addListener(event: String /* "change" */, listener: (eventType: String, filename: dynamic /* String | Buffer */) -> Unit): FSWatcher /* this */
-    fun addListener(event: String /* "error" */, listener: (error: Error) -> Unit): FSWatcher /* this */
-    fun addListener(event: String /* "close" */, listener: () -> Unit): FSWatcher /* this */
-    override fun on(event: String, listener: (args: Any) -> Unit): FSWatcher /* this */
-    fun on(event: String /* "change" */, listener: (eventType: String, filename: dynamic /* String | Buffer */) -> Unit): FSWatcher /* this */
-    fun on(event: String /* "error" */, listener: (error: Error) -> Unit): FSWatcher /* this */
-    fun on(event: String /* "close" */, listener: () -> Unit): FSWatcher /* this */
-    override fun once(event: String, listener: (args: Any) -> Unit): FSWatcher /* this */
-    fun once(event: String /* "change" */, listener: (eventType: String, filename: dynamic /* String | Buffer */) -> Unit): FSWatcher /* this */
-    fun once(event: String /* "error" */, listener: (error: Error) -> Unit): FSWatcher /* this */
-    fun once(event: String /* "close" */, listener: () -> Unit): FSWatcher /* this */
-    override fun prependListener(event: String, listener: (args: Any) -> Unit): FSWatcher /* this */
-    fun prependListener(event: String /* "change" */, listener: (eventType: String, filename: dynamic /* String | Buffer */) -> Unit): FSWatcher /* this */
-    fun prependListener(event: String /* "error" */, listener: (error: Error) -> Unit): FSWatcher /* this */
-    fun prependListener(event: String /* "close" */, listener: () -> Unit): FSWatcher /* this */
-    override fun prependOnceListener(event: String, listener: (args: Any) -> Unit): FSWatcher /* this */
-    fun prependOnceListener(event: String /* "change" */, listener: (eventType: String, filename: dynamic /* String | Buffer */) -> Unit): FSWatcher /* this */
-    fun prependOnceListener(event: String /* "error" */, listener: (error: Error) -> Unit): FSWatcher /* this */
-    fun prependOnceListener(event: String /* "close" */, listener: () -> Unit): FSWatcher /* this */
 }
 
 external open class ReadStream : Readable {
@@ -457,17 +404,11 @@ external fun symlinkSync(target: URL, path: Buffer, type: String /* "dir" | "fil
 
 external fun symlinkSync(target: URL, path: URL, type: String /* "dir" | "file" | "junction" */ = definedExternally)
 
-external interface `T$32` {
-    var encoding: String? /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */
-        get() = definedExternally
-        set(value) = definedExternally
-}
+external fun readlink(path: String, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, linkString: String) -> Unit)
 
-external fun readlink(path: String, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, linkString: String) -> Unit)
+external fun readlink(path: Buffer, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, linkString: String) -> Unit)
 
-external fun readlink(path: Buffer, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, linkString: String) -> Unit)
-
-external fun readlink(path: URL, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, linkString: String) -> Unit)
+external fun readlink(path: URL, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, linkString: String) -> Unit)
 
 external fun readlink(path: String, options: `T$21`, callback: (err: ErrnoException?, linkString: Buffer) -> Unit)
 
@@ -499,11 +440,11 @@ external fun readlink(path: Buffer, callback: (err: ErrnoException?, linkString:
 
 external fun readlink(path: URL, callback: (err: ErrnoException?, linkString: String) -> Unit)
 
-external fun readlinkSync(path: String, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): String
+external fun readlinkSync(path: String, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
-external fun readlinkSync(path: Buffer, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): String
+external fun readlinkSync(path: Buffer, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
-external fun readlinkSync(path: URL, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): String
+external fun readlinkSync(path: URL, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
 external fun readlinkSync(path: String, options: `T$21`): Buffer
 
@@ -529,11 +470,11 @@ external fun readlinkSync(path: URL, options: `T$16`? = definedExternally): dyna
 
 external fun readlinkSync(path: URL, options: String? = definedExternally): dynamic /* String | Buffer */
 
-external fun realpath(path: String, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
+external fun realpath(path: String, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
-external fun realpath(path: Buffer, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
+external fun realpath(path: Buffer, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
-external fun realpath(path: URL, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
+external fun realpath(path: URL, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
 external fun realpath(path: String, options: `T$21`, callback: (err: ErrnoException?, resolvedPath: Buffer) -> Unit)
 
@@ -565,11 +506,11 @@ external fun realpath(path: Buffer, callback: (err: ErrnoException?, resolvedPat
 
 external fun realpath(path: URL, callback: (err: ErrnoException?, resolvedPath: String) -> Unit)
 
-external fun realpathSync(path: String, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): String
+external fun realpathSync(path: String, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
-external fun realpathSync(path: Buffer, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): String
+external fun realpathSync(path: Buffer, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
-external fun realpathSync(path: URL, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): String
+external fun realpathSync(path: URL, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): String
 
 external fun realpathSync(path: String, options: `T$21`): Buffer
 
@@ -607,21 +548,6 @@ external fun unlinkSync(path: Buffer)
 
 external fun unlinkSync(path: URL)
 
-external interface RmDirOptions {
-    var recursive: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface RmDirAsyncOptions : RmDirOptions {
-    var retryDelay: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var maxRetries: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external fun rmdir(path: String, callback: NoParamCallback)
 
 external fun rmdir(path: Buffer, callback: NoParamCallback)
@@ -640,30 +566,11 @@ external fun rmdirSync(path: Buffer, options: RmDirOptions = definedExternally)
 
 external fun rmdirSync(path: URL, options: RmDirOptions = definedExternally)
 
-external interface MakeDirectoryOptions {
-    var recursive: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var mode: dynamic /* Number? | String? */
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface `T$33` {
-    var recursive: Boolean
-}
-
 external fun mkdir(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` */, callback: (err: ErrnoException?, path: String) -> Unit)
 
 external fun mkdir(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` */, callback: (err: ErrnoException?, path: String) -> Unit)
 
 external fun mkdir(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` */, callback: (err: ErrnoException?, path: String) -> Unit)
-
-external interface `T$34` {
-    var recursive: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external fun mkdir(path: String, options: Number?, callback: NoParamCallback)
 
@@ -707,33 +614,33 @@ external fun mkdir(path: Buffer, callback: NoParamCallback)
 
 external fun mkdir(path: URL, callback: NoParamCallback)
 
-external fun mkdirSync(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally)
+external fun mkdirSync(path: String, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` | MakeDirectoryOptions & `T$34` */): dynamic /* String | Unit */
 
-external fun mkdirSync(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally)
+external fun mkdirSync(path: Buffer, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` | MakeDirectoryOptions & `T$34` */): dynamic /* String | Unit */
 
-external fun mkdirSync(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$34` */ = definedExternally)
+external fun mkdirSync(path: URL, options: MakeDirectoryOptions /* MakeDirectoryOptions & `T$33` | MakeDirectoryOptions & `T$34` */): dynamic /* String | Unit */
 
-external fun mkdirSync(path: String, options: Number? = definedExternally): String?
+external fun mkdirSync(path: String, options: Number? = definedExternally): dynamic /* Unit | String */
 
-external fun mkdirSync(path: String, options: String? = definedExternally): String?
+external fun mkdirSync(path: String, options: String? = definedExternally): dynamic /* Unit | String */
+
+external fun mkdirSync(path: Buffer, options: Number? = definedExternally): dynamic /* Unit | String */
+
+external fun mkdirSync(path: Buffer, options: String? = definedExternally): dynamic /* Unit | String */
+
+external fun mkdirSync(path: URL, options: Number? = definedExternally): dynamic /* Unit | String */
+
+external fun mkdirSync(path: URL, options: String? = definedExternally): dynamic /* Unit | String */
 
 external fun mkdirSync(path: String, options: MakeDirectoryOptions? = definedExternally): String?
 
-external fun mkdirSync(path: Buffer, options: Number? = definedExternally): String?
-
-external fun mkdirSync(path: Buffer, options: String? = definedExternally): String?
-
 external fun mkdirSync(path: Buffer, options: MakeDirectoryOptions? = definedExternally): String?
-
-external fun mkdirSync(path: URL, options: Number? = definedExternally): String?
-
-external fun mkdirSync(path: URL, options: String? = definedExternally): String?
 
 external fun mkdirSync(path: URL, options: MakeDirectoryOptions? = definedExternally): String?
 
 external fun mkdtemp(prefix: String, options: `T$32`?, callback: (err: ErrnoException?, folder: String) -> Unit)
 
-external fun mkdtemp(prefix: String, options: String /* "hex" */, callback: (err: ErrnoException?, folder: String) -> Unit)
+external fun mkdtemp(prefix: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, folder: String) -> Unit)
 
 external fun mkdtemp(prefix: String, options: String /* "buffer" */, callback: (err: ErrnoException?, folder: Buffer) -> Unit)
 
@@ -747,33 +654,19 @@ external fun mkdtemp(prefix: String, callback: (err: ErrnoException?, folder: St
 
 external fun mkdtempSync(prefix: String, options: `T$32`? = definedExternally): String
 
-external fun mkdtempSync(prefix: String, options: `T$21`): Buffer
+external fun mkdtempSync(prefix: String, options: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" | "buffer" */ = definedExternally): dynamic /* String | Buffer */
 
-external fun mkdtempSync(prefix: String, options: String /* "buffer" */): Buffer
+external fun mkdtempSync(prefix: String, options: `T$21`): Buffer
 
 external fun mkdtempSync(prefix: String, options: `T$16`? = definedExternally): dynamic /* String | Buffer */
 
 external fun mkdtempSync(prefix: String, options: String? = definedExternally): dynamic /* String | Buffer */
 
-external interface `T$35` {
-    var encoding: String /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */
-    var withFileTypes: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
+external fun readdir(path: String, options: dynamic /* `T$35`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, files: Array<String>) -> Unit)
 
-external fun readdir(path: String, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, files: Array<String>) -> Unit)
+external fun readdir(path: Buffer, options: dynamic /* `T$35`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, files: Array<String>) -> Unit)
 
-external fun readdir(path: Buffer, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, files: Array<String>) -> Unit)
-
-external fun readdir(path: URL, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */, callback: (err: ErrnoException?, files: Array<String>) -> Unit)
-
-external interface `T$36` {
-    var encoding: String /* "buffer" */
-    var withFileTypes: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
+external fun readdir(path: URL, options: dynamic /* `T$35`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, callback: (err: ErrnoException?, files: Array<String>) -> Unit)
 
 external fun readdir(path: String, options: `T$36`, callback: (err: ErrnoException?, files: Array<Buffer>) -> Unit)
 
@@ -786,15 +679,6 @@ external fun readdir(path: Buffer, options: String /* "buffer" */, callback: (er
 external fun readdir(path: URL, options: `T$36`, callback: (err: ErrnoException?, files: Array<Buffer>) -> Unit)
 
 external fun readdir(path: URL, options: String /* "buffer" */, callback: (err: ErrnoException?, files: Array<Buffer>) -> Unit)
-
-external interface `T$37` {
-    var encoding: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var withFileTypes: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external fun readdir(path: String, options: `T$37`?, callback: (err: ErrnoException?, files: dynamic /* Array<String> | Array<Buffer> */) -> Unit)
 
@@ -814,24 +698,17 @@ external fun readdir(path: Buffer, callback: (err: ErrnoException?, files: Array
 
 external fun readdir(path: URL, callback: (err: ErrnoException?, files: Array<String>) -> Unit)
 
-external interface `T$38` {
-    var encoding: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var withFileTypes: Boolean
-}
-
 external fun readdir(path: String, options: `T$38`, callback: (err: ErrnoException?, files: Array<Dirent>) -> Unit)
 
 external fun readdir(path: Buffer, options: `T$38`, callback: (err: ErrnoException?, files: Array<Dirent>) -> Unit)
 
 external fun readdir(path: URL, options: `T$38`, callback: (err: ErrnoException?, files: Array<Dirent>) -> Unit)
 
-external fun readdirSync(path: String, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Array<String>
+external fun readdirSync(path: String, options: dynamic /* `T$35`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Array<String>
 
-external fun readdirSync(path: Buffer, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Array<String>
+external fun readdirSync(path: Buffer, options: dynamic /* `T$35`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Array<String>
 
-external fun readdirSync(path: URL, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Array<String>
+external fun readdirSync(path: URL, options: dynamic /* `T$35`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Array<String>
 
 external fun readdirSync(path: String, options: `T$36`): Array<Buffer>
 
@@ -1041,18 +918,6 @@ external fun writeSync(fd: Number, string: Any, position: Number? = definedExter
 
 external fun <TBuffer> read(fd: Number, buffer: TBuffer, offset: Number, length: Number, position: Number?, callback: (err: ErrnoException?, bytesRead: Number, buffer: TBuffer) -> Unit)
 
-external interface ReadSyncOptions {
-    var offset: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var length: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var position: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external fun readSync(fd: Number, buffer: Uint8Array, offset: Number, length: Number, position: Number?): Number
 
 external fun readSync(fd: Number, buffer: Uint8ClampedArray, offset: Number, length: Number, position: Number?): Number
@@ -1093,15 +958,6 @@ external fun readSync(fd: Number, buffer: Float64Array, opts: ReadSyncOptions = 
 
 external fun readSync(fd: Number, buffer: DataView, opts: ReadSyncOptions = definedExternally): Number
 
-external interface `T$42` {
-    var encoding: Any?
-        get() = definedExternally
-        set(value) = definedExternally
-    var flag: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external fun readFile(path: String, options: `T$42`?, callback: (err: ErrnoException?, data: Buffer) -> Unit)
 
 external fun readFile(path: Buffer, options: `T$42`?, callback: (err: ErrnoException?, data: Buffer) -> Unit)
@@ -1109,13 +965,6 @@ external fun readFile(path: Buffer, options: `T$42`?, callback: (err: ErrnoExcep
 external fun readFile(path: URL, options: `T$42`?, callback: (err: ErrnoException?, data: Buffer) -> Unit)
 
 external fun readFile(path: Number, options: `T$42`?, callback: (err: ErrnoException?, data: Buffer) -> Unit)
-
-external interface `T$43` {
-    var encoding: String
-    var flag: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external fun readFile(path: String, options: `T$43`, callback: (err: ErrnoException?, data: String) -> Unit)
 
@@ -1132,15 +981,6 @@ external fun readFile(path: URL, options: String, callback: (err: ErrnoException
 external fun readFile(path: Number, options: `T$43`, callback: (err: ErrnoException?, data: String) -> Unit)
 
 external fun readFile(path: Number, options: String, callback: (err: ErrnoException?, data: String) -> Unit)
-
-external interface `T$44` {
-    var encoding: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var flag: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external fun readFile(path: String, options: `T$44`?, callback: (err: ErrnoException?, data: dynamic /* String | Buffer */) -> Unit)
 
@@ -1205,18 +1045,6 @@ external fun readFileSync(path: URL, options: String? = definedExternally): dyna
 external fun readFileSync(path: Number, options: `T$44`? = definedExternally): dynamic /* String | Buffer */
 
 external fun readFileSync(path: Number, options: String? = definedExternally): dynamic /* String | Buffer */
-
-external interface `T$45` {
-    var encoding: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var mode: dynamic /* Number? | String? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var flag: String?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external fun writeFile(path: String, data: Any, options: `T$45`?, callback: NoParamCallback)
 
@@ -1298,15 +1126,6 @@ external fun appendFileSync(file: Number, data: Any, options: `T$45`? = definedE
 
 external fun appendFileSync(file: Number, data: Any, options: String? = definedExternally)
 
-external interface `T$46` {
-    var persistent: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var interval: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external fun watchFile(filename: String, options: `T$46`?, listener: (curr: Stats, prev: Stats) -> Unit)
 
 external fun watchFile(filename: Buffer, options: `T$46`?, listener: (curr: Stats, prev: Stats) -> Unit)
@@ -1325,33 +1144,11 @@ external fun unwatchFile(filename: Buffer, listener: (curr: Stats, prev: Stats) 
 
 external fun unwatchFile(filename: URL, listener: (curr: Stats, prev: Stats) -> Unit = definedExternally)
 
-external interface `T$47` {
-    var encoding: String? /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */
-        get() = definedExternally
-        set(value) = definedExternally
-    var persistent: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var recursive: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
+external fun watch(filename: String, options: dynamic /* `T$47`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
 
-external fun watch(filename: String, options: dynamic /* `T$47`? | String | String | String | String | String | String | String | String | String | String */, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
+external fun watch(filename: Buffer, options: dynamic /* `T$47`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
 
-external fun watch(filename: Buffer, options: dynamic /* `T$47`? | String | String | String | String | String | String | String | String | String | String */, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
-
-external fun watch(filename: URL, options: dynamic /* `T$47`? | String | String | String | String | String | String | String | String | String | String */, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
-
-external interface `T$48` {
-    var encoding: String /* "buffer" */
-    var persistent: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var recursive: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
+external fun watch(filename: URL, options: dynamic /* `T$47`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */, listener: (event: String, filename: String) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: String, options: `T$48`, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
 
@@ -1364,18 +1161,6 @@ external fun watch(filename: Buffer, options: String /* "buffer" */, listener: (
 external fun watch(filename: URL, options: `T$48`, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
 
 external fun watch(filename: URL, options: String /* "buffer" */, listener: (event: String, filename: Buffer) -> Unit = definedExternally): FSWatcher
-
-external interface `T$49` {
-    var encoding: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var persistent: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var recursive: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external fun watch(filename: String, options: `T$49`?, listener: (event: String, filename: dynamic /* String | Buffer */) -> Unit = definedExternally): FSWatcher
 
@@ -1425,36 +1210,6 @@ external fun accessSync(path: Buffer, mode: Number = definedExternally)
 
 external fun accessSync(path: URL, mode: Number = definedExternally)
 
-external interface `T$50` {
-    var flags: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var encoding: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var fd: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var mode: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var autoClose: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var emitClose: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var start: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var end: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var highWaterMark: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external fun createReadStream(path: String, options: String = definedExternally): ReadStream
 
 external fun createReadStream(path: String, options: `T$50` = definedExternally): ReadStream
@@ -1466,33 +1221,6 @@ external fun createReadStream(path: Buffer, options: `T$50` = definedExternally)
 external fun createReadStream(path: URL, options: String = definedExternally): ReadStream
 
 external fun createReadStream(path: URL, options: `T$50` = definedExternally): ReadStream
-
-external interface `T$51` {
-    var flags: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var encoding: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var fd: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var mode: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var autoClose: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var emitClose: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var start: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var highWaterMark: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external fun createWriteStream(path: String, options: String = definedExternally): WriteStream
 
@@ -1568,32 +1296,13 @@ external fun writev(fd: Number, buffers: Array<dynamic /* Uint8Array | Uint8Clam
 
 external fun writev(fd: Number, buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>, position: Number, cb: (err: ErrnoException?, bytesWritten: Number, buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>) -> Unit)
 
-external interface WriteVResult {
-    var bytesWritten: Number
-    var buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>
-}
-
 external fun writevSync(fd: Number, buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>, position: Number = definedExternally): Number
 
 external fun readv(fd: Number, buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>, cb: (err: ErrnoException?, bytesRead: Number, buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>) -> Unit)
 
 external fun readv(fd: Number, buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>, position: Number, cb: (err: ErrnoException?, bytesRead: Number, buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>) -> Unit)
 
-external interface ReadVResult {
-    var bytesRead: Number
-    var buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>
-}
-
 external fun readvSync(fd: Number, buffers: Array<dynamic /* Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView */>, position: Number = definedExternally): Number
-
-external interface OpenDirOptions {
-    var encoding: String? /* "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */
-        get() = definedExternally
-        set(value) = definedExternally
-    var bufferSize: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
 
 external fun opendirSync(path: String, options: OpenDirOptions = definedExternally): Dir
 

@@ -16,9 +16,5 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
-import dns.MxRecord
-import dns.NaptrRecord
-import dns.SoaRecord
-import dns.SrvRecord
 
-external fun __promisify__(hostname: String, rrtype: String): Promise<dynamic /* Array<String> | Array<MxRecord> | Array<NaptrRecord> | SoaRecord | Array<SrvRecord> | Array<Array<String>> | Array<dynamic /* AnyARecord | AnyAaaaRecord | AnyCnameRecord | AnyMxRecord | AnyNaptrRecord | AnyNsRecord | AnyPtrRecord | AnySoaRecord | AnySrvRecord | AnyTxtRecord */> */>
+external fun __promisify__(hostname: String, rrtype: String /* "A" | "AAAA" | "CNAME" | "NS" | "PTR" | "ANY" | "MX" | "NAPTR" | "SOA" | "SRV" | "TXT" */ = definedExternally): dynamic /* Promise */

@@ -22,11 +22,11 @@ import fs.`T$37`
 import fs.`T$38`
 import fs.Dirent
 
-external fun __promisify__(path: String, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<Array<String>>
+external fun __promisify__(path: String, options: dynamic /* `T$35`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<Array<String>>
 
-external fun __promisify__(path: Buffer, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<Array<String>>
+external fun __promisify__(path: Buffer, options: dynamic /* `T$35`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<Array<String>>
 
-external fun __promisify__(path: URL, options: dynamic /* `T$35`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<Array<String>>
+external fun __promisify__(path: URL, options: dynamic /* `T$35`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<Array<String>>
 
 external fun __promisify__(path: String, options: String /* "buffer" */): Promise<Array<Buffer>>
 

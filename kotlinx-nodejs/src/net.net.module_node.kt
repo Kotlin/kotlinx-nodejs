@@ -21,66 +21,6 @@ import Buffer
 import stream.internal.Duplex
 import events.EventEmitter.EventEmitter
 
-external interface AddressInfo {
-    var address: String
-    var family: String
-    var port: Number
-}
-
-external interface SocketConstructorOpts {
-    var fd: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var allowHalfOpen: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var readable: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var writable: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface OnReadOpts {
-    var buffer: dynamic /* Uint8Array | () -> Uint8Array */
-        get() = definedExternally
-        set(value) = definedExternally
-    fun callback(bytesWritten: Number, buf: Uint8Array): Boolean
-}
-
-external interface ConnectOpts {
-    var onread: OnReadOpts?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface TcpSocketConnectOpts : ConnectOpts {
-    var port: Number
-    var host: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var localAddress: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var localPort: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var hints: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var family: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var lookup: LookupFunction?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface IpcSocketConnectOpts : ConnectOpts {
-    var path: String
-}
-
 external open class Socket(options: SocketConstructorOpts = definedExternally) : Duplex {
     open fun write(buffer: Uint8Array, cb: (err: Error) -> Unit = definedExternally): Boolean
     override fun write(chunk: Any, cb: (error: Error?) -> Unit): Boolean
@@ -160,42 +100,6 @@ external open class Socket(options: SocketConstructorOpts = definedExternally) :
     open fun prependOnceListener(event: String /* "lookup" */, listener: (err: Error, address: String, family: dynamic /* String | Number */, host: String) -> Unit): Socket /* this */
 }
 
-external interface ListenOptions {
-    var port: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var host: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var backlog: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-    var path: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var exclusive: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var readableAll: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var writableAll: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var ipv6Only: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface `T$9` {
-    var allowHalfOpen: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var pauseOnConnect: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external open class Server : EventEmitter {
     constructor(connectionListener: (socket: Socket) -> Unit = definedExternally)
     constructor(options: `T$9` = definedExternally, connectionListener: (socket: Socket) -> Unit = definedExternally)
@@ -241,18 +145,6 @@ external open class Server : EventEmitter {
     open fun prependOnceListener(event: String /* "close" | "listening" */, listener: () -> Unit): Server /* this */
     open fun prependOnceListener(event: String /* "connection" */, listener: (socket: Socket) -> Unit): Server /* this */
     open fun prependOnceListener(event: String /* "error" */, listener: (err: Error) -> Unit): Server /* this */
-}
-
-external interface TcpNetConnectOpts : TcpSocketConnectOpts, SocketConstructorOpts {
-    var timeout: Number?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface IpcNetConnectOpts : IpcSocketConnectOpts, SocketConstructorOpts {
-    var timeout: Number?
-        get() = definedExternally
-        set(value) = definedExternally
 }
 
 external fun createServer(connectionListener: (socket: Socket) -> Unit = definedExternally): Server

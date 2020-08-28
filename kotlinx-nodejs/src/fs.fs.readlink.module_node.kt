@@ -20,11 +20,11 @@ import Buffer
 import os.`T$21`
 import child_process.`T$16`
 
-external fun __promisify__(path: String, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<String>
+external fun __promisify__(path: String, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
-external fun __promisify__(path: Buffer, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<String>
+external fun __promisify__(path: Buffer, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
-external fun __promisify__(path: URL, options: dynamic /* `T$32`? | String | String | String | String | String | String | String | String | String | String */ = definedExternally): Promise<String>
+external fun __promisify__(path: URL, options: dynamic /* `T$32`? | "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" */ = definedExternally): Promise<String>
 
 external fun __promisify__(path: String, options: `T$21`): Promise<Buffer>
 

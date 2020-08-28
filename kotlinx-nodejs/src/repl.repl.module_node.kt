@@ -17,67 +17,13 @@ import org.w3c.notifications.*
 import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
+import vm.Context
 import NodeJS.ReadableStream
 import NodeJS.WritableStream
-import util.InspectOptions
-import vm.Context
 import NodeJS.ReadOnlyDict
 import readline.Interface
 
-external interface ReplOptions {
-    var prompt: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var input: ReadableStream?
-        get() = definedExternally
-        set(value) = definedExternally
-    var output: WritableStream?
-        get() = definedExternally
-        set(value) = definedExternally
-    var terminal: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var eval: REPLEval?
-        get() = definedExternally
-        set(value) = definedExternally
-    var preview: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var useColors: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var useGlobal: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var ignoreUndefined: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-    var writer: REPLWriter?
-        get() = definedExternally
-        set(value) = definedExternally
-    var completer: dynamic /* Completer? | AsyncCompleter? */
-        get() = definedExternally
-        set(value) = definedExternally
-    var replMode: Any?
-        get() = definedExternally
-        set(value) = definedExternally
-    var breakEvalOnSigint: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
-external interface `T$61` {
-    var options: InspectOptions
-}
-
 external var writer: REPLWriter /* REPLWriter & `T$61` */
-
-external interface REPLCommand {
-    var help: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var action: REPLCommandAction
-}
 
 external open class REPLServer : Interface {
     open var context: Context

@@ -18,24 +18,6 @@ import org.w3c.performance.*
 import org.w3c.workers.*
 import org.w3c.xhr.*
 
-external interface `T$68` {
-    var message: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var actual: Any?
-        get() = definedExternally
-        set(value) = definedExternally
-    var expected: Any?
-        get() = definedExternally
-        set(value) = definedExternally
-    var operator: String?
-        get() = definedExternally
-        set(value) = definedExternally
-    var stackStartFn: Function<*>?
-        get() = definedExternally
-        set(value) = definedExternally
-}
-
 external fun fail(message: String = definedExternally): Any
 
 external fun fail(message: Error = definedExternally): Any
