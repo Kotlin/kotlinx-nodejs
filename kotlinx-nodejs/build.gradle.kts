@@ -3,7 +3,7 @@ import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.gradle.api.publish.maven.internal.artifact.FileBasedMavenArtifact
 
 plugins {
-    id("org.jetbrains.kotlin.js")
+    kotlin("js")
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.4"
 }
