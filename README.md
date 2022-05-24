@@ -1,7 +1,8 @@
 # kotlinx-nodejs
 
 [![kotlinx-nodejs on Bintray](https://img.shields.io/bintray/v/kotlin/kotlinx/kotlinx.nodejs)](https://bintray.com/kotlin/kotlinx/kotlinx.nodejs)
-[![JetBrains incubator project](https://jb.gg/badges/incubator.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+Gi^tHub)
+[![Kotlin Experimental](https://kotl.in/badges/experimental.svg)]([https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub](https://kotlinlang.org/docs/components-stability.html))
+[![JetBrains incubator project](https://jb.gg/badges/incubator.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
 `kotlinx-nodejs` provides Kotlin [external declarations](https://kotlinlang.org/docs/reference/js-interop.html) for using the [Node.js API](https://nodejs.org/docs/latest/api/) from Kotlin code targeting JavaScript. 
